@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>🚢 ShadowFleet Tracker — Vessel Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="left">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="brand">🚢 ShadowFleet Tracker</div>
+          </div>
+        </div>
+        <div class="controls">
+          <input id="search" type="search" placeholder="Search by NAME, IMO, MMSI, FLAG, TYPE_SUMMARY" />
+          <button id="statsBtn">Flag Stats</button>
+          <button id="rawBtn">RAW DATA</button>
+          <div id="lastUpdated" class="last-updated"></div>
+        </div>
+      </div>
+    </header>
+
+    <div id="map"></div>
+
+    <aside id="sidebar" class="closed">
+      <div id="details">
+        <button id="closeSidebar" aria-label="Close">✕</button>
+        <h2 id="shipName">—</h2>
+        <div id="shipImage" class="ship-image"></div>
+        <div id="shipMeta"></div>
+        <h3>Links</h3>
+        <ul id="links"></ul>
+      </div>
+    </aside>
+
+    <footer class="site-footer">🇺🇦 Slava Ukraini / Слава Україні</footer>
+    
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
