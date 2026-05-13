@@ -134,17 +134,57 @@ function makeLabelIcon(item){
       if(Number.isFinite(v)) { heading = v; break; }
     }
   }
+  // decide color and size based on weight-like fields
+  function getWeightInfo(it){
+    const keys = ['DWT','dwt','GT','GRT','gt','GRT','WEIGHT','weight','LENGTH','length','LENGTH_METERS','GRT'];
+    let keyFound = null;
+    let val = null;
+    for(const k of keys){
+      if(it[k]!==undefined && it[k]!==null){
+        const num = parseFloat(it[k]);
+        if(Number.isFinite(num)){
+          keyFound = k;
+          val = num;
+          break;
+        }
+      }
+    }
+    // default small
+    const buckets = {small:{color:'#16a34a',size:20,label:'Small'}, medium:{color:'#f59e0b',size:28,label:'Medium'}, large:{color:'#ef4444',size:36,label:'Large'}};
+    if(!keyFound) return {key:null,value:null, bucket:'small', color:buckets.small.color, size:buckets.small.size, label:buckets.small.label};
+    const k = keyFound.toUpperCase();
+    // decide thresholds based on key
+    if(['DWT','DWT','DWT_MT'].includes(k)){
+      if(val < 5000) return {key:k,value:val,bucket:'small',color:buckets.small.color,size:buckets.small.size,label:`<5000 DWT`};
+      if(val < 20000) return {key:k,value:val,bucket:'medium',color:buckets.medium.color,size:buckets.medium.size,label:`5k-20k DWT`};
+      return {key:k,value:val,bucket:'large',color:buckets.large.color,size:buckets.large.size,label:`>20k DWT`};
+    }
+    if(['GT','GRT','GT','GRT'].includes(k)){
+      if(val < 1000) return {key:k,value:val,bucket:'small',color:buckets.small.color,size:buckets.small.size,label:`<1k GT`};
+      if(val < 10000) return {key:k,value:val,bucket:'medium',color:buckets.medium.color,size:buckets.medium.size,label:`1k-10k GT`};
+      return {key:k,value:val,bucket:'large',color:buckets.large.color,size:buckets.large.size,label:`>10k GT`};
+    }
+    if(k === 'LENGTH'){
+      if(val < 80) return {key:k,value:val,bucket:'small',color:buckets.small.color,size:18,label:`<80 m`};
+      if(val < 180) return {key:k,value:val,bucket:'medium',color:buckets.medium.color,size:26,label:`80-180 m`};
+      return {key:k,value:val,bucket:'large',color:buckets.large.color,size:34,label:`>180 m`};
+    }
+    // fallback: small
+    return {key:k,value:val,bucket:'small',color:buckets.small.color,size:buckets.small.size,label: String(val)};
+  }
+
+  const winfo = getWeightInfo(item);
 
   // create SVG and apply rotation if heading present
-  const rotateStyle = heading!==null ? `transform: rotate(${heading}deg); transform-origin: 12px 12px;` : '';
+  const rotateStyle = heading!==null ? `transform: rotate(${heading}deg); transform-origin: ${winfo.size/2}px ${winfo.size/2}px;` : '';
   const svg = `
-    <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="${rotateStyle}">
+    <svg width="${winfo.size}" height="${winfo.size}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="${rotateStyle}">
       <defs>
         <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
           <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.45"/>
         </filter>
       </defs>
-      <polygon points="2,12 20,4 20,20" fill="#e11d1d" filter="url(#shadow)" />
+      <polygon points="2,12 20,4 20,20" fill="${winfo.color}" filter="url(#shadow)" />
     </svg>`;
 
   // label HTML
@@ -160,6 +200,22 @@ function makeLabelIcon(item){
   });
 }
 
+// Inject a legend explaining weight buckets
+function ensureLegend(){
+  if(document.getElementById('map-legend')) return;
+  const legend = document.createElement('div'); legend.id = 'map-legend'; legend.className = 'map-legend';
+  legend.innerHTML = `
+    <div class="legend-title">Size / Weight (length criteria)</div>
+    <div class="legend-row"><span class="swatch" style="background:#16a34a"></span><span class="lbl">Small — &lt; 80 m</span></div>
+    <div class="legend-row"><span class="swatch" style="background:#f59e0b"></span><span class="lbl">Medium — 80–180 m</span></div>
+    <div class="legend-row"><span class="swatch" style="background:#ef4444"></span><span class="lbl">Large — &gt; 180 m</span></div>
+  `;
+  document.body.appendChild(legend);
+}
+
+// create legend on load
+ensureLegend();
+
 function escapeHtml(s){
   return String(s).replace(/[&<>"']/g, function(c){
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
@@ -169,6 +225,12 @@ function escapeHtml(s){
 fetch('ships.json').then(r=>r.json()).then(data=>{
   const list = Array.isArray(data)?data:data.result||data;
   allShips = list || [];
+
+  // update total ships count in footer (if element present)
+  try{
+    const totalEl = document.getElementById('totalShips');
+    if(totalEl) totalEl.textContent = String(allShips.length || 0);
+  }catch(e){ console.debug('Could not update totalShips element', e); }
 
   // set last-updated from first entry if present
   if(allShips.length){
