@@ -106,6 +106,14 @@ function showDetails(data){
     linksEl.appendChild(li4);
   }
 
+  // add Opensanctions search link if IMO available
+  if(imo){
+    const opensanctionsUrl = `https://www.opensanctions.org/search/?q=${encodeURIComponent('IMO'+imo)}`;
+    const a5 = document.createElement('a'); a5.href = opensanctionsUrl; a5.textContent = 'Opensanctions'; a5.target = '_blank'; a5.rel = 'noopener noreferrer';
+    const li5 = document.createElement('li'); li5.appendChild(a5);
+    linksEl.appendChild(li5);
+  }
+
   sidebar.classList.add('open');
 }
 
