@@ -95,6 +95,17 @@ function showDetails(data){
   const li3 = document.createElement('li'); li3.appendChild(a3);
   linksEl.appendChild(li1); linksEl.appendChild(li2); linksEl.appendChild(li3);
 
+  // add Ecosia websearch for the vessel name (lowercased) if available
+  const vesselName = (data.SHIPNAME || data.name || '').toString().trim();
+  if(vesselName){
+    const nameLower = vesselName.toLowerCase();
+    const q = `"shadow fleet" "russia" "${nameLower}"`;
+    const ecosiaUrl = `https://www.ecosia.org/search?method=index&q=${encodeURIComponent(q)}`;
+    const a4 = document.createElement('a'); a4.href = ecosiaUrl; a4.textContent = 'Ecosia Websearch'; a4.target = '_blank'; a4.rel = 'noopener noreferrer';
+    const li4 = document.createElement('li'); li4.appendChild(a4);
+    linksEl.appendChild(li4);
+  }
+
   sidebar.classList.add('open');
 }
 
