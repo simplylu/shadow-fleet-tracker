@@ -251,11 +251,42 @@ fetch('ships.json').then(r=>r.json()).then(data=>{
     if(totalEl) totalEl.textContent = String(allShips.length || 0);
   }catch(e){ console.debug('Could not update totalShips element', e); }
 
-  // set last-updated from first entry if present
+  // set last-updated from the newest timestamp across all entries
   if(allShips.length){
-    const first = allShips[0];
-    const ts = first.TIMESTAMP || first.timestamp || first.time || first.TIMESTAMP || first.Time;
-    if(ts){ lastUpdatedEl.textContent = `Last updated: ${ts}`; }
+    let latestNum = null;
+    let latestStr = null;
+    allShips.forEach(it => {
+      let ts = it.TIMESTAMP || it.timestamp || it.time || it.Time || it.updated_at || it.updatedAt;
+      if(ts === undefined || ts === null) return;
+      if(typeof ts === 'number'){
+        if(latestNum === null || ts > latestNum) latestNum = ts;
+        return;
+      }
+      const s = String(ts).trim();
+      // numeric-looking string? treat as number
+      const n = parseFloat(s);
+      if(!Number.isNaN(n) && /^\d+(?:\.\d+)?$/.test(s)){
+        if(latestNum === null || n > latestNum) latestNum = n;
+      } else {
+        if(latestStr === null || s > latestStr) latestStr = s;
+      }
+    });
+
+    let display = '';
+    if(latestNum !== null){
+      // guess whether numeric is seconds or milliseconds
+      if(latestNum > 1e12){
+        try{ display = new Date(latestNum).toISOString(); }catch(e){ display = String(latestNum); }
+      } else if(latestNum > 1e9){
+        try{ display = new Date(latestNum * 1000).toISOString(); }catch(e){ display = String(latestNum); }
+      } else {
+        display = String(latestNum);
+      }
+    } else if(latestStr !== null){
+      display = latestStr;
+    }
+
+    if(display){ lastUpdatedEl.textContent = `Last updated: ${display}`; }
   }
 
   allShips.forEach(item=>{
