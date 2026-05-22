@@ -25,11 +25,14 @@ body{background:linear-gradient(180deg,#071124 0%, #071524 100%);color:#e6eef6}
 /* Sidebar */
 #sidebar{position:fixed;right:0;top:0;height:100%;width:360px;max-width:92vw;background:linear-gradient(180deg, rgba(15,23,32,0.98), rgba(6,10,15,0.98));z-index:1200;padding:22px 18px;border-left:1px solid rgba(255,255,255,0.03);transform:translateX(100%);transition:transform .28s cubic-bezier(.2,.9,.2,1);box-shadow:-24px 0 48px rgba(0,0,0,0.6);display:flex;flex-direction:column}
 #sidebar.open{transform:translateX(0)}
-#sidebar button{position:absolute;right:12px;top:12px;background:none;border:0;color:var(--muted);font-size:18px}
+#closeSidebar{position:absolute;right:12px;top:18px;background:none;border:0;color:var(--muted);font-size:18px}
+
+/* Track toggle button placed inline with links to avoid overlapping the close button */
+.track-toggle{display:block;margin:8px 0 12px 0;padding:8px 10px;border-radius:8px;background:var(--accent);color:#04272a;border:0;font-weight:700;cursor:pointer;position:relative;right:auto;top:auto}
 #sidebar .ship-image{margin:8px 0 12px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;max-height:44vh;overflow:hidden}
 #sidebar .ship-image img{max-width:100%;height:auto;max-height:38vh;border-radius:8px;display:block;box-shadow:0 8px 24px rgba(0,0,0,0.6);object-fit:cover}
 #details h2{margin:6px 0 8px 0}
-#sidebar #details{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-top:56px;padding-bottom:28px;box-sizing:border-box}
+#sidebar #details{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-top:12px;padding-bottom:18px;box-sizing:border-box}
 #shipMeta{font-size:13px;color:var(--muted);line-height:1.6}
 #links{padding-left:16px}
 #links a{color:var(--accent);text-decoration:none}
@@ -94,3 +97,22 @@ body{background:linear-gradient(180deg,#071124 0%, #071524 100%);color:#e6eef6}
 .image-credit{margin-top:8px;text-align:center;font-size:12px;color:#ffffff}
 .image-credit a{color:#ffffff;text-decoration:none;/* keep as plain white text */}
 .image-credit a:visited,.image-credit a:hover,.image-credit a:active{color:#ffffff;text-decoration:none}
+
+/* Notes (markdown) in sidebar */
+.ship-notes{margin:10px 0;color:var(--muted);font-size:14px}
+.ship-notes p{margin:6px 0}
+.ship-notes a{color:var(--accent);text-decoration:underline}
+.ship-notes .md-code{background:rgba(255,255,255,0.03);padding:8px;border-radius:6px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;white-space:pre-wrap}
+.ship-notes .md-inline{background:rgba(255,255,255,0.02);padding:2px 4px;border-radius:4px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace}
+.ship-notes .md-list{padding-left:18px;margin:6px 0}
+.notes-empty{color:var(--muted);font-style:italic}
+
+/* favicon links in sidebar */
+.fav-link{display:flex;align-items:center;gap:10px;text-decoration:none;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);color:inherit}
+.fav-icon{width:22px;height:22px;border-radius:4px;display:inline-block;vertical-align:middle}
+.fav-link-item{display:block;margin:6px 0}
+.fav-domain{color:var(--muted);font-size:13px;margin-left:6px}
+
+/* ensure sidebar details uses available space and scrolls naturally */
+/* remove fixed max-height so the flex layout can fill the sidebar */
+#sidebar #details{max-height:none}

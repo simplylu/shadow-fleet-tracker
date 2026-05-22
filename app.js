@@ -82,39 +82,142 @@ function showDetails(data){
     }
   }
   shipMetaEl.innerHTML = lines.join('');
+  // append seized status (show True in bold red)
+  const seizedHtml = data.seized ? `<div><strong>Seized:</strong> <strong style="color:#ef4444">True</strong></div>` : `<div><strong>Seized:</strong> False</div>`;
+  shipMetaEl.innerHTML += seizedHtml;
+
+  // render notes (markdown) into the dedicated notes container
+  const shipNotesEl = document.getElementById('shipNotes');
+  if(shipNotesEl){
+    const notesRaw = (data.notes || '').toString();
+    if(notesRaw.trim()) shipNotesEl.innerHTML = renderMarkdown(notesRaw);
+    else shipNotesEl.innerHTML = '<div class="notes-empty">—</div>';
+  }
 
   // links
   const shipid = data.SHIP_ID || data.shipid || '';
   const imo = data.IMO || data.imo || '';
-  linksEl.innerHTML = '';
-  const a1 = document.createElement('a'); a1.href = `https://www.marinetraffic.com/en/ais/home/shipid:${shipid}/zoom:14`; a1.textContent='Marinetraffic'; a1.target='_blank';
-  const a2 = document.createElement('a'); a2.href = `https://www.vesselfinder.com/vessels/details/${imo}`; a2.textContent='Vesselfinder'; a2.target='_blank';
-  const a3 = document.createElement('a'); a3.href = `https://war-sanctions.gur.gov.ua/en/transport/shadow-fleet?f%5Bsearch%5D=${encodeURIComponent(imo)}&f%5Bc%5D=&f%5Bt%5D=&f%5Bn%5D=&f%5Bgroup_id%5D=&f-ca=&f-cs=&f%5Bcs2%5D=&f%5Bma%5D=`; a3.textContent='War Sanctions'; a3.target='_blank';
-  const li1 = document.createElement('li'); li1.appendChild(a1);
-  const li2 = document.createElement('li'); li2.appendChild(a2);
-  const li3 = document.createElement('li'); li3.appendChild(a3);
-  linksEl.appendChild(li1); linksEl.appendChild(li2); linksEl.appendChild(li3);
-
-  // add Ecosia websearch for the vessel name (lowercased) if available
   const vesselName = (data.SHIPNAME || data.name || '').toString().trim();
+  linksEl.innerHTML = '';
+  // favicon sources
+  const favicons = {
+    ecosia: 'assets/ecosia.ico',
+    marinetraffic: 'assets/marinetraffic.ico',
+    vesselfinder: 'assets/vesselfinder.ico',
+    opensanctions: 'assets/opensanctions.png',
+    war: 'assets/warsanctions.svg',
+    militarnyi: 'assets/militarnyi.png',
+    maritimeoptima: 'assets/maritimeoptima.png'
+  };
+
+  const linkSpecs = [];
+  linkSpecs.push({href:`https://www.marinetraffic.com/en/ais/home/shipid:${shipid}/zoom:14`, title:'Marinetraffic', domain:'marinetraffic.com', icon:favicons.marinetraffic});
+  linkSpecs.push({href:`https://www.vesselfinder.com/vessels/details/${imo}`, title:'Vesselfinder', domain:'vesselfinder.com', icon:favicons.vesselfinder});
+  linkSpecs.push({href:`https://war-sanctions.gur.gov.ua/en/transport/shadow-fleet?f%5Bsearch%5D=${encodeURIComponent(imo)}&f%5Bc%5D=&f%5Bt%5D=&f%5Bn%5D=&f%5Bgroup_id%5D=&f-ca=&f-cs=&f%5Bcs2%5D=&f%5Bma%5D=`, title:'War Sanctions', domain:'war-sanctions.gur.gov.ua', icon:favicons.war});
+
+  // Ecosia search for vessel name
   if(vesselName){
-    const nameLower = vesselName.toLowerCase();
-    const q = `"shadow fleet" "russia" "${nameLower}"`;
+    const q = `"shadow fleet" "russia" "${vesselName.toLowerCase()}"`;
     const ecosiaUrl = `https://www.ecosia.org/search?method=index&q=${encodeURIComponent(q)}`;
-    const a4 = document.createElement('a'); a4.href = ecosiaUrl; a4.textContent = 'Ecosia Websearch'; a4.target = '_blank'; a4.rel = 'noopener noreferrer';
-    const li4 = document.createElement('li'); li4.appendChild(a4);
-    linksEl.appendChild(li4);
+    linkSpecs.push({href:ecosiaUrl, title:'Ecosia', domain:'ecosia.org', icon:favicons.ecosia});
+
+    const militUrl = `https://www.ecosia.org/search?method=index&q=${encodeURIComponent(`site:militarnyi.com "${vesselName}"` )}`;
+    linkSpecs.push({href:militUrl, title:'Militarnyi', domain:'militarnyi.com', icon:favicons.militarnyi});
+
+    const marUrl = `https://www.ecosia.org/search?q=${encodeURIComponent(`site:maritimeoptima.com "maritime-news" "${vesselName}"`)}`;
+    linkSpecs.push({href:marUrl, title:'MaritimeOptima', domain:'maritimeoptima.com', icon:favicons.maritimeoptima});
   }
 
-  // add Opensanctions search link if IMO available
   if(imo){
     const opensanctionsUrl = `https://www.opensanctions.org/search/?q=${encodeURIComponent('IMO'+imo)}`;
-    const a5 = document.createElement('a'); a5.href = opensanctionsUrl; a5.textContent = 'Opensanctions'; a5.target = '_blank'; a5.rel = 'noopener noreferrer';
-    const li5 = document.createElement('li'); li5.appendChild(a5);
-    linksEl.appendChild(li5);
+    linkSpecs.push({href:opensanctionsUrl, title:'Opensanctions', domain:'opensanctions.org', icon:favicons.opensanctions});
   }
 
-  sidebar.classList.add('open');
+  // render as icon links
+  for(const spec of linkSpecs){
+    const li = document.createElement('li'); li.className = 'fav-link-item';
+    const a = document.createElement('a'); a.href = spec.href; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.className = 'fav-link';
+    const img = document.createElement('img'); img.src = spec.icon; img.alt = spec.title + ' icon'; img.className = 'fav-icon';
+    const span = document.createElement('span'); span.className = 'fav-domain'; span.textContent = spec.domain || spec.title;
+    a.appendChild(img); a.appendChild(span); li.appendChild(a); linksEl.appendChild(li);
+  }
+
+  
+  
+    // add track toggle button
+    let trackBtn = document.getElementById('trackToggleBtn');
+    if(!trackBtn){
+      trackBtn = document.createElement('button');
+      trackBtn.id = 'trackToggleBtn';
+      trackBtn.className = 'track-toggle';
+      trackBtn.textContent = 'Show track';
+      trackBtn.type = 'button';
+      // insert before Links header
+      const linksHeader = document.querySelector('#sidebar h3');
+      if(linksHeader && linksHeader.parentNode){
+        linksHeader.parentNode.insertBefore(trackBtn, linksHeader);
+      } else {
+        // fallback append
+        linksEl.parentNode.insertBefore(trackBtn, linksEl);
+      }
+    }
+    // set data-shipid for this button
+    trackBtn.dataset.shipid = shipid;
+    trackBtn.textContent = (window.__trackVisible && window.__trackShipId == shipid) ? 'Hide track' : 'Show track';
+    trackBtn.onclick = async function(){
+      const sid = this.dataset.shipid;
+      if(window.__trackVisible && window.__trackShipId == sid){
+        // hide
+        removeTrackLayer();
+        this.textContent = 'Show track';
+        return;
+      }
+      // show (load track)
+      this.textContent = 'Loading track...';
+      try{
+        await showTrackForShip(sid);
+        this.textContent = 'Hide track';
+      }catch(e){
+        console.error('Failed to load track', e);
+        this.textContent = 'Show track';
+        alert('Failed to load track for this ship.');
+      }
+    };
+
+    sidebar.classList.add('open');
+}
+
+// Minimal safe-ish markdown renderer for notes (supports headings, bold, italic, links, inline code, lists, code blocks)
+function renderMarkdown(md){
+  // escape first
+  let out = escapeHtml(md);
+  // code blocks ```...```
+  out = out.replace(/```([\s\S]*?)```/g, function(_, code){ return `<pre class="md-code">${escapeHtml(code)}</pre>`; });
+  // inline code `...`
+  out = out.replace(/`([^`]+)`/g, function(_, c){ return `<code class="md-inline">${escapeHtml(c)}</code>`; });
+  // bold **text**
+  out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  // italic *text*
+  out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  // links [text](url)
+  out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function(_, t, u){ return `<a href="${escapeHtml(u)}" target="_blank" rel="noopener noreferrer">${t}</a>`; });
+  // lists: lines starting with - or *
+  const lines = out.split(/\r?\n/);
+  let res = [];
+  let inList = false;
+  for(const line of lines){
+    const l = line.trim();
+    const m = l.match(/^[-*]\s+(.*)/);
+    if(m){
+      if(!inList){ res.push('<ul class="md-list">'); inList = true; }
+      res.push(`<li>${m[1]}</li>`);
+    } else {
+      if(inList){ res.push('</ul>'); inList = false; }
+      if(l === '') res.push('<p></p>'); else res.push(`<p>${l}</p>`);
+    }
+  }
+  if(inList) res.push('</ul>');
+  return res.join('\n');
 }
 
 
@@ -219,6 +322,50 @@ function makeLabelIcon(item){
   });
 }
 
+// Track handling: show/hide per-ship track loaded from /tracks/<shipid>.json
+function removeTrackLayer(){
+  if(window.__trackLayer){
+    try{ map.removeLayer(window.__trackLayer); }catch(e){}
+    try{ map.removeLayer(window.__trackPointsLayer); }catch(e){}
+    window.__trackLayer = null; window.__trackPointsLayer = null; window.__trackVisible = false; window.__trackShipId = null;
+  }
+}
+
+async function showTrackForShip(shipid){
+  removeTrackLayer();
+  if(!shipid) throw new Error('no shipid');
+  const url = `tracks/${encodeURIComponent(shipid)}.json`;
+  const r = await fetch(url);
+  if(!r.ok) throw new Error('HTTP ' + r.status);
+  const pts = await r.json();
+  if(!Array.isArray(pts) || pts.length === 0) throw new Error('no points');
+  const latlngs = pts.map(p=>[parseFloat(p.lat), parseFloat(p.lon)]).filter(ll=>Number.isFinite(ll[0]) && Number.isFinite(ll[1]));
+  if(latlngs.length === 0) throw new Error('no valid points');
+  // create polyline
+  const poly = L.polyline(latlngs, {color:'#ff7800', weight:3, opacity:0.9}).addTo(map);
+  // create small circle markers with hover tooltips
+  const pointsLayer = L.layerGroup();
+  for(let i=0;i<pts.length;i++){
+    const p = pts[i];
+    const lat = parseFloat(p.lat); const lon = parseFloat(p.lon);
+    if(!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
+    const marker = L.circleMarker([lat,lon], {radius:4, fillColor:'#ffb86b', color:'#ff7800', weight:1, fillOpacity:0.9});
+    const ts = p.timestamp || p.time || p.t || '';
+    marker.bindTooltip(ts || '', {permanent:false, direction:'top', opacity:0.95});
+    marker.on('mouseover', function(e){ this.openTooltip(); });
+    marker.on('mouseout', function(e){ this.closeTooltip(); });
+    pointsLayer.addLayer(marker);
+  }
+  pointsLayer.addTo(map);
+  // store references
+  window.__trackLayer = poly;
+  window.__trackPointsLayer = pointsLayer;
+  window.__trackVisible = true;
+  window.__trackShipId = shipid;
+  // fit bounds without fully zooming out too much
+  try{ map.fitBounds(poly.getBounds(), {padding:[40,40]}); }catch(e){}
+}
+
 // Inject a legend explaining weight buckets
 function ensureLegend(){
   if(document.getElementById('map-legend')) return;
@@ -228,8 +375,18 @@ function ensureLegend(){
     <div class="legend-row"><span class="swatch" style="background:#16a34a"></span><span class="lbl">Small — &lt; 80 m</span></div>
     <div class="legend-row"><span class="swatch" style="background:#f59e0b"></span><span class="lbl">Medium — 80–180 m</span></div>
     <div class="legend-row"><span class="swatch" style="background:#ef4444"></span><span class="lbl">Large — &gt; 180 m</span></div>
+    <hr />
+    <div class="legend-row"><label class="seized-filter-label"><input type="checkbox" id="filterSeized" /> Show seized only</label></div>
   `;
   document.body.appendChild(legend);
+  const filterSeizedEl = document.getElementById('filterSeized');
+  if(filterSeizedEl){
+    filterSeizedEl.addEventListener('change', ()=>{
+      window.__seizedOnly = filterSeizedEl.checked;
+      const q = searchEl.value.trim().toLowerCase();
+      filterShips(q);
+    });
+  }
 }
 
 // create legend on load
@@ -244,6 +401,12 @@ function escapeHtml(s){
 fetch('ships.json').then(r=>r.json()).then(data=>{
   const list = Array.isArray(data)?data:data.result||data;
   allShips = list || [];
+
+  // ensure notes and seized fields exist (defaults)
+  allShips.forEach(it => {
+    if(it.notes === undefined) it.notes = '';
+    if(it.seized === undefined) it.seized = false;
+  });
 
   // update total ships count in footer (if element present)
   try{
@@ -312,16 +475,21 @@ fetch('ships.json').then(r=>r.json()).then(data=>{
 
 
 function filterShips(q){
-  // q matches TYPE_SUMMARY, SHIPNAME, MMSI, IMO, FLAG
+  // q matches TYPE_SUMMARY, SHIPNAME, MMSI, IMO, FLAG, notes
   markerGroup.clearLayers();
+  const seizedOnly = !!window.__seizedOnly;
   if(!q){
-    markers.forEach(m=> markerGroup.addLayer(m.marker));
+    markers.forEach(m=>{
+      if(seizedOnly && !m.item.seized) return;
+      markerGroup.addLayer(m.marker);
+    });
     if(markerGroup.getLayers().length) map.fitBounds(markerGroup.getBounds(),{padding:[60,60]});
     return;
   }
   markers.forEach(m=>{
     const it = m.item;
-    const fields = [it.TYPE_SUMMARY, it.SHIPNAME, it.MMSI, it.IMO, it.FLAG, it.name, it.shipid, it.SHIP_ID];
+    if(seizedOnly && !it.seized) return;
+    const fields = [it.TYPE_SUMMARY, it.SHIPNAME, it.MMSI, it.IMO, it.FLAG, it.name, it.shipid, it.SHIP_ID, it.notes];
     const hay = fields.filter(Boolean).map(x=>String(x).toLowerCase()).join(' ');
     if(hay.indexOf(q) !== -1){
       markerGroup.addLayer(m.marker);
