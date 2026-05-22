@@ -161,11 +161,13 @@ function showDetails(data){
         linksEl.parentNode.insertBefore(trackBtn, linksEl);
       }
     }
-    // set data-shipid for this button
+    // set data-shipid and data-imo for this button
     trackBtn.dataset.shipid = shipid;
+    trackBtn.dataset.imo = imo;
     trackBtn.textContent = (window.__trackVisible && window.__trackShipId == shipid) ? 'Hide track' : 'Show track';
     trackBtn.onclick = async function(){
       const sid = this.dataset.shipid;
+      const simo = this.dataset.imo;
       if(window.__trackVisible && window.__trackShipId == sid){
         // hide
         removeTrackLayer();
@@ -175,7 +177,7 @@ function showDetails(data){
       // show (load track)
       this.textContent = 'Loading track...';
       try{
-        await showTrackForShip(sid);
+        await showTrackForShip(sid, simo);
         this.textContent = 'Hide track';
       }catch(e){
         console.error('Failed to load track', e);
@@ -331,13 +333,30 @@ function removeTrackLayer(){
   }
 }
 
-async function showTrackForShip(shipid){
+async function showTrackForShip(shipid, imo){
   removeTrackLayer();
-  if(!shipid) throw new Error('no shipid');
-  const url = `tracks/${encodeURIComponent(shipid)}.json`;
-  const r = await fetch(url);
-  if(!r.ok) throw new Error('HTTP ' + r.status);
-  const pts = await r.json();
+  if(!shipid && !imo) throw new Error('no shipid/imo');
+
+  const candidates = [];
+  if(shipid) candidates.push(`tracks/${encodeURIComponent(shipid)}.json`);
+  if(imo) candidates.push(`tracks/${encodeURIComponent(imo)}.json`);
+  // try candidates sequentially
+  let r = null; let pts = null; let lastErr = null;
+  for(const url of candidates){
+    try{
+      r = await fetch(url);
+    }catch(err){ r = null; lastErr = err; }
+    if(!r){ lastErr = lastErr || new Error('no response'); continue; }
+    if(!r.ok){ lastErr = new Error('HTTP ' + r.status); continue; }
+    try{ pts = await r.json(); }catch(err){ lastErr = err; pts = null; }
+    if(Array.isArray(pts) && pts.length>0){
+      break;
+    } else {
+      lastErr = new Error('no points');
+      pts = null;
+    }
+  }
+  if(!pts) throw new Error((lastErr && lastErr.message) ? (lastErr.message + ' — tried: ' + candidates.join(', ')) : ('Failed to load track — tried: ' + candidates.join(', ')));
   if(!Array.isArray(pts) || pts.length === 0) throw new Error('no points');
   const latlngs = pts.map(p=>[parseFloat(p.lat), parseFloat(p.lon)]).filter(ll=>Number.isFinite(ll[0]) && Number.isFinite(ll[1]));
   if(latlngs.length === 0) throw new Error('no valid points');
