@@ -381,8 +381,12 @@ async function showTrackForShip(shipid, imo){
   window.__trackPointsLayer = pointsLayer;
   window.__trackVisible = true;
   window.__trackShipId = shipid;
-  // fit bounds without fully zooming out too much
-  try{ map.fitBounds(poly.getBounds(), {padding:[40,40]}); }catch(e){}
+  // center the map on the track but preserve current zoom level
+  try{
+    const bounds = poly.getBounds();
+    const center = bounds.getCenter();
+    map.panTo(center);
+  }catch(e){}
 }
 
 // Inject a legend explaining weight buckets
