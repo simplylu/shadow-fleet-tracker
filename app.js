@@ -71,14 +71,33 @@ function showDetails(data){
 
   // build metadata (SHIPTYPE already mapped in ships.json)
   const lines = [];
-  for(const k of ['IMO','MMSI','LAT','LON','SPEED','HEADING','COURSE','SHIPTYPE','LENGTH','WIDTH','FLAG','TIMESTAMP']){
+  // show numeric/location/etc fields except MMSI/IMO which we render explicitly below
+  for(const k of ['LAT','LON','SPEED','HEADING','COURSE','SHIPTYPE','LENGTH','WIDTH','FLAG','TIMESTAMP']){
     if(data[k]!==undefined && data[k]!==null){
       let value = data[k];
-      // ships.json already contains mapped SHIPTYPE strings; show as-is, fallback to UNKNOWN
       if(k === 'SHIPTYPE' && (value === undefined || value === null || value === '')){
         value = 'UNKNOWN';
       }
       lines.push(`<div><strong>${k}:</strong> ${escapeHtml(value)}</div>`);
+    }
+  }
+  // render MMSI then IMO directly under it (check common key variants)
+  const mmsiVal = data.MMSI || data.mmsi || data.Mmsi || data.mmsi_number || null;
+  if(mmsiVal !== undefined && mmsiVal !== null && mmsiVal !== ''){
+    lines.unshift(`<div><strong>MMSI:</strong> ${escapeHtml(mmsiVal)}</div>`);
+  }
+  const imoVal = data.IMO || data.imo || data.Imo || data.imo_number || null;
+  if(imoVal !== undefined && imoVal !== null && imoVal !== ''){
+    // place IMO right after MMSI if MMSI present, otherwise at top
+    if(mmsiVal){
+      // insert after first element
+      if(lines.length>0){
+        lines.splice(1,0,`<div><strong>IMO:</strong> ${escapeHtml(imoVal)}</div>`);
+      } else {
+        lines.push(`<div><strong>IMO:</strong> ${escapeHtml(imoVal)}</div>`);
+      }
+    } else {
+      lines.unshift(`<div><strong>IMO:</strong> ${escapeHtml(imoVal)}</div>`);
     }
   }
   shipMetaEl.innerHTML = lines.join('');
@@ -111,7 +130,7 @@ function showDetails(data){
   };
 
   const linkSpecs = [];
-  linkSpecs.push({href:`https://www.marinetraffic.com/en/ais/home/shipid:${shipid}/zoom:14`, title:'Marinetraffic', domain:'marinetraffic.com', icon:favicons.marinetraffic});
+  linkSpecs.push({href:`https://www.marinetraffic.com/en/ais/details/ships/shipid:${shipid}#overview`, title:'Marinetraffic', domain:'marinetraffic.com', icon:favicons.marinetraffic});
   linkSpecs.push({href:`https://www.vesselfinder.com/vessels/details/${imo}`, title:'Vesselfinder', domain:'vesselfinder.com', icon:favicons.vesselfinder});
   linkSpecs.push({href:`https://war-sanctions.gur.gov.ua/en/transport/shadow-fleet?f%5Bsearch%5D=${encodeURIComponent(imo)}&f%5Bc%5D=&f%5Bt%5D=&f%5Bn%5D=&f%5Bgroup_id%5D=&f-ca=&f-cs=&f%5Bcs2%5D=&f%5Bma%5D=`, title:'War Sanctions', domain:'war-sanctions.gur.gov.ua', icon:favicons.war});
 
