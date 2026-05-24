@@ -318,15 +318,16 @@ function makeLabelIcon(item){
 
   const winfo = getWeightInfo(item);
 
+  // compute nose position in the SVG (viewBox 0..24, nose at x=20) and rotation origin
+  const noseX = Math.round(winfo.size * (20/24));
   // create SVG and apply rotation if heading present
-  // Convert nautical heading (0 = North, increasing clockwise) to SVG rotation.
-  // SVG default (0deg) points to the right (East), so subtract 90° to align.
+  // Use transform-origin at the nose so rotation keeps the tip anchored
   let rotateStyle = '';
   if (heading !== null) {
     const h = Number(heading) || 0;
-    // Add 180° correction to fix nose pointing backwards
-    const rot = h + 90;
-    rotateStyle = `transform: rotate(${rot}deg); transform-origin: center center;`;
+    // Convert maritime heading to SVG rotation and correct orientation
+    const rot = h + 90; // tweak if needed
+    rotateStyle = `transform: rotate(${rot}deg); transform-origin: ${noseX}px ${Math.round(winfo.size/2)}px;`;
   }
   const svg = `
     <svg width="${winfo.size}" height="${winfo.size}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="${rotateStyle}">
@@ -342,12 +343,19 @@ function makeLabelIcon(item){
   const labelHtml = label ? `<div class="ship-label-text">${escapeHtml(label)}</div>` : '';
 
   const html = `<div class="ship-marker-wrap">${svg}${labelHtml}</div>`;
+  // compute icon sizing and anchor so the SVG center (nose) aligns with the lat/lon
+  const iconWidth = 140; // width reserved for optional label
+  const iconHeight = Math.max(winfo.size, 36);
+  // anchor at the nose X coordinate so the tip aligns with the geographic point
+  const anchorX = noseX;
+  const anchorY = Math.round(winfo.size / 2);
+  const popupAnchorY = -Math.round(winfo.size / 2) - 4;
   return L.divIcon({
     className: 'ship-marker',
     html: html,
-    iconSize: [140,36],
-    iconAnchor: [16,18],
-    popupAnchor: [0,-10]
+    iconSize: [iconWidth, iconHeight],
+    iconAnchor: [anchorX, anchorY],
+    popupAnchor: [0, popupAnchorY]
   });
 }
 
