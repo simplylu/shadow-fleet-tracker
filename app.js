@@ -319,7 +319,15 @@ function makeLabelIcon(item){
   const winfo = getWeightInfo(item);
 
   // create SVG and apply rotation if heading present
-  const rotateStyle = heading!==null ? `transform: rotate(${heading}deg); transform-origin: ${winfo.size/2}px ${winfo.size/2}px;` : '';
+  // Convert nautical heading (0 = North, increasing clockwise) to SVG rotation.
+  // SVG default (0deg) points to the right (East), so subtract 90° to align.
+  let rotateStyle = '';
+  if (heading !== null) {
+    const h = Number(heading) || 0;
+    // Add 180° correction to fix nose pointing backwards
+    const rot = h + 90;
+    rotateStyle = `transform: rotate(${rot}deg); transform-origin: center center;`;
+  }
   const svg = `
     <svg width="${winfo.size}" height="${winfo.size}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="${rotateStyle}">
       <defs>
@@ -400,12 +408,7 @@ async function showTrackForShip(shipid, imo){
   window.__trackPointsLayer = pointsLayer;
   window.__trackVisible = true;
   window.__trackShipId = shipid;
-  // center the map on the track but preserve current zoom level
-  try{
-    const bounds = poly.getBounds();
-    const center = bounds.getCenter();
-    map.panTo(center);
-  }catch(e){}
+  // Do not change map view or zoom when showing tracks — leave user's view intact.
 }
 
 // Inject a legend explaining weight buckets
