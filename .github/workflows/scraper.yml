@@ -1,0 +1,46 @@
+name: Run MarineTraffic Scraper
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'   # every 4 hours (UTC)
+  workflow_dispatch: {}     # manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest    # use self-hosted runner here if you need Tor
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.14'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run scraper
+        run: |
+          # Use --tor only if runner has access to a Tor SOCKS proxy
+          python3 marinetraffic_scraper.py --input data.json --output ships.json
+
+      - name: Commit & push results (if changed)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ships.json tracks || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Update scraper output [skip ci]"
+            git push
+          else
+            echo "No changes."
+          fi
