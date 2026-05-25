@@ -30124,7 +30124,10 @@
     "W_LEFT": "3",
     "shipid": 324655,
     "imo": 265675210,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:324655#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:324655#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265675210-ece99ffec0ba12032cbac155d823a82b/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322503",
@@ -30148,7 +30151,10 @@
     "W_LEFT": "3",
     "shipid": 322503,
     "imo": 265591580,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322503#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322503#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265591580-c73fd8149fa389ac38f30f163bb24254/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "321850",
@@ -30172,7 +30178,10 @@
     "W_LEFT": "1",
     "shipid": 321850,
     "imo": 265561810,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321850#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321850#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265561810-dbae59f07233ef0ee6d89acbfd0c6fd5/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "8963616",
@@ -30196,7 +30205,10 @@
     "W_LEFT": "1",
     "shipid": 8963616,
     "imo": 266286001,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8963616#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8963616#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-266286001-fd821efbad93daefe89d99560e5be80f/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320699",
@@ -30220,7 +30232,10 @@
     "W_LEFT": "1",
     "shipid": 320699,
     "imo": 265509200,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320699#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320699#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265509200-412dd21be73015aeeb98d2f53ed1eb3c/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "324660",
@@ -30244,7 +30259,10 @@
     "W_LEFT": "3",
     "shipid": 324660,
     "imo": 265675240,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:324660#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:324660#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265675240-617e61e988d2e587b49c56e269f1c9fc/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "327354",
@@ -30268,7 +30286,10 @@
     "W_LEFT": "5",
     "shipid": 327354,
     "imo": 266280000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327354#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327354#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-266280000-54a16d0284d0a0c531b8dab3151908ff/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "5248115",
@@ -30292,7 +30313,10 @@
     "W_LEFT": "5",
     "shipid": 5248115,
     "imo": 266006000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5248115#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5248115#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-266006000-12cc070a7c422a98d9dba063e9ac927b/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "326874",
@@ -30316,7 +30340,10 @@
     "W_LEFT": "4",
     "shipid": 326874,
     "imo": 266033000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:326874#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:326874#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-266033000-0f632fc89d2812495e2e617522a0748e/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "326789",
@@ -30340,7 +30367,10 @@
     "W_LEFT": "5",
     "shipid": 326789,
     "imo": 266007000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:326789#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:326789#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-266007000-2c28b0f77ac54b82ae0f8de50f7e9222/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322504",
@@ -30364,7 +30394,10 @@
     "W_LEFT": "3",
     "shipid": 322504,
     "imo": 265591590,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322504#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322504#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265591590-005dfed338473b3cab2a89aa22dd1f20/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "327386",
@@ -30388,7 +30421,10 @@
     "W_LEFT": "1",
     "shipid": 327386,
     "imo": 266288001,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327386#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327386#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-266288001-303b26ebcd073ec253e0ce1c065537cf/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "325071",
@@ -30412,7 +30448,9 @@
     "W_LEFT": "2",
     "shipid": 325071,
     "imo": 265688890,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:325071#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:325071#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4256544",
@@ -30436,7 +30474,9 @@
     "W_LEFT": "2",
     "shipid": 4256544,
     "imo": 265570720,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4256544#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4256544#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "6704081",
@@ -30460,7 +30500,9 @@
     "W_LEFT": "1",
     "shipid": 6704081,
     "imo": 265014290,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6704081#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6704081#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4953422",
@@ -30484,7 +30526,9 @@
     "W_LEFT": "0",
     "shipid": 4953422,
     "imo": 265757290,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4953422#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4953422#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322771",
@@ -30508,7 +30552,9 @@
     "W_LEFT": "2",
     "shipid": 322771,
     "imo": 265603550,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322771#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322771#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "6643355",
@@ -30532,7 +30578,9 @@
     "W_LEFT": "1",
     "shipid": 6643355,
     "imo": 265582600,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6643355#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6643355#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "327380",
@@ -30556,7 +30604,9 @@
     "W_LEFT": "2",
     "shipid": 327380,
     "imo": 266287001,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327380#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327380#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "323975",
@@ -30580,7 +30630,9 @@
     "W_LEFT": "1",
     "shipid": 323975,
     "imo": 265651190,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323975#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323975#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4904027",
@@ -30604,7 +30656,9 @@
     "W_LEFT": "2",
     "shipid": 4904027,
     "imo": 265757140,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4904027#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4904027#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "8378795",
@@ -30628,7 +30682,9 @@
     "W_LEFT": "3",
     "shipid": 8378795,
     "imo": 265058020,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8378795#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8378795#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4525360",
@@ -30652,7 +30708,9 @@
     "W_LEFT": "1",
     "shipid": 4525360,
     "imo": 265762880,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4525360#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4525360#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4630680",
@@ -30676,7 +30734,9 @@
     "W_LEFT": "1",
     "shipid": 4630680,
     "imo": 265762890,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4630680#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4630680#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322740",
@@ -30700,7 +30760,9 @@
     "W_LEFT": "3",
     "shipid": 322740,
     "imo": 265602460,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322740#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322740#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4465794",
@@ -30724,7 +30786,9 @@
     "W_LEFT": "1",
     "shipid": 4465794,
     "imo": 265762980,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4465794#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4465794#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322716",
@@ -30748,7 +30812,9 @@
     "W_LEFT": "0",
     "shipid": 322716,
     "imo": 265601700,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322716#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322716#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "9616089",
@@ -30772,7 +30838,9 @@
     "W_LEFT": "1",
     "shipid": 9616089,
     "imo": 265071950,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9616089#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9616089#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "10588760",
@@ -30796,7 +30864,9 @@
     "W_LEFT": "1",
     "shipid": 10588760,
     "imo": 265077220,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10588760#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10588760#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "3392953",
@@ -30820,7 +30890,9 @@
     "W_LEFT": "2",
     "shipid": 3392953,
     "imo": 265722530,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3392953#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3392953#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "7244729",
@@ -30844,7 +30916,9 @@
     "W_LEFT": "1",
     "shipid": 7244729,
     "imo": 265702800,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7244729#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7244729#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "8376265",
@@ -30868,7 +30942,9 @@
     "W_LEFT": "3",
     "shipid": 8376265,
     "imo": 265058040,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8376265#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8376265#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4093016",
@@ -30892,7 +30968,9 @@
     "W_LEFT": "0",
     "shipid": 4093016,
     "imo": 265760040,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4093016#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4093016#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4631803",
@@ -30916,7 +30994,9 @@
     "W_LEFT": "1",
     "shipid": 4631803,
     "imo": 265762960,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4631803#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4631803#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4415985",
@@ -30940,7 +31020,9 @@
     "W_LEFT": "0",
     "shipid": 4415985,
     "imo": 265758600,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4415985#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4415985#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4561620",
@@ -30964,7 +31046,9 @@
     "W_LEFT": "2",
     "shipid": 4561620,
     "imo": 265624170,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4561620#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4561620#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "7427634",
@@ -30988,7 +31072,9 @@
     "W_LEFT": "1",
     "shipid": 7427634,
     "imo": 265674560,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7427634#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7427634#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320848",
@@ -31012,7 +31098,9 @@
     "W_LEFT": "1",
     "shipid": 320848,
     "imo": 265514350,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320848#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320848#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4847058",
@@ -31036,7 +31124,9 @@
     "W_LEFT": "1",
     "shipid": 4847058,
     "imo": 265782340,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4847058#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4847058#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "5710595",
@@ -31060,7 +31150,9 @@
     "W_LEFT": "1",
     "shipid": 5710595,
     "imo": 265805880,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5710595#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5710595#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "10384470",
@@ -31084,7 +31176,9 @@
     "W_LEFT": "6",
     "shipid": 10384470,
     "imo": 266002538,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10384470#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10384470#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320534",
@@ -31108,7 +31202,9 @@
     "W_LEFT": "3",
     "shipid": 320534,
     "imo": 265501360,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320534#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320534#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "325842",
@@ -31132,7 +31228,9 @@
     "W_LEFT": "2",
     "shipid": 325842,
     "imo": 265713840,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:325842#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:325842#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "5633464",
@@ -31156,7 +31254,9 @@
     "W_LEFT": "0",
     "shipid": 5633464,
     "imo": 265805860,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5633464#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5633464#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "8377402",
@@ -31180,7 +31280,9 @@
     "W_LEFT": "3",
     "shipid": 8377402,
     "imo": 265058010,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8377402#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8377402#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320586",
@@ -31204,7 +31306,9 @@
     "W_LEFT": "2",
     "shipid": 320586,
     "imo": 265504730,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320586#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320586#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322840",
@@ -31228,7 +31332,9 @@
     "W_LEFT": "2",
     "shipid": 322840,
     "imo": 265605890,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322840#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322840#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4953444",
@@ -31252,7 +31358,9 @@
     "W_LEFT": "0",
     "shipid": 4953444,
     "imo": 265757300,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4953444#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4953444#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "7797855",
@@ -31276,7 +31384,9 @@
     "W_LEFT": "1",
     "shipid": 7797855,
     "imo": 265832170,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7797855#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7797855#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322473",
@@ -31300,7 +31410,9 @@
     "W_LEFT": "2",
     "shipid": 322473,
     "imo": 265590510,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322473#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322473#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "9862454",
@@ -31324,7 +31436,9 @@
     "W_LEFT": "1",
     "shipid": 9862454,
     "imo": 265077070,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9862454#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9862454#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4882723",
@@ -31348,7 +31462,9 @@
     "W_LEFT": "2",
     "shipid": 4882723,
     "imo": 265605900,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4882723#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4882723#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322844",
@@ -31372,7 +31488,9 @@
     "W_LEFT": "3",
     "shipid": 322844,
     "imo": 265606040,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322844#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322844#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "10481703",
@@ -31396,7 +31514,9 @@
     "W_LEFT": "1",
     "shipid": 10481703,
     "imo": 265074650,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10481703#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10481703#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "7923283",
@@ -31420,7 +31540,9 @@
     "W_LEFT": "1",
     "shipid": 7923283,
     "imo": 265832410,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7923283#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7923283#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "324445",
@@ -31444,7 +31566,9 @@
     "W_LEFT": "4",
     "shipid": 324445,
     "imo": 265669290,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:324445#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:324445#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "9572365",
@@ -31468,7 +31592,9 @@
     "W_LEFT": "1",
     "shipid": 9572365,
     "imo": 265069380,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9572365#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9572365#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "321976",
@@ -31492,7 +31618,9 @@
     "W_LEFT": "1",
     "shipid": 321976,
     "imo": 265566010,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321976#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321976#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "7850191",
@@ -31516,7 +31644,9 @@
     "W_LEFT": "1",
     "shipid": 7850191,
     "imo": 265052640,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7850191#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7850191#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "321472",
@@ -31540,7 +31670,9 @@
     "W_LEFT": "2",
     "shipid": 321472,
     "imo": 265540070,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321472#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321472#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "323149",
@@ -31564,7 +31696,9 @@
     "W_LEFT": "2",
     "shipid": 323149,
     "imo": 265618230,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323149#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323149#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "6418458",
@@ -31588,7 +31722,9 @@
     "W_LEFT": "2",
     "shipid": 6418458,
     "imo": 265003760,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6418458#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6418458#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "9206154",
@@ -31612,7 +31748,9 @@
     "W_LEFT": "1",
     "shipid": 9206154,
     "imo": 265832420,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9206154#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9206154#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322741",
@@ -31636,7 +31774,9 @@
     "W_LEFT": "3",
     "shipid": 322741,
     "imo": 265602480,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322741#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322741#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "10368952",
@@ -31660,7 +31800,9 @@
     "W_LEFT": "0",
     "shipid": 10368952,
     "imo": 265080220,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10368952#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10368952#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320513",
@@ -31684,7 +31826,9 @@
     "W_LEFT": "6",
     "shipid": 320513,
     "imo": 265500770,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320513#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320513#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320700",
@@ -31708,7 +31852,9 @@
     "W_LEFT": "0",
     "shipid": 320700,
     "imo": 265509210,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320700#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320700#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "5212293",
@@ -31732,7 +31878,9 @@
     "W_LEFT": "2",
     "shipid": 5212293,
     "imo": 265794650,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5212293#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5212293#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "327000",
@@ -31756,7 +31904,9 @@
     "W_LEFT": "3",
     "shipid": 327000,
     "imo": 266114000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327000#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327000#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "9628853",
@@ -31780,7 +31930,9 @@
     "W_LEFT": "2",
     "shipid": 9628853,
     "imo": 265713850,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9628853#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9628853#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322839",
@@ -31804,7 +31956,9 @@
     "W_LEFT": "2",
     "shipid": 322839,
     "imo": 265605880,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322839#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322839#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4937196",
@@ -31828,7 +31982,9 @@
     "W_LEFT": "1",
     "shipid": 4937196,
     "imo": 265574200,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4937196#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4937196#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "8441109",
@@ -31852,7 +32008,9 @@
     "W_LEFT": "3",
     "shipid": 8441109,
     "imo": 265058030,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8441109#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8441109#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "9692820",
@@ -31876,7 +32034,9 @@
     "W_LEFT": "0",
     "shipid": 9692820,
     "imo": 265061060,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9692820#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9692820#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4631737",
@@ -31900,7 +32060,9 @@
     "W_LEFT": "1",
     "shipid": 4631737,
     "imo": 265762950,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4631737#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4631737#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "324015",
@@ -31924,7 +32086,9 @@
     "W_LEFT": "3",
     "shipid": 324015,
     "imo": 265652450,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:324015#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:324015#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "7343129",
@@ -31948,7 +32112,9 @@
     "W_LEFT": "12",
     "shipid": 7343129,
     "imo": 265015000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7343129#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7343129#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322775",
@@ -31972,7 +32138,9 @@
     "W_LEFT": "1",
     "shipid": 322775,
     "imo": 265603590,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322775#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322775#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320704",
@@ -31996,7 +32164,10 @@
     "W_LEFT": "1",
     "shipid": 320704,
     "imo": 265509270,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320704#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320704#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265509270-977f7c6ec053cc95e86b77c4ad56d2c3/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320254",
@@ -32020,7 +32191,10 @@
     "W_LEFT": "2",
     "shipid": 320254,
     "imo": 265388000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320254#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320254#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265388000-79f24b03a1709c0e9675a90a93672790/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "323706",
@@ -32044,7 +32218,10 @@
     "W_LEFT": "1",
     "shipid": 323706,
     "imo": 265640530,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323706#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323706#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265640530-480488bf0a4fa1bf3a80fec46de06af6/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "5840728",
@@ -32068,7 +32245,10 @@
     "W_LEFT": "3",
     "shipid": 5840728,
     "imo": 265812010,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5840728#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5840728#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265812010-af61475875a664141c54be14b0f4bfff/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "326621",
@@ -32092,7 +32272,10 @@
     "W_LEFT": "6",
     "shipid": 326621,
     "imo": 265888000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:326621#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:326621#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265888000-5132347ff2c77758bc7627840d5767ce/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "327351",
@@ -32116,7 +32299,10 @@
     "W_LEFT": "5",
     "shipid": 327351,
     "imo": 266279000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327351#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327351#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-266279000-a021497747b5d02562eb416cc04fa871/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "1457956",
@@ -32140,7 +32326,9 @@
     "W_LEFT": "2",
     "shipid": 1457956,
     "imo": 265713880,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:1457956#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:1457956#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4458847",
@@ -32164,7 +32352,9 @@
     "W_LEFT": "1",
     "shipid": 4458847,
     "imo": 265762970,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4458847#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4458847#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "6685440",
@@ -32188,7 +32378,9 @@
     "W_LEFT": "2",
     "shipid": 6685440,
     "imo": 265506520,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6685440#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6685440#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "325844",
@@ -32212,7 +32404,9 @@
     "W_LEFT": "1",
     "shipid": 325844,
     "imo": 265713870,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:325844#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:325844#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320500",
@@ -32236,7 +32430,9 @@
     "W_LEFT": "4",
     "shipid": 320500,
     "imo": 265500360,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320500#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320500#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320510",
@@ -32260,7 +32456,9 @@
     "W_LEFT": "0",
     "shipid": 320510,
     "imo": 265500760,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320510#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320510#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322835",
@@ -32284,7 +32482,9 @@
     "W_LEFT": "4",
     "shipid": 322835,
     "imo": 265605830,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322835#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322835#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "5012961",
@@ -32308,7 +32508,9 @@
     "W_LEFT": "0",
     "shipid": 5012961,
     "imo": 265722540,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5012961#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5012961#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320588",
@@ -32332,7 +32534,9 @@
     "W_LEFT": "4",
     "shipid": 320588,
     "imo": 265504760,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320588#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320588#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "325841",
@@ -32356,7 +32560,9 @@
     "W_LEFT": "2",
     "shipid": 325841,
     "imo": 265713830,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:325841#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:325841#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "9680453",
@@ -32380,7 +32586,9 @@
     "W_LEFT": "0",
     "shipid": 9680453,
     "imo": 265040250,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9680453#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9680453#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4462736",
@@ -32404,7 +32612,9 @@
     "W_LEFT": "1",
     "shipid": 4462736,
     "imo": 265756990,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4462736#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4462736#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322829",
@@ -32428,7 +32638,9 @@
     "W_LEFT": "2",
     "shipid": 322829,
     "imo": 265605780,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322829#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322829#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "323812",
@@ -32452,7 +32664,9 @@
     "W_LEFT": "2",
     "shipid": 323812,
     "imo": 265646250,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323812#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323812#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "323150",
@@ -32476,7 +32690,9 @@
     "W_LEFT": "2",
     "shipid": 323150,
     "imo": 265618260,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323150#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323150#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320531",
@@ -32500,7 +32716,9 @@
     "W_LEFT": "4",
     "shipid": 320531,
     "imo": 265501340,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320531#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320531#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "1586515",
@@ -32524,7 +32742,9 @@
     "W_LEFT": "2",
     "shipid": 1586515,
     "imo": 265713860,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:1586515#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:1586515#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "6239963",
@@ -32548,7 +32768,9 @@
     "W_LEFT": "1",
     "shipid": 6239963,
     "imo": 265737930,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6239963#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6239963#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322832",
@@ -32572,7 +32794,9 @@
     "W_LEFT": "1",
     "shipid": 322832,
     "imo": 265605790,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322832#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322832#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "10454802",
@@ -32596,7 +32820,9 @@
     "W_LEFT": "1",
     "shipid": 10454802,
     "imo": 265069400,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10454802#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10454802#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "327001",
@@ -32620,7 +32846,9 @@
     "W_LEFT": "0",
     "shipid": 327001,
     "imo": 266115000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327001#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327001#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322770",
@@ -32644,7 +32872,9 @@
     "W_LEFT": "2",
     "shipid": 322770,
     "imo": 265603540,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322770#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322770#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "325589",
@@ -32668,7 +32898,9 @@
     "W_LEFT": "2",
     "shipid": 325589,
     "imo": 265704970,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:325589#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:325589#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "327381",
@@ -32692,7 +32924,9 @@
     "W_LEFT": "1",
     "shipid": 327381,
     "imo": 266287002,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327381#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327381#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "5121596",
@@ -32716,7 +32950,9 @@
     "W_LEFT": "1",
     "shipid": 5121596,
     "imo": 265713820,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5121596#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5121596#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322472",
@@ -32740,7 +32976,9 @@
     "W_LEFT": "2",
     "shipid": 322472,
     "imo": 265590500,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322472#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322472#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "321645",
@@ -32764,7 +33002,9 @@
     "W_LEFT": "0",
     "shipid": 321645,
     "imo": 265548900,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321645#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321645#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320537",
@@ -32788,7 +33028,9 @@
     "W_LEFT": "3",
     "shipid": 320537,
     "imo": 265501370,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320537#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320537#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "326499",
@@ -32812,7 +33054,9 @@
     "W_LEFT": "3",
     "shipid": 326499,
     "imo": 265826000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:326499#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:326499#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322474",
@@ -32836,7 +33080,9 @@
     "W_LEFT": "1",
     "shipid": 322474,
     "imo": 265590520,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322474#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322474#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320527",
@@ -32860,7 +33106,10 @@
     "W_LEFT": "6",
     "shipid": 320527,
     "imo": 265501220,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320527#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320527#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265501220-35255369605fc25666cbce28d8e19fdf/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320923",
@@ -32884,7 +33133,10 @@
     "W_LEFT": "3",
     "shipid": 320923,
     "imo": 265515720,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320923#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320923#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265515720-88cc52d2f0c8f05a3db3e6bc3e4f57c6/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "5510914",
@@ -32908,7 +33160,10 @@
     "W_LEFT": "0",
     "shipid": 5510914,
     "imo": 265797380,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5510914#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5510914#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265797380-d1518479a4f9d34bcf01dfcc3e370e10/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "323811",
@@ -32932,7 +33187,10 @@
     "W_LEFT": "1",
     "shipid": 323811,
     "imo": 265646240,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323811#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323811#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265646240-488e7548bd9610f071c08cf631602f3a/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "326790",
@@ -32956,7 +33214,10 @@
     "W_LEFT": "5",
     "shipid": 326790,
     "imo": 266008000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:326790#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:326790#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-266008000-0b7945320f1d7a517550f91b811309e7/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "321747",
@@ -32980,7 +33241,10 @@
     "W_LEFT": "2",
     "shipid": 321747,
     "imo": 265553750,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321747#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321747#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265553750-c74bfab22a855914d7cbbf8a127b8cbc/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "5541194",
@@ -33004,7 +33268,10 @@
     "W_LEFT": "2",
     "shipid": 5541194,
     "imo": 265795990,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5541194#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5541194#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265795990-e31d15f5200962ea989e611039297529/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4163006",
@@ -33028,7 +33295,10 @@
     "W_LEFT": "2",
     "shipid": 4163006,
     "imo": 265390000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4163006#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4163006#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265390000-850c8e9c7037cc1a5361980aa0590cef/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "326877",
@@ -33052,7 +33322,10 @@
     "W_LEFT": "4",
     "shipid": 326877,
     "imo": 266036000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:326877#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:326877#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-266036000-5678f62aa0f3aa34bd93e3a0e41aba98/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "7259668",
@@ -33076,7 +33349,10 @@
     "W_LEFT": "5",
     "shipid": 7259668,
     "imo": 266035000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7259668#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7259668#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-266035000-bfe1f92b0c58be2ebeeb1ece1fa5db4d/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "324659",
@@ -33100,7 +33376,10 @@
     "W_LEFT": "0",
     "shipid": 324659,
     "imo": 265675230,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:324659#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:324659#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265675230-eabf09bf7f69e213e0b4d5c1bf5c21d1/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322833",
@@ -33124,7 +33403,10 @@
     "W_LEFT": "2",
     "shipid": 322833,
     "imo": 265605800,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322833#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322833#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265605800-1ddd7dfe3f1bdd4d9ab92e9e14351695/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322505",
@@ -33148,7 +33430,10 @@
     "W_LEFT": "3",
     "shipid": 322505,
     "imo": 265591600,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322505#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322505#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265591600-7fb7a85b6a538dd4a1aef0c83fadf57c/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "323857",
@@ -33172,7 +33457,10 @@
     "W_LEFT": "1",
     "shipid": 323857,
     "imo": 265648600,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323857#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323857#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265648600-03219413fabc79971959b8d43cc0f8e4/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322471",
@@ -33196,7 +33484,10 @@
     "W_LEFT": "0",
     "shipid": 322471,
     "imo": 265590490,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322471#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322471#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265590490-609bee68ffe429a092c9b17c092b10c1/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "323814",
@@ -33220,7 +33511,10 @@
     "W_LEFT": "1",
     "shipid": 323814,
     "imo": 265646270,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323814#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323814#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265646270-df63419c042b58365c9544dd40ca322b/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "6260350",
@@ -33244,7 +33538,10 @@
     "W_LEFT": "2",
     "shipid": 6260350,
     "imo": 265002050,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6260350#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6260350#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265002050-4acc26aad08f02fed8148fad216deac4/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "327349",
@@ -33268,7 +33565,10 @@
     "W_LEFT": "3",
     "shipid": 327349,
     "imo": 266278000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327349#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327349#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-266278000-792379dbdeff985a20279ee120c21571/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "3653870",
@@ -33292,7 +33592,10 @@
     "W_LEFT": "2",
     "shipid": 3653870,
     "imo": 265706810,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3653870#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3653870#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265706810-e9232f2e89e6cbc12c4d80b659ac45bb/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "327387",
@@ -33316,7 +33619,10 @@
     "W_LEFT": "1",
     "shipid": 327387,
     "imo": 266288002,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327387#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:327387#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-266288002-588590e496c2029049dd2e532ecf8c59/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "324656",
@@ -33340,7 +33646,10 @@
     "W_LEFT": "3",
     "shipid": 324656,
     "imo": 265675220,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:324656#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:324656#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265675220-4170a6320a74a4aff6aa747dbd828a94/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "5664134",
@@ -33364,7 +33673,10 @@
     "W_LEFT": "3",
     "shipid": 5664134,
     "imo": 265796020,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5664134#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5664134#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265796020-ab148da82ee36f666d60044e2261859d/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320849",
@@ -33388,7 +33700,10 @@
     "W_LEFT": "2",
     "shipid": 320849,
     "imo": 265514370,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320849#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320849#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265514370-f48ac640ff7e1e13d0f380049f3598f2/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320540",
@@ -33412,7 +33727,10 @@
     "W_LEFT": "2",
     "shipid": 320540,
     "imo": 265501390,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320540#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320540#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265501390-1d90e8f3a5ab966fcf4edc5a523b66e8/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "9905505",
@@ -33436,7 +33754,10 @@
     "W_LEFT": "5",
     "shipid": 9905505,
     "imo": 265500780,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9905505#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9905505#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265500780-d2cec60a3ebc11a5b4448dcc325ef170/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320274",
@@ -33460,7 +33781,10 @@
     "W_LEFT": "3",
     "shipid": 320274,
     "imo": 265400000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320274#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320274#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265400000-0900ba9a8ef866af9dc20ff99b41633d/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322837",
@@ -33484,7 +33808,10 @@
     "W_LEFT": "5",
     "shipid": 322837,
     "imo": 265605850,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322837#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322837#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265605850-53891f4e6b2f5531af67c54e1ce41992/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "326635",
@@ -33508,7 +33835,10 @@
     "W_LEFT": "5",
     "shipid": 326635,
     "imo": 265897000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:326635#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:326635#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265897000-702e8c562770f05875bac99a414063d6/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "323815",
@@ -33532,7 +33862,10 @@
     "W_LEFT": "1",
     "shipid": 323815,
     "imo": 265646280,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323815#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323815#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265646280-3dd01f681f5b14d1adf715e9efae5c93/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4856426",
@@ -33556,7 +33889,10 @@
     "W_LEFT": "1",
     "shipid": 4856426,
     "imo": 265501860,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4856426#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4856426#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265501860-88b6e188db13f8bcb8afb717a2fe9b97/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "4752127",
@@ -33580,7 +33916,10 @@
     "W_LEFT": "1",
     "shipid": 4752127,
     "imo": 265660340,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4752127#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4752127#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265660340-ce4fbd24f9da16f8d39c276b83ce0270/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322508",
@@ -33604,7 +33943,10 @@
     "W_LEFT": "3",
     "shipid": 322508,
     "imo": 265591620,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322508#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322508#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265591620-a73b195d6dfd5905a91212bc185ff48d/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "8977737",
@@ -33628,7 +33970,10 @@
     "W_LEFT": "2",
     "shipid": 8977737,
     "imo": 265506960,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8977737#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8977737#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265506960-b4996730787b9c45318f013aa4eeddc1/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "323033",
@@ -33652,7 +33997,10 @@
     "W_LEFT": "0",
     "shipid": 323033,
     "imo": 265612620,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323033#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323033#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265612620-01848fcb9d11e7e6e0b89728c9ddf110/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320538",
@@ -33676,7 +34024,10 @@
     "W_LEFT": "2",
     "shipid": 320538,
     "imo": 265501380,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320538#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320538#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265501380-3904072e2eb91477815af9ef70e2678f/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "5830571",
@@ -33700,7 +34051,10 @@
     "W_LEFT": "2",
     "shipid": 5830571,
     "imo": 265501110,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5830571#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5830571#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265501110-12bad02dcaacc04c1b99e06312fc1293/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "321966",
@@ -33724,7 +34078,10 @@
     "W_LEFT": "1",
     "shipid": 321966,
     "imo": 265565600,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321966#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321966#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265565600-ff095d7f2c7967871dca57d76c049a67/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "10408730",
@@ -33748,7 +34105,10 @@
     "W_LEFT": "1",
     "shipid": 10408730,
     "imo": 266034000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10408730#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10408730#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-266034000-9a54d53003361e6a3df11cbc7931d3df/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "321646",
@@ -33772,7 +34132,10 @@
     "W_LEFT": "0",
     "shipid": 321646,
     "imo": 265548980,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321646#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321646#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265548980-c44fc2d0b5696b8016e689eaaa20ac0d/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "323468",
@@ -33796,7 +34159,10 @@
     "W_LEFT": "0",
     "shipid": 323468,
     "imo": 265631180,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323468#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323468#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265631180-002b641c3418e40239eb3570c3dbca15/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "7765624",
@@ -33820,7 +34186,10 @@
     "W_LEFT": "4",
     "shipid": 7765624,
     "imo": 265170000,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7765624#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7765624#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265170000-25a30f3e5efcede34ffc0fbf763f74b0/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "10583861",
@@ -33844,7 +34213,10 @@
     "W_LEFT": "0",
     "shipid": 10583861,
     "imo": 265500330,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10583861#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10583861#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265500330-d88474fb61284f381f8c010d85984358/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320634",
@@ -33868,7 +34240,10 @@
     "W_LEFT": "2",
     "shipid": 320634,
     "imo": 265506530,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320634#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320634#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265506530-41ef7350310c08bf328df273b57e41a9/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "321961",
@@ -33892,7 +34267,10 @@
     "W_LEFT": "2",
     "shipid": 321961,
     "imo": 265565250,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321961#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321961#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265565250-c9d701c04c1c163b4a0a21cd135c2d99/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322772",
@@ -33916,7 +34294,10 @@
     "W_LEFT": "0",
     "shipid": 322772,
     "imo": 265603560,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322772#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322772#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265603560-98b0667170b9b4435ab8b43653fc2716/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320524",
@@ -33940,7 +34321,10 @@
     "W_LEFT": "4",
     "shipid": 320524,
     "imo": 265501180,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320524#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320524#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265501180-086007d6ed9489b012dd7dee36ef6af9/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320515",
@@ -33964,7 +34348,10 @@
     "W_LEFT": "6",
     "shipid": 320515,
     "imo": 265500790,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320515#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320515#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265500790-049967a80e3beae264d261f41ff16346/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "321470",
@@ -33988,7 +34375,10 @@
     "W_LEFT": "1",
     "shipid": 321470,
     "imo": 265540060,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321470#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:321470#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265540060-a227674f310e7680900dbb7a4c8393cf/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320541",
@@ -34012,7 +34402,10 @@
     "W_LEFT": "3",
     "shipid": 320541,
     "imo": 265501400,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320541#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320541#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265501400-21de145cc7a9020c0ad48906d1c264ab/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322872",
@@ -34036,7 +34429,10 @@
     "W_LEFT": "2",
     "shipid": 322872,
     "imo": 265606800,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322872#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322872#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265606800-1d155714ca865a3f3541178e624daf79/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322507",
@@ -34060,7 +34456,10 @@
     "W_LEFT": "3",
     "shipid": 322507,
     "imo": 265591610,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322507#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322507#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265591610-583fac157ab5481dba702e6273885271/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "323813",
@@ -34084,7 +34483,10 @@
     "W_LEFT": "2",
     "shipid": 323813,
     "imo": 265646260,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323813#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323813#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265646260-3f5b88b8ca1ab3f1ec383a04572e4b50/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "324664",
@@ -34108,7 +34510,10 @@
     "W_LEFT": "3",
     "shipid": 324664,
     "imo": 265675250,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:324664#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:324664#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265675250-d2beada93755b63c446bfe648893ec8c/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "322773",
@@ -34132,7 +34537,10 @@
     "W_LEFT": "0",
     "shipid": 322773,
     "imo": 265603570,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322773#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:322773#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-265603570-c262682b794dd5d3991b808155d87a99/1?v1",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "323147",
@@ -34156,7 +34564,9 @@
     "W_LEFT": "2",
     "shipid": 323147,
     "imo": 265618210,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323147#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:323147#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "5629355",
@@ -34180,7 +34590,9 @@
     "W_LEFT": "0",
     "shipid": 5629355,
     "imo": 265805870,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5629355#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5629355#overview",
+    "notes": "",
+    "seized": false
   },
   {
     "SHIP_ID": "320544",
@@ -34204,6 +34616,8 @@
     "W_LEFT": "2",
     "shipid": 320544,
     "imo": 265501900,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320544#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:320544#overview",
+    "notes": "",
+    "seized": false
   }
 ]
