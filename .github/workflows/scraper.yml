@@ -2,7 +2,7 @@ name: Run MarineTraffic Scraper
 
 on:
   schedule:
-    - cron: '0 */4 * * *'   # every 4 hours (UTC)
+    - cron: '0 */2 * * *'   # every 4 hours (UTC)
   workflow_dispatch: {}     # manual trigger
 
 permissions:
