@@ -1,9 +1,11 @@
 /* Global app script for ShadowFleet map */
 const map = L.map('map', {zoomControl: true}).setView([55, 13], 6);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 18,
-  attribution: '&copy; OpenStreetMap contributors'
+// Use a basemap with Latin/English labels for readability (CartoDB Voyager)
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  maxZoom: 19,
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+  subdomains: 'abcd'
 }).addTo(map);
 
 const sidebar = document.getElementById('sidebar');
@@ -24,18 +26,71 @@ const markerGroup = L.featureGroup().addTo(map);
 // visibility state for toggles
 window.__shipsVisible = true;
 window.__portsVisible = true;
+window.__militaryVisible = true;
+window.__lawVisible = true;
+
+// dedicated layers for military and law-enforcement vessels
+window.__militaryLayer = L.layerGroup();
+window.__lawLayer = L.layerGroup();
+window.__onlyShowCategories = false;
+
+// Ensure a globally-available weight/size helper is defined early so
+// other functions (which may execute on load) can call it without
+// depending on script load order or different dev servers.
+function getWeightInfo(it){
+  const keys = ['DWT','dwt','GT','GRT','gt','GRT','WEIGHT','weight','LENGTH','length','LENGTH_METERS','GRT'];
+  let keyFound = null;
+  let val = null;
+  for(const k of keys){
+    if(it && it[k]!==undefined && it[k]!==null){
+      const num = parseFloat(it[k]);
+      if(Number.isFinite(num)){
+        keyFound = k;
+        val = num;
+        break;
+      }
+    }
+  }
+  const buckets = {small:{color:'#16a34a',size:20,label:'Small'}, medium:{color:'#f59e0b',size:28,label:'Medium'}, large:{color:'#ef4444',size:36,label:'Large'}};
+  if(!keyFound) return {key:null,value:null, bucket:'small', color:buckets.small.color, size:buckets.small.size, label:buckets.small.label};
+  const k = keyFound.toUpperCase();
+  if(['DWT','DWT_MT'].includes(k)){
+    if(val < 5000) return {key:k,value:val,bucket:'small',color:buckets.small.color,size:buckets.small.size,label:'<5000 DWT'};
+    if(val < 20000) return {key:k,value:val,bucket:'medium',color:buckets.medium.color,size:buckets.medium.size,label:'5k-20k DWT'};
+    return {key:k,value:val,bucket:'large',color:buckets.large.color,size:buckets.large.size,label:'>20k DWT'};
+  }
+  if(['GT','GRT'].includes(k)){
+    if(val < 1000) return {key:k,value:val,bucket:'small',color:buckets.small.color,size:buckets.small.size,label:'<1k GT'};
+    if(val < 10000) return {key:k,value:val,bucket:'medium',color:buckets.medium.color,size:buckets.medium.size,label:'1k-10k GT'};
+    return {key:k,value:val,bucket:'large',color:buckets.large.color,size:buckets.large.size,label:'>10k GT'};
+  }
+  if(k === 'LENGTH'){
+    if(val < 80) return {key:k,value:val,bucket:'small',color:buckets.small.color,size:18,label:'<80 m'};
+    if(val < 180) return {key:k,value:val,bucket:'medium',color:buckets.medium.color,size:26,label:'80-180 m'};
+    return {key:k,value:val,bucket:'large',color:buckets.large.color,size:34,label:'>180 m'};
+  }
+  return {key:k,value:val,bucket:'small',color:buckets.small.color,size:buckets.small.size,label: String(val)};
+}
+
+// set visibility for military / law enforcement categories
+function setMilitaryVisible(show){
+  window.__militaryVisible = !!show;
+  try{ const q = searchEl.value.trim().toLowerCase(); filterShips(q, false); }catch(e){}
+}
+function setLawVisible(show){
+  window.__lawVisible = !!show;
+  try{ const q = searchEl.value.trim().toLowerCase(); filterShips(q, false); }catch(e){}
+}
+window.setMilitaryVisible = setMilitaryVisible;
+window.setLawVisible = setLawVisible;
 
 function setShipsVisible(show){
   window.__shipsVisible = !!show;
   try{
-    if(window.__shipsVisible){
-      // reapply current search filter without changing view
-      const q = searchEl.value.trim().toLowerCase();
-      filterShips(q, false);
-      if(!map.hasLayer(markerGroup)) map.addLayer(markerGroup);
-    } else {
-      if(map.hasLayer(markerGroup)) map.removeLayer(markerGroup);
-    }
+    // reapply current search filter without changing view; do not remove the markerGroup layer entirely
+    const q = searchEl.value.trim().toLowerCase();
+    filterShips(q, false);
+    if(!map.hasLayer(markerGroup)) map.addLayer(markerGroup);
   }catch(e){ console.debug('setShipsVisible error', e); }
 }
 
@@ -67,6 +122,9 @@ window.setPortsVisible = setPortsVisible;
 function wireVisibilityToggles(){
   const shipIds = ['filterShips','toggleShips'];
   const portIds = ['filterPorts','togglePorts'];
+  const militaryIds = ['filterMilitary'];
+  const lawIds = ['filterLaw'];
+  const onlyCatIds = ['filterOnlyCategories'];
   shipIds.forEach(id=>{
     const el = document.getElementById(id);
     if(!el) return;
@@ -85,6 +143,33 @@ function wireVisibilityToggles(){
     const handler = function(e){ setPortsVisible(e.target.checked); };
     el.addEventListener('change', handler);
     el._pf_change_handler = handler;
+  });
+  militaryIds.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    try{ el.checked = !!window.__militaryVisible; }catch(e){}
+    el.removeEventListener('change', el._mil_change_handler);
+    const handler = function(e){ setMilitaryVisible(e.target.checked); };
+    el.addEventListener('change', handler);
+    el._mil_change_handler = handler;
+  });
+  lawIds.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    try{ el.checked = !!window.__lawVisible; }catch(e){}
+    el.removeEventListener('change', el._law_change_handler);
+    const handler = function(e){ setLawVisible(e.target.checked); };
+    el.addEventListener('change', handler);
+    el._law_change_handler = handler;
+  });
+  onlyCatIds.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    try{ el.checked = !!window.__onlyShowCategories; }catch(e){}
+    el.removeEventListener('change', el._only_change_handler);
+    const handler = function(e){ window.__onlyShowCategories = !!e.target.checked; const q = searchEl.value.trim().toLowerCase(); filterShips(q, false); };
+    el.addEventListener('change', handler);
+    el._only_change_handler = handler;
   });
 }
 
@@ -313,7 +398,44 @@ function renderMarkdown(md){
 
 
 async function fetchVesselfinderImage(imo){
+
   // First try a local proxy (see proxy.py) to avoid CORS issues.
+
+  // Extracted helper: determine weight/size bucket and default color/size
+  function getWeightInfo(it){
+    const keys = ['DWT','dwt','GT','GRT','gt','GRT','WEIGHT','weight','LENGTH','length','LENGTH_METERS','GRT'];
+    let keyFound = null;
+    let val = null;
+    for(const k of keys){
+      if(it[k]!==undefined && it[k]!==null){
+        const num = parseFloat(it[k]);
+        if(Number.isFinite(num)){
+          keyFound = k;
+          val = num;
+          break;
+        }
+      }
+    }
+    const buckets = {small:{color:'#16a34a',size:20,label:'Small'}, medium:{color:'#f59e0b',size:28,label:'Medium'}, large:{color:'#ef4444',size:36,label:'Large'}};
+    if(!keyFound) return {key:null,value:null, bucket:'small', color:buckets.small.color, size:buckets.small.size, label:buckets.small.label};
+    const k = keyFound.toUpperCase();
+    if(['DWT','DWT_MT'].includes(k)){
+      if(val < 5000) return {key:k,value:val,bucket:'small',color:buckets.small.color,size:buckets.small.size,label:'<5000 DWT'};
+      if(val < 20000) return {key:k,value:val,bucket:'medium',color:buckets.medium.color,size:buckets.medium.size,label:'5k-20k DWT'};
+      return {key:k,value:val,bucket:'large',color:buckets.large.color,size:buckets.large.size,label:'>20k DWT'};
+    }
+    if(['GT','GRT'].includes(k)){
+      if(val < 1000) return {key:k,value:val,bucket:'small',color:buckets.small.color,size:buckets.small.size,label:'<1k GT'};
+      if(val < 10000) return {key:k,value:val,bucket:'medium',color:buckets.medium.color,size:buckets.medium.size,label:'1k-10k GT'};
+      return {key:k,value:val,bucket:'large',color:buckets.large.color,size:buckets.large.size,label:'>10k GT'};
+    }
+    if(k === 'LENGTH'){
+      if(val < 80) return {key:k,value:val,bucket:'small',color:buckets.small.color,size:18,label:'<80 m'};
+      if(val < 180) return {key:k,value:val,bucket:'medium',color:buckets.medium.color,size:26,label:'80-180 m'};
+      return {key:k,value:val,bucket:'large',color:buckets.large.color,size:34,label:'>180 m'};
+    }
+    return {key:k,value:val,bucket:'small',color:buckets.small.color,size:buckets.small.size,label: String(val)};
+  }
   try{
     const proxyUrl = `http://127.0.0.1:8001/vesselfinder/${imo}`;
     const r = await fetch(proxyUrl);
@@ -337,7 +459,7 @@ async function fetchVesselfinderImage(imo){
   return null;
 }
 
-function makeLabelIcon(item){
+function makeLabelIcon(item, colorOverride){
   // item may contain heading and label fields
   const label = item.SHIPNAME || item.name || item.SHIP_ID || item.shipid || '';
   let heading = null;
@@ -347,46 +469,9 @@ function makeLabelIcon(item){
       if(Number.isFinite(v)) { heading = v; break; }
     }
   }
-  // decide color and size based on weight-like fields
-  function getWeightInfo(it){
-    const keys = ['DWT','dwt','GT','GRT','gt','GRT','WEIGHT','weight','LENGTH','length','LENGTH_METERS','GRT'];
-    let keyFound = null;
-    let val = null;
-    for(const k of keys){
-      if(it[k]!==undefined && it[k]!==null){
-        const num = parseFloat(it[k]);
-        if(Number.isFinite(num)){
-          keyFound = k;
-          val = num;
-          break;
-        }
-      }
-    }
-    // default small
-    const buckets = {small:{color:'#16a34a',size:20,label:'Small'}, medium:{color:'#f59e0b',size:28,label:'Medium'}, large:{color:'#ef4444',size:36,label:'Large'}};
-    if(!keyFound) return {key:null,value:null, bucket:'small', color:buckets.small.color, size:buckets.small.size, label:buckets.small.label};
-    const k = keyFound.toUpperCase();
-    // decide thresholds based on key
-    if(['DWT','DWT','DWT_MT'].includes(k)){
-      if(val < 5000) return {key:k,value:val,bucket:'small',color:buckets.small.color,size:buckets.small.size,label:`<5000 DWT`};
-      if(val < 20000) return {key:k,value:val,bucket:'medium',color:buckets.medium.color,size:buckets.medium.size,label:`5k-20k DWT`};
-      return {key:k,value:val,bucket:'large',color:buckets.large.color,size:buckets.large.size,label:`>20k DWT`};
-    }
-    if(['GT','GRT','GT','GRT'].includes(k)){
-      if(val < 1000) return {key:k,value:val,bucket:'small',color:buckets.small.color,size:buckets.small.size,label:`<1k GT`};
-      if(val < 10000) return {key:k,value:val,bucket:'medium',color:buckets.medium.color,size:buckets.medium.size,label:`1k-10k GT`};
-      return {key:k,value:val,bucket:'large',color:buckets.large.color,size:buckets.large.size,label:`>10k GT`};
-    }
-    if(k === 'LENGTH'){
-      if(val < 80) return {key:k,value:val,bucket:'small',color:buckets.small.color,size:18,label:`<80 m`};
-      if(val < 180) return {key:k,value:val,bucket:'medium',color:buckets.medium.color,size:26,label:`80-180 m`};
-      return {key:k,value:val,bucket:'large',color:buckets.large.color,size:34,label:`>180 m`};
-    }
-    // fallback: small
-    return {key:k,value:val,bucket:'small',color:buckets.small.color,size:buckets.small.size,label: String(val)};
-  }
-
   const winfo = getWeightInfo(item);
+  
+  if(colorOverride) winfo.color = colorOverride;
 
   // compute nose position in the SVG (viewBox 0..24, nose at x=20) and rotation origin
   const noseX = Math.round(winfo.size * (20/24));
@@ -494,15 +579,17 @@ function ensureLegend(){
   if(document.getElementById('map-legend')) return;
   const legend = document.createElement('div'); legend.id = 'map-legend'; legend.className = 'map-legend';
   legend.innerHTML = `
-    <div class="legend-row"><label class="ships-filter-label"><input type="checkbox" id="filterShips" checked /> Show ships</label></div>
     <div class="legend-row"><label class="ports-filter-label"><input type="checkbox" id="filterPorts" checked /> Show ports</label></div>
+    <div class="legend-row"><label class="cables-filter-label"><input type="checkbox" id="filterCables" /> Submarine cables</label></div>
+    <div class="legend-row"><label class="law-filter-label"><input type="checkbox" id="filterLaw" checked /> <span class="swatch" style="background:#1e40af;margin-right:8px"></span>Law enforcement</label></div>
+    <div class="legend-row"><label class="military-filter-label"><input type="checkbox" id="filterMilitary" checked /> <span class="swatch" style="background:#0f766e;margin-right:8px"></span>Military Ops</label></div>
+    <div class="legend-row"><label class="ships-filter-label"><input type="checkbox" id="filterShips" checked /> All other vessels</label></div>
+    <div class="legend-row"><label class="seized-filter-label"><input type="checkbox" id="filterSeized" /> Show seized only</label></div>
     <div class="legend-title">Size / Weight (length criteria)</div>
     <div class="legend-row"><span class="swatch" style="background:#16a34a"></span><span class="lbl">Small — &lt; 80 m</span></div>
     <div class="legend-row"><span class="swatch" style="background:#f59e0b"></span><span class="lbl">Medium — 80–180 m</span></div>
     <div class="legend-row"><span class="swatch" style="background:#ef4444"></span><span class="lbl">Large — &gt; 180 m</span></div>
     <hr />
-    <div class="legend-row"><label class="seized-filter-label"><input type="checkbox" id="filterSeized" /> Show seized only</label></div>
-    <div class="legend-row"><label class="cables-filter-label"><input type="checkbox" id="filterCables" /> Show submarine cables</label></div>
   `;
   document.body.appendChild(legend);
   const filterSeizedEl = document.getElementById('filterSeized');
@@ -630,6 +717,11 @@ function toggleCablesLayer(show){
 ensureLegend();
 // ensure our toggle wiring runs after legend injection
 try{ wireVisibilityToggles(); }catch(e){ console.debug('wireVisibilityToggles after legend failed', e); }
+// Ensure checkbox initial states for cables and seized filters
+try{
+  const filterCablesEl = document.getElementById('filterCables'); if(filterCablesEl) filterCablesEl.checked = !!window.__cablesVisible;
+  const filterSeizedEl = document.getElementById('filterSeized'); if(filterSeizedEl) filterSeizedEl.checked = !!window.__seizedOnly;
+}catch(e){ console.debug('initial legend state set failed', e); }
 
 function escapeHtml(s){
   return String(s).replace(/[&<>"']/g, function(c){
@@ -698,9 +790,30 @@ fetch('ships.json').then(r=>r.json()).then(data=>{
     const latf = parseFloat(_lat);
     const lonf = parseFloat(_lon);
     if(Number.isFinite(latf) && Number.isFinite(lonf)){
-      const marker = L.marker([latf,lonf], {icon: makeLabelIcon(item)});
+      // determine category for this vessel (military / law / civilian)
+      function getShipCategory(it){
+        const t = String(it.SHIPTYPE || it.TYPE_SUMMARY || it.TYPE || it.type || '').toLowerCase();
+        if(!t) return 'civilian';
+        if(t.indexOf('military') !== -1 || t.indexOf('navy') !== -1 || t.indexOf('warship') !== -1) return 'military';
+        if(t.indexOf('law') !== -1 || t.indexOf('enforcement') !== -1 || t.indexOf('coast guard') !== -1 || t.indexOf('police') !== -1) return 'law';
+        return 'civilian';
+      }
+      const category = getShipCategory(item);
+      let colorOverride = null;
+      if(category === 'military') colorOverride = '#0f766e';
+      if(category === 'law') colorOverride = '#1e40af';
+      // store bucket for future size-filter exemptions
+      const winfo = getWeightInfo(item);
+      const marker = L.marker([latf,lonf], {icon: makeLabelIcon(item, colorOverride)});
       marker.on('click', ()=> showDetails(item));
+      // convenience properties for filtering
+      try{ marker.__sf_category = category; marker.__sf_bucket = (winfo && winfo.bucket) ? winfo.bucket : 'small'; }catch(e){}
       markers.push({marker, item});
+      // also add to category-specific layer groups for future use
+      try{
+        if(category === 'military') window.__militaryLayer.addLayer(marker);
+        else if(category === 'law') window.__lawLayer.addLayer(marker);
+      }catch(e){}
       markerGroup.addLayer(marker);
     }
   });
@@ -774,7 +887,25 @@ function filterShips(q, fit = true){
   const seizedOnly = !!window.__seizedOnly;
   if(!q){
     markers.forEach(m=>{
-      if(seizedOnly && !m.item.seized) return;
+      const cat = (m.marker && m.marker.__sf_category) ? m.marker.__sf_category : 'civilian';
+      // determine whether category is currently selected/visible
+      const categoryVisible = (cat === 'military' && !!window.__militaryVisible) || (cat === 'law' && !!window.__lawVisible) || (cat === 'civilian' && !!window.__shipsVisible);
+      // when "only show selected categories" is enabled we rely on categoryVisible
+      const categorySelected = !!window.__onlyShowCategories ? categoryVisible : categoryVisible;
+
+      // size filter handling: military/law and seized vessels bypass the size filter
+      const sizeFilterActive = !!window.__sizeFilterActive;
+      const allowedBuckets = Array.isArray(window.__sizeFilterAllowedBuckets) ? window.__sizeFilterAllowedBuckets : null;
+      if(sizeFilterActive && allowedBuckets){
+        if(!(cat === 'military' || cat === 'law' || m.item.seized)){
+          const mb = (m.marker && m.marker.__sf_bucket) ? m.marker.__sf_bucket : 'small';
+          if(allowedBuckets.indexOf(mb) === -1) return;
+        }
+      }
+
+      // final visibility: show if category is selected OR (seizedOnly and item is seized)
+      if(!(categorySelected || (seizedOnly && m.item.seized))) return;
+
       markerGroup.addLayer(m.marker);
     });
     if(fit && markerGroup.getLayers().length) map.fitBounds(markerGroup.getBounds(),{padding:[60,60]});
@@ -782,10 +913,23 @@ function filterShips(q, fit = true){
   }
   markers.forEach(m=>{
     const it = m.item;
-    if(seizedOnly && !it.seized) return;
     const fields = [it.TYPE_SUMMARY, it.SHIPNAME, it.MMSI, it.IMO, it.FLAG, it.name, it.shipid, it.SHIP_ID, it.notes];
     const hay = fields.filter(Boolean).map(x=>String(x).toLowerCase()).join(' ');
     if(hay.indexOf(q) !== -1){
+      const cat = (m.marker && m.marker.__sf_category) ? m.marker.__sf_category : 'civilian';
+      // determine whether category is currently selected/visible
+      const categoryVisible = (cat === 'military' && !!window.__militaryVisible) || (cat === 'law' && !!window.__lawVisible) || (cat === 'civilian' && !!window.__shipsVisible);
+      const categorySelected = !!window.__onlyShowCategories ? categoryVisible : categoryVisible;
+      const sizeFilterActive = !!window.__sizeFilterActive;
+      const allowedBuckets = Array.isArray(window.__sizeFilterAllowedBuckets) ? window.__sizeFilterAllowedBuckets : null;
+      if(sizeFilterActive && allowedBuckets){
+        if(!(cat === 'military' || cat === 'law' || it.seized)){
+          const mb = (m.marker && m.marker.__sf_bucket) ? m.marker.__sf_bucket : 'small';
+          if(allowedBuckets.indexOf(mb) === -1) return;
+        }
+      }
+      // final visibility: show if category is selected OR (seizedOnly and item is seized)
+      if(!(categorySelected || (seizedOnly && it.seized))) return;
       markerGroup.addLayer(m.marker);
     }
   });
