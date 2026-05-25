@@ -21,10 +21,80 @@ closeBtn.addEventListener('click', ()=>{ sidebar.classList.remove('open'); });
 let allShips = [];
 let markers = [];
 const markerGroup = L.featureGroup().addTo(map);
+// visibility state for toggles
+window.__shipsVisible = true;
+window.__portsVisible = true;
+
+function setShipsVisible(show){
+  window.__shipsVisible = !!show;
+  try{
+    if(window.__shipsVisible){
+      // reapply current search filter without changing view
+      const q = searchEl.value.trim().toLowerCase();
+      filterShips(q, false);
+      if(!map.hasLayer(markerGroup)) map.addLayer(markerGroup);
+    } else {
+      if(map.hasLayer(markerGroup)) map.removeLayer(markerGroup);
+    }
+  }catch(e){ console.debug('setShipsVisible error', e); }
+}
+
+function setPortsVisible(show){
+  window.__portsVisible = !!show;
+  try{
+    if(window.__portsVisible){
+      // repopulate ports layer based on current search
+      const q = searchEl.value.trim().toLowerCase();
+      if(window.__portsMarkers){
+        window.__portsLayer.clearLayers();
+        window.__portsMarkers.forEach(pm=>{
+          const name = (pm.feature && pm.feature.properties && pm.feature.properties.name) ? String(pm.feature.properties.name).toLowerCase() : '';
+          if(!q || name.indexOf(q) !== -1) window.__portsLayer.addLayer(pm.marker);
+        });
+      }
+      if(!map.hasLayer(window.__portsLayer)) map.addLayer(window.__portsLayer);
+    } else {
+      if(map.hasLayer(window.__portsLayer)) map.removeLayer(window.__portsLayer);
+    }
+  }catch(e){ console.debug('setPortsVisible error', e); }
+}
+
+// Expose for external scripts and legacy UI ids
+window.setShipsVisible = setShipsVisible;
+window.setPortsVisible = setPortsVisible;
+
+// Wire common toggle checkbox IDs to the toggle handlers so toggles work
+function wireVisibilityToggles(){
+  const shipIds = ['filterShips','toggleShips'];
+  const portIds = ['filterPorts','togglePorts'];
+  shipIds.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    // keep checkbox in sync
+    try{ el.checked = !!window.__shipsVisible; }catch(e){}
+    el.removeEventListener('change', el._sf_change_handler);
+    const handler = function(e){ setShipsVisible(e.target.checked); };
+    el.addEventListener('change', handler);
+    el._sf_change_handler = handler;
+  });
+  portIds.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    try{ el.checked = !!window.__portsVisible; }catch(e){}
+    el.removeEventListener('change', el._pf_change_handler);
+    const handler = function(e){ setPortsVisible(e.target.checked); };
+    el.addEventListener('change', handler);
+    el._pf_change_handler = handler;
+  });
+}
+
+// attempt to wire immediately and also after legend creation
+try{ wireVisibilityToggles(); }catch(e){ console.debug('wireVisibilityToggles initial failed', e); }
 
 searchEl.addEventListener('input', ()=>{
   const q = searchEl.value.trim().toLowerCase();
   filterShips(q);
+  filterPorts(q);
 });
 
 statsBtn.addEventListener('click', ()=>{
@@ -424,12 +494,15 @@ function ensureLegend(){
   if(document.getElementById('map-legend')) return;
   const legend = document.createElement('div'); legend.id = 'map-legend'; legend.className = 'map-legend';
   legend.innerHTML = `
+    <div class="legend-row"><label class="ships-filter-label"><input type="checkbox" id="filterShips" checked /> Show ships</label></div>
+    <div class="legend-row"><label class="ports-filter-label"><input type="checkbox" id="filterPorts" checked /> Show ports</label></div>
     <div class="legend-title">Size / Weight (length criteria)</div>
     <div class="legend-row"><span class="swatch" style="background:#16a34a"></span><span class="lbl">Small — &lt; 80 m</span></div>
     <div class="legend-row"><span class="swatch" style="background:#f59e0b"></span><span class="lbl">Medium — 80–180 m</span></div>
     <div class="legend-row"><span class="swatch" style="background:#ef4444"></span><span class="lbl">Large — &gt; 180 m</span></div>
     <hr />
     <div class="legend-row"><label class="seized-filter-label"><input type="checkbox" id="filterSeized" /> Show seized only</label></div>
+    <div class="legend-row"><label class="cables-filter-label"><input type="checkbox" id="filterCables" /> Show submarine cables</label></div>
   `;
   document.body.appendChild(legend);
   const filterSeizedEl = document.getElementById('filterSeized');
@@ -437,13 +510,126 @@ function ensureLegend(){
     filterSeizedEl.addEventListener('change', ()=>{
       window.__seizedOnly = filterSeizedEl.checked;
       const q = searchEl.value.trim().toLowerCase();
-      filterShips(q);
+      // when toggling the seized-only filter, do not change the current map view/zoom
+      filterShips(q, false);
     });
   }
+  const filterCablesEl = document.getElementById('filterCables');
+  if(filterCablesEl){
+    filterCablesEl.addEventListener('change', async ()=>{
+      if(filterCablesEl.checked){
+        try{
+          await ensureCablesLoaded();
+          toggleCablesLayer(true);
+        }catch(e){
+          console.error('Failed to load cables.json', e);
+          alert('Failed to load cables.json');
+          filterCablesEl.checked = false;
+        }
+      } else {
+        toggleCablesLayer(false);
+      }
+    });
+  }
+}
+  const filterShipsEl = document.getElementById('filterShips');
+  if(filterShipsEl){
+    filterShipsEl.checked = !!window.__shipsVisible;
+    filterShipsEl.addEventListener('change', ()=>{
+      const show = filterShipsEl.checked;
+      setShipsVisible(show);
+    });
+  }
+
+  const filterPortsEl = document.getElementById('filterPorts');
+  if(filterPortsEl){
+    filterPortsEl.checked = !!window.__portsVisible;
+    filterPortsEl.addEventListener('change', ()=>{
+      const show = filterPortsEl.checked;
+      setPortsVisible(show);
+    });
+  }
+
+// Cables layer handling (performance-optimized)
+window.__cablesData = null;
+window.__cablesLayerGroup = null;
+window.__cablesVisible = false;
+window.__CABLES_MIN_ZOOM = 6; // below this zoom cables will be hidden to save resources
+
+async function ensureCablesLoaded(){
+  if(window.__cablesData) return;
+  const r = await fetch('cables.json');
+  if(!r.ok) throw new Error('HTTP ' + r.status);
+  const j = await r.json();
+  window.__cablesData = j;
+
+  // Use a Canvas renderer for much better performance with many segments
+  const canvasRenderer = L.canvas({ padding: 0.5 });
+
+  // Draw a faint halo first, then the main bright line on top (canvas renders both efficiently)
+  const haloStyle = { color: 'rgba(0,255,102,0.12)', weight: 8, opacity: 1, interactive: false };
+  // main layer remains canvas-rendered but is interactive so tooltips/hover work
+  const mainStyle = { color: '#00ff66', weight: 2, opacity: 0.95, interactive: true };
+
+  const haloLayer = L.geoJSON(window.__cablesData, { renderer: canvasRenderer, style: haloStyle, interactive: false });
+  const mainLayer = L.geoJSON(window.__cablesData, {
+    renderer: canvasRenderer,
+    style: mainStyle,
+    interactive: true,
+    onEachFeature: function(feature, layer){
+      try{
+        const name = feature && feature.properties && (feature.properties.name || feature.properties.id || feature.properties.feature_id);
+        if(name) layer.bindTooltip(String(name), {sticky:true, direction:'center', className:'cable-tooltip'});
+      }catch(e){/* ignore */}
+    }
+  });
+
+  window.__cablesLayerGroup = L.layerGroup([haloLayer, mainLayer]);
+
+  // Zoom handler: hide cables when zoomed out to avoid rendering too many segments
+  map.on('zoomend', function(){
+    if(!window.__cablesVisible) return;
+    try{
+      if(map.getZoom() < window.__CABLES_MIN_ZOOM){
+        if(map.hasLayer(window.__cablesLayerGroup)) map.removeLayer(window.__cablesLayerGroup);
+      } else {
+        if(!map.hasLayer(window.__cablesLayerGroup)) map.addLayer(window.__cablesLayerGroup);
+      }
+    }catch(e){/* ignore */}
+  });
+}
+
+function toggleCablesLayer(show){
+  if(show){
+    // ensure data loaded and then either zoom to min level (if currently too far) or add immediately
+    return ensureCablesLoaded().then(()=>{
+      const cz = map.getZoom();
+      if(cz < window.__CABLES_MIN_ZOOM){
+        // add the layer after zoom finishes to avoid rendering during animation
+        map.once('zoomend', function(){
+          try{ if(!map.hasLayer(window.__cablesLayerGroup)) map.addLayer(window.__cablesLayerGroup); }catch(e){}
+        });
+        try{
+          map.flyTo(map.getCenter(), window.__CABLES_MIN_ZOOM, {animate:true, duration:0.6});
+        }catch(e){
+          map.setView(map.getCenter(), window.__CABLES_MIN_ZOOM);
+        }
+      } else {
+        try{ if(!map.hasLayer(window.__cablesLayerGroup)) map.addLayer(window.__cablesLayerGroup); }catch(e){}
+      }
+      window.__cablesVisible = true;
+    });
+  }
+  if(window.__cablesLayerGroup && map.hasLayer(window.__cablesLayerGroup)){
+    try{ map.removeLayer(window.__cablesLayerGroup); }catch(e){}
+  }
+  window.__cablesVisible = false;
 }
 
 // create legend on load
 ensureLegend();
+// ensure our toggle wiring runs after legend injection
+try{ wireVisibilityToggles(); }catch(e){ console.debug('wireVisibilityToggles after legend failed', e); }
 
 function escapeHtml(s){
   return String(s).replace(/[&<>"']/g, function(c){
@@ -525,9 +711,64 @@ fetch('ships.json').then(r=>r.json()).then(data=>{
   alert('Failed to load ships.json — run a local static server and ensure file exists.');
 });
 
+// Load ports and render with anchor icon
+window.__portsLayer = L.layerGroup();
+if(window.__portsVisible) window.__portsLayer.addTo(map);
+function showPortDetails(feature){
+  const props = feature.properties || {};
+  const coords = feature.geometry && feature.geometry.coordinates ? feature.geometry.coordinates : null;
+  const lon = coords ? parseFloat(coords[0]) : null;
+  const lat = coords ? parseFloat(coords[1]) : null;
+  const name = props.name || props.id || 'Port';
+  shipNameEl.textContent = name;
+  let meta = `<div><strong>Type:</strong> Port</div>`;
+  if(Number.isFinite(lat) && Number.isFinite(lon)) meta += `<div><strong>Coordinates:</strong> ${lat.toFixed(5)}, ${lon.toFixed(5)}</div>`;
+  shipMetaEl.innerHTML = meta;
+  // clear other sections for now
+  shipImageEl.innerHTML = '';
+  linksEl.innerHTML = '';
+  const shipNotesEl = document.getElementById('shipNotes'); if(shipNotesEl) shipNotesEl.innerHTML = '';
+  sidebar.classList.add('open');
+}
+
+fetch('ports.json').then(r=>r.json()).then(data=>{
+  const list = data && data.features ? data.features : [];
+  window.__portsData = list;
+  window.__portsMarkers = [];
+  const portIcon = L.icon({iconUrl:'assets/anchor.svg', iconSize:[34,34], iconAnchor:[17,17], className:'port-marker'});
+  list.forEach(f=>{
+    try{
+      const coords = f.geometry && f.geometry.coordinates ? f.geometry.coordinates : null;
+      if(!coords || coords.length < 2) return;
+      const lon = parseFloat(coords[0]); const lat = parseFloat(coords[1]);
+      if(!Number.isFinite(lat) || !Number.isFinite(lon)) return;
+      const m = L.marker([lat,lon], {icon: portIcon, title: (f.properties && f.properties.name) || ''});
+      m.on('click', ()=> showPortDetails(f));
+      window.__portsMarkers.push({marker:m, feature:f});
+      // add to layer if ports are visible
+      if(window.__portsVisible) window.__portsLayer.addLayer(m);
+    }catch(e){console.debug('port render failed', e);}
+  });
+}).catch(e=>{ console.debug('Failed to load ports.json', e); });
+
+// include ports in search results
+function filterPorts(q){
+  if(!window.__portsMarkers) return;
+  window.__portsLayer.clearLayers();
+  const qnorm = (q||'').trim().toLowerCase();
+  window.__portsMarkers.forEach(pm=>{
+    const name = (pm.feature && pm.feature.properties && pm.feature.properties.name) ? String(pm.feature.properties.name).toLowerCase() : '';
+    if(!qnorm){
+      if(window.__portsVisible) window.__portsLayer.addLayer(pm.marker);
+    } else {
+      if(name.indexOf(qnorm) !== -1){ if(window.__portsVisible) window.__portsLayer.addLayer(pm.marker); }
+    }
+  });
+}
 
 
-function filterShips(q){
+
+function filterShips(q, fit = true){
   // q matches TYPE_SUMMARY, SHIPNAME, MMSI, IMO, FLAG, notes
   markerGroup.clearLayers();
   const seizedOnly = !!window.__seizedOnly;
@@ -536,7 +777,7 @@ function filterShips(q){
       if(seizedOnly && !m.item.seized) return;
       markerGroup.addLayer(m.marker);
     });
-    if(markerGroup.getLayers().length) map.fitBounds(markerGroup.getBounds(),{padding:[60,60]});
+    if(fit && markerGroup.getLayers().length) map.fitBounds(markerGroup.getBounds(),{padding:[60,60]});
     return;
   }
   markers.forEach(m=>{
@@ -548,8 +789,10 @@ function filterShips(q){
       markerGroup.addLayer(m.marker);
     }
   });
-  if(markerGroup.getLayers().length) map.fitBounds(markerGroup.getBounds(),{padding:[60,60]});
+  if(fit && markerGroup.getLayers().length) map.fitBounds(markerGroup.getBounds(),{padding:[60,60]});
 }
+
+// (search input already wired above to filter ships+ports)
 
 
 function openStatsModal(mode='both'){

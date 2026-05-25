@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {"id":"primorsk_russia","name":"Primorsk, Russia","country":"Russia"},
+      "geometry": {"type":"Point","coordinates":[28.7177839,60.3401025]}
+    },
+    {
+      "type": "Feature",
+      "properties": {"id":"korsakov_russia","name":"Korsakov, Russia","country":"Russia"},
+      "geometry": {"type":"Point","coordinates":[142.7665157,46.6194852]}
+    },
+    {
+      "type": "Feature",
+      "properties": {"id":"kholmsk_russia","name":"Kholmsk, Russia","country":"Russia"},
+      "geometry": {"type":"Point","coordinates":[142.9121895,46.6328314]}
+    },
+    {
+      "type": "Feature",
+      "properties": {"id":"shakthtersk_russia","name":"Shakthtersk, Russia","country":"Russia"},
+      "geometry": {"type":"Point","coordinates":[30.1758728,59.8812778]}
+    },
+    {
+      "type": "Feature",
+      "properties": {"id":"kozmino","name":"Kozmino","country":"Russia"},
+      "geometry": {"type":"Point","coordinates":[133.0104473,42.7128843]}
+    },
+    {
+      "type": "Feature",
+      "properties": {"id":"novorossiysk","name":"Novorossiysk","country":"Russia"},
+      "geometry": {"type":"Point","coordinates":[37.8217883,44.7165275]}
+    },
+    {
+      "type": "Feature",
+      "properties": {"id":"ust-luga","name":"Ust-Luga","country":"Russia"},
+      "geometry": {"type":"Point","coordinates":[28.4244429,59.690691]}
+    }
+  ]
+}
