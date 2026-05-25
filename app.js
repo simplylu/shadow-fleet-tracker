@@ -2,11 +2,29 @@
 const map = L.map('map', {zoomControl: true}).setView([55, 13], 6);
 
 // Use a basemap with Latin/English labels for readability (CartoDB Voyager)
-L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+// Base layers: Voyager (light) and Dark Matter (dark)
+const lightLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
   maxZoom: 19,
   attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
   subdomains: 'abcd'
-}).addTo(map);
+});
+const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  maxZoom: 19,
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+  subdomains: 'abcd'
+});
+
+// Add default layer; we provide a simple legend checkbox to toggle dark/light
+lightLayer.addTo(map);
+window.__darkMode = false;
+function setDarkMode(on){
+  window.__darkMode = !!on;
+  try{
+    if(window.__darkMode){ if(map.hasLayer(lightLayer)) map.removeLayer(lightLayer); if(!map.hasLayer(darkLayer)) map.addLayer(darkLayer); }
+    else { if(map.hasLayer(darkLayer)) map.removeLayer(darkLayer); if(!map.hasLayer(lightLayer)) map.addLayer(lightLayer); }
+  }catch(e){ console.debug('setDarkMode error', e); }
+}
+window.setDarkMode = setDarkMode;
 
 const sidebar = document.getElementById('sidebar');
 const closeBtn = document.getElementById('closeSidebar');
@@ -161,6 +179,17 @@ function wireVisibilityToggles(){
     const handler = function(e){ setLawVisible(e.target.checked); };
     el.addEventListener('change', handler);
     el._law_change_handler = handler;
+  });
+  // dark mode toggle wiring
+  const darkIds = ['toggleDarkMode'];
+  darkIds.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    try{ el.checked = !!window.__darkMode; }catch(e){}
+    el.removeEventListener('change', el._dm_change_handler);
+    const handler = function(e){ setDarkMode(!!e.target.checked); };
+    el.addEventListener('change', handler);
+    el._dm_change_handler = handler;
   });
   onlyCatIds.forEach(id=>{
     const el = document.getElementById(id);
@@ -580,7 +609,9 @@ function ensureLegend(){
   const legend = document.createElement('div'); legend.id = 'map-legend'; legend.className = 'map-legend';
   legend.innerHTML = `
     <div class="legend-row"><label class="ports-filter-label"><input type="checkbox" id="filterPorts" checked /> Show ports</label></div>
-    <div class="legend-row"><label class="cables-filter-label"><input type="checkbox" id="filterCables" /> Submarine cables</label></div>
+    <div class="legend-row"><label class="cables-filter-label"><input type="checkbox" id="filterCables" /> <span class="swatch" style="background:#00ff66;margin-right:8px"></span>Submarine cables</label></div>
+    <div class="legend-row"><label class="pipelines-filter-label"><input type="checkbox" id="filterPipelines" /> <span class="swatch" style="background:#00e6ff;margin-right:8px"></span>Pipelines</label></div>
+    <div class="legend-row"><label class="darkmode-label"><input type="checkbox" id="toggleDarkMode" /> Dark mode</label></div>
     <div class="legend-row"><label class="law-filter-label"><input type="checkbox" id="filterLaw" checked /> <span class="swatch" style="background:#1e40af;margin-right:8px"></span>Law enforcement</label></div>
     <div class="legend-row"><label class="military-filter-label"><input type="checkbox" id="filterMilitary" checked /> <span class="swatch" style="background:#0f766e;margin-right:8px"></span>Military Ops</label></div>
     <div class="legend-row"><label class="ships-filter-label"><input type="checkbox" id="filterShips" checked /> All other vessels</label></div>
@@ -598,6 +629,14 @@ function ensureLegend(){
       window.__seizedOnly = filterSeizedEl.checked;
       const q = searchEl.value.trim().toLowerCase();
       // when toggling the seized-only filter, do not change the current map view/zoom
+      // If seized-only is activated, automatically deactivate "All other vessels".
+      try{
+        const filterShipsEl = document.getElementById('filterShips');
+        if(filterSeizedEl.checked){
+          if(filterShipsEl){ filterShipsEl.checked = false; }
+          setShipsVisible(false);
+        }
+      }catch(e){ console.debug('failed to auto-disable All other vessels', e); }
       filterShips(q, false);
     });
   }
@@ -615,6 +654,23 @@ function ensureLegend(){
         }
       } else {
         toggleCablesLayer(false);
+      }
+    });
+  }
+  const filterPipelinesEl = document.getElementById('filterPipelines');
+  if(filterPipelinesEl){
+    filterPipelinesEl.addEventListener('change', async ()=>{
+      if(filterPipelinesEl.checked){
+        try{
+          await ensurePipelinesLoaded();
+          togglePipelinesLayer(true);
+        }catch(e){
+          console.error('Failed to load pipelines.json', e);
+          alert('Failed to load pipelines.json');
+          filterPipelinesEl.checked = false;
+        }
+      } else {
+        togglePipelinesLayer(false);
       }
     });
   }
@@ -684,6 +740,91 @@ async function ensureCablesLoaded(){
       }
     }catch(e){/* ignore */}
   });
+}
+
+// Pipelines layer handling (performance-optimized, simplified coordinates)
+window.__pipelinesData = null;
+window.__pipelinesLayerGroup = null;
+window.__pipelinesVisible = false;
+window.__PIPELINES_MIN_ZOOM = window.__CABLES_MIN_ZOOM;
+
+function thinCoordinates(coords, targetMax=1000){
+  if(!Array.isArray(coords)) return coords;
+  const n = coords.length;
+  if(n <= targetMax) return coords;
+  const step = Math.ceil(n / targetMax);
+  const out = [];
+  for(let i=0;i<n;i+=step) out.push(coords[i]);
+  // ensure last point present
+  if(out.length && (out[out.length-1][0] !== coords[n-1][0] || out[out.length-1][1] !== coords[n-1][1])) out.push(coords[n-1]);
+  return out;
+}
+
+function simplifyGeoJSON(orig){
+  if(!orig || !orig.type) return orig;
+  const copy = JSON.parse(JSON.stringify(orig));
+  if(copy.type === 'FeatureCollection' && Array.isArray(copy.features)){
+    copy.features = copy.features.map(f=>{
+      if(!f.geometry) return f;
+      const g = f.geometry;
+      if(g.type === 'LineString' && Array.isArray(g.coordinates)){
+        g.coordinates = thinCoordinates(g.coordinates, 1200);
+      } else if(g.type === 'MultiLineString' && Array.isArray(g.coordinates)){
+        g.coordinates = g.coordinates.map(ls => thinCoordinates(ls, 1200));
+      }
+      return f;
+    });
+  }
+  return copy;
+}
+
+async function ensurePipelinesLoaded(){
+  if(window.__pipelinesData) return;
+  const r = await fetch('pipelines.json');
+  if(!r.ok) throw new Error('HTTP ' + r.status);
+  const j = await r.json();
+  // simplify on load to reduce rendering cost
+  const simplified = simplifyGeoJSON(j);
+  window.__pipelinesData = simplified;
+
+  const canvasRenderer = L.canvas({ padding: 0.5 });
+  const haloStyle = { color: 'rgba(0,255,255,0.10)', weight: 8, opacity: 1, interactive: false };
+  const mainStyle = { color: '#00e6ff', weight: 2, opacity: 0.95, interactive: false };
+
+  const haloLayer = L.geoJSON(window.__pipelinesData, { renderer: canvasRenderer, style: haloStyle, interactive: false });
+  const mainLayer = L.geoJSON(window.__pipelinesData, { renderer: canvasRenderer, style: mainStyle, interactive: false });
+
+  window.__pipelinesLayerGroup = L.layerGroup([haloLayer, mainLayer]);
+
+  map.on('zoomend', function(){
+    if(!window.__pipelinesVisible) return;
+    try{
+      if(map.getZoom() < window.__PIPELINES_MIN_ZOOM){
+        if(map.hasLayer(window.__pipelinesLayerGroup)) map.removeLayer(window.__pipelinesLayerGroup);
+      } else {
+        if(!map.hasLayer(window.__pipelinesLayerGroup)) map.addLayer(window.__pipelinesLayerGroup);
+      }
+    }catch(e){/* ignore */}
+  });
+}
+
+function togglePipelinesLayer(show){
+  if(show){
+    return ensurePipelinesLoaded().then(()=>{
+      const cz = map.getZoom();
+      if(cz < window.__PIPELINES_MIN_ZOOM){
+        map.once('zoomend', function(){ try{ if(!map.hasLayer(window.__pipelinesLayerGroup)) map.addLayer(window.__pipelinesLayerGroup); }catch(e){} });
+        try{ map.flyTo(map.getCenter(), window.__PIPELINES_MIN_ZOOM, {animate:true, duration:0.6}); }catch(e){ map.setView(map.getCenter(), window.__PIPELINES_MIN_ZOOM); }
+      } else {
+        try{ if(!map.hasLayer(window.__pipelinesLayerGroup)) map.addLayer(window.__pipelinesLayerGroup); }catch(e){}
+      }
+      window.__pipelinesVisible = true;
+    });
+  }
+  if(window.__pipelinesLayerGroup && map.hasLayer(window.__pipelinesLayerGroup)){
+    try{ map.removeLayer(window.__pipelinesLayerGroup); }catch(e){}
+  }
+  window.__pipelinesVisible = false;
 }
 
 function toggleCablesLayer(show){
@@ -841,6 +982,13 @@ function showPortDetails(feature){
   shipImageEl.innerHTML = '';
   linksEl.innerHTML = '';
   const shipNotesEl = document.getElementById('shipNotes'); if(shipNotesEl) shipNotesEl.innerHTML = '';
+  // Remove any ship-specific controls (track button) when showing a port
+  try{
+    removeTrackLayer();
+  }catch(e){}
+  try{
+    const tbtn = document.getElementById('trackToggleBtn'); if(tbtn && tbtn.parentNode) tbtn.parentNode.removeChild(tbtn);
+  }catch(e){}
   sidebar.classList.add('open');
 }
 
