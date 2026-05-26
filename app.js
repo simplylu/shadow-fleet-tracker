@@ -996,15 +996,19 @@ fetch('ports.json').then(r=>r.json()).then(data=>{
   const list = data && data.features ? data.features : [];
   window.__portsData = list;
   window.__portsMarkers = [];
-  const portIcon = L.icon({iconUrl:'assets/anchor.svg', iconSize:[34,34], iconAnchor:[17,17], className:'port-marker'});
   list.forEach(f=>{
     try{
       const coords = f.geometry && f.geometry.coordinates ? f.geometry.coordinates : null;
       if(!coords || coords.length < 2) return;
       const lon = parseFloat(coords[0]); const lat = parseFloat(coords[1]);
       if(!Number.isFinite(lat) || !Number.isFinite(lon)) return;
-      const m = L.marker([lat,lon], {icon: portIcon, title: (f.properties && f.properties.name) || ''});
+      const pname = (f.properties && f.properties.name) ? String(f.properties.name) : '';
+      // Use a divIcon with an img so we can reliably set alt/title and control styling
+      const iconHtml = `<img src="assets/anchor.svg" width="28" height="28" alt="${escapeHtml(pname)}" class="port-icon-img" />`;
+      const portIcon = L.divIcon({html: iconHtml, className: 'port-marker', iconSize:[28,28], iconAnchor:[14,14]});
+      const m = L.marker([lat,lon], {icon: portIcon, title: pname});
       m.on('click', ()=> showPortDetails(f));
+      try{ m.bindTooltip(pname, {permanent:false, direction:'top', opacity:0.95}); }catch(e){}
       window.__portsMarkers.push({marker:m, feature:f});
       // add to layer if ports are visible
       if(window.__portsVisible) window.__portsLayer.addLayer(m);
