@@ -36554,5 +36554,29 @@
     "image": "https://static.vesselfinder.net/ship-photo/8943260-273437770-b3576ac8902d6cfc200f513e8e329034/1?v1",
     "notes": "",
     "seized": false
+  },
+  {
+    "SHIP_ID": "6326693",
+    "MMSI": "273610820",
+    "SHIPNAME": "NORD",
+    "LAT": "-8.7338886",
+    "LON": "115.21677",
+    "SPEED": "16.20",
+    "HEADING": "43",
+    "COURSE": "225",
+    "SHIPTYPE": "90",
+    "LENGTH": "141.63",
+    "WIDTH": "22.48",
+    "FLAG": "RU",
+    "TIMESTAMP": "2026-06-12 08:55:07",
+    "AVGSPEED": "7.0",
+    "TYPE_SUMMARY": "Pleasure Craft",
+    "TYPE_COLOR": "9",
+    "INVALID_DIMENSIONS": "0",
+    "L_FORE": "55",
+    "W_LEFT": "11",
+    "shipid": 6326693,
+    "imo": 9853785,
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6326693#overview"
   }
 ]
