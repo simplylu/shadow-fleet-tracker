@@ -79,6 +79,7 @@ async function loadTracksForKeys(keys){
   window.__playbackState.globalMin = gmin; window.__playbackState.globalMax = gmax;
   // initialize current time to global start so timeline and markers show immediately
   window.__playbackState.currentTime = gmin;
+  try{ console.warn('loadTracksForKeys: loaded playback tracks', loaded.join(', ')); }catch(e){}
   renderPlaybackPolylines();
   setupPlaybackTimeline();
   // update marker positions and timeline indicator to the initial time
@@ -120,6 +121,80 @@ function renderPlaybackPolylines(){
       try{
         const shipName = (function(){ try{ const a = allShips.find(s=>String(getShipPlaybackKey(s)) === String(k)); return (a && (a.SHIPNAME||a.name)) ? String(a.SHIPNAME||a.name) : String(k); }catch(e){ return String(k); } })();
         t.marker.bindTooltip(shipName, {permanent:true, direction:'right', className:'playback-tooltip'});
+      }catch(e){}
+
+      // detect suspicious segments for this track (large jumps, high speeds, points near ports)
+      try{
+        if(Array.isArray(t.points) && t.points.length>2){
+          t.__badSegments = detectBadTrackSegments(t.points, {maxSpeedKnots:60, maxJumpKm:30, maxJumpTimeS:3600, portNearMeters:500, contiguousLandSeconds:1800});
+              try{ console.warn('renderPlaybackPolylines: track', k, 'badSegments=', (t.__badSegments||[]).length); }catch(e){}
+          // visualize flagged segments
+          try{ if(t.__badSegments && t.__badSegments.length){ t.badLayer = L.layerGroup(); for(const f of t.__badSegments){ try{ const a = t.points[Math.max(0,f.i-1)]; const b = t.points[Math.max(0,f.i)]; if(!a||!b) continue; const seg = L.polyline([[a.lat,a.lon],[b.lat,b.lon]], {color:'#ff3b30', weight:3, opacity:0.95, dashArray:'6,6', className:'playback-anomaly'}); t.badLayer.addLayer(seg); }catch(e){} } window.__playbackLayer.addLayer(t.badLayer); } }catch(e){}
+          // decide whether to append an anomaly log or mark the ship: only alert continuous port/land signals
+          try{
+            // helper to mark the playback track anomalous: persist state, badge, tooltip, log and console warning
+            function markPlaybackTrackAnomaly(trackObj, trackKey, reason, startTs, msg){
+              try{
+                try{ console.warn('markPlaybackTrackAnomaly invoked', String(trackKey), reason, startTs); }catch(e){}
+                if(!trackObj) return;
+                trackObj._anomalyActive = true;
+                trackObj._anomalyStartTs = Number(startTs) || Math.floor(Date.now()/1000);
+                // persist on item and update main marker
+                for(const mm of markers){ try{ const mk = String(getShipPlaybackKey(mm.item)||''); if(mk===String(trackKey)){
+                      try{ if(mm.item) mm.item._anomalyActive = true; }catch(e){}
+                      const el = (mm.marker && mm.marker.getElement) ? mm.marker.getElement() : null;
+                      if(el){ const wrap = el.querySelector('.ship-marker-wrap'); if(wrap) wrap.classList.add('anomaly'); }
+                      try{ if(mm.marker && typeof mm.marker.setIcon === 'function') mm.marker.setIcon(makeLabelIcon(mm.item)); }catch(e){}
+                      break;
+                    } }catch(e){}
+                }
+                // update playback marker tooltip immediately
+                  try{
+                    if(trackObj.marker){
+                      const shipNameNow = (function(){ try{ const a = allShips.find(s=>String(getShipPlaybackKey(s)) === String(trackKey)); return (a && (a.SHIPNAME||a.name)) ? String(a.SHIPNAME||a.name) : String(trackKey); }catch(e){ return String(trackKey); } })();
+                      try{ trackObj.marker.unbindTooltip(); }catch(e){}
+                      try{ trackObj.marker.bindTooltip(shipNameNow + ' ⚠️', {permanent:true, direction:'right', className:'playback-tooltip playback-warning'}); }catch(e){}
+                    }
+                  }catch(e){}
+                // append a single log entry if not already done
+                if(!trackObj._anomalyLogged){
+                  const shipName = (function(){ try{ const a = allShips.find(s=>String(getShipPlaybackKey(s)) === String(trackKey)); return (a && (a.SHIPNAME||a.name)) ? String(a.SHIPNAME||a.name) : String(trackKey); }catch(e){ return String(trackKey); } })();
+                  appendAnomalyLog(trackObj._anomalyStartTs || startTs || Math.floor(Date.now()/1000), shipName, msg || (reason === 'on_land' ? 'Continuous AIS signals on land' : 'AIS anomaly'));
+                  trackObj._anomalyLogged = true;
+                }
+                try{ console.warn('Playback anomaly:', trackKey, reason, startTs, msg); }catch(e){}
+              }catch(e){ console.debug('markPlaybackTrackAnomaly failed', e); }
+            }
+              // expose for runtime calls from playback loop
+              try{ window.markPlaybackTrackAnomaly = markPlaybackTrackAnomaly; }catch(e){}
+
+            // group 'near_port' or 'on_land' consecutive runs
+            const runs = [];
+            let cur = null;
+            for(const f of (t.__badSegments||[])){
+              if(f.reason !== 'near_port' && f.reason !== 'on_land') continue;
+              if(!cur) cur = {startIdx: Math.max(0,f.i-1), endIdx: Math.max(0,f.i), startTs: t.points[Math.max(0,f.i-1)].ts || t.points[Math.max(0,f.i-1)].timestamp || t.points[Math.max(0,f.i-1)].time, endTs: t.points[Math.max(0,f.i)].ts || t.points[Math.max(0,f.i)].timestamp || t.points[Math.max(0,f.i)].time, ports: [f.portName||''], reasons: [f.reason] };
+              else { cur.endIdx = Math.max(cur.endIdx, f.i); cur.endTs = t.points[Math.max(0,f.i)].ts || t.points[Math.max(0,f.i)].timestamp || t.points[Math.max(0,f.i)].time; if(f.portName) cur.ports.push(f.portName); if(f.reason) cur.reasons.push(f.reason); }
+              // when gap to next flagged isn't contiguous we will finalize when loop ends; we'll finalize below
+            }
+            if(cur){ const dur = (Number(cur.endTs)||0) - (Number(cur.startTs)||0); if(dur >=  (1800) ){ // contiguousLandSeconds default
+                const shipName = (function(){ try{ const a = allShips.find(s=>String(getShipPlaybackKey(s)) === String(k)); return (a && (a.SHIPNAME||a.name)) ? String(a.SHIPNAME||a.name) : String(k); }catch(e){ return String(k); } })();
+                const portName = cur.ports && cur.ports.length ? cur.ports[0] : '';
+                const reason = (cur.reasons && cur.reasons.length) ? cur.reasons[0] : 'near_port';
+                const msg = (reason === 'on_land') ? 'Continuous AIS signals on land' : `Continuous land/port AIS signals near ${portName||'port'}`;
+                try{ markPlaybackTrackAnomaly(t,k,reason,cur.startTs,msg); }catch(e){}
+              }
+            }
+            // also, if any bad segment flagged 'on_land' exists (detectBadTrackSegments produces 'on_land' only after contiguous threshold), ensure persistent warning and log if not already logged
+            try{
+              const anyOnLand = (t.__badSegments||[]).some(x=>x && x.reason === 'on_land');
+              if(anyOnLand && !t._anomalyLogged){
+                const first = (t.__badSegments||[]).find(x=>x && x.reason === 'on_land');
+                try{ markPlaybackTrackAnomaly(t,k,'on_land', (first && first.startTs) || (t.points && t.points[0] && t.points[0].ts) || Math.floor(Date.now()/1000), 'Continuous AIS signals on land'); }catch(e){}
+              }
+            }catch(e){}
+          }catch(e){}
+        }
       }catch(e){}
     }catch(e){ console.debug('renderPlaybackPolylines failed for', k, e); }
   }
@@ -228,6 +303,7 @@ function detachPlaybackKeyboard(){ try{ if(window.__playbackKeyHandler){ documen
 function updatePlaybackForTime(ts){
   if(ts === null || ts === undefined) return;
   const state = window.__playbackState; if(!state.globalMin) return;
+  try{ console.warn('updatePlaybackForTime called', ts, 'tracks=', Object.keys(window.__playbackTracks||{}).length); }catch(e){}
   const uiTime = document.getElementById('pb-time'); if(uiTime) uiTime.textContent = new Date(ts*1000).toISOString().slice(0,16).replace('T',' ');
   // helper: compute distance in meters between two lat/lon
   function haversineMeters(lat1, lon1, lat2, lon2){
@@ -237,6 +313,93 @@ function updatePlaybackForTime(ts){
     const a = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)*Math.sin(dLon/2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     return R * c;
+  }
+
+  // detector for bad track segments
+  function detectBadTrackSegments(points, opts){
+    opts = opts || {};
+    const maxSpeedKnots = opts.maxSpeedKnots || 60;
+    const maxSpeedMS = maxSpeedKnots * 0.514444;
+    const maxJumpM = (opts.maxJumpKm||30) * 1000;
+    const maxJumpTimeS = opts.maxJumpTimeS || 3600;
+    const portNearMeters = opts.portNearMeters || 500;
+    const contiguousLandSeconds = opts.contiguousLandSeconds || 1800;
+    const flagged = [];
+    try{
+      // helper: point-in-ring (ray-casting)
+      function pointInRing(lon, lat, ring){
+        let inside = false;
+        for(let i=0,j=ring.length-1;i<ring.length;j=i++){
+          const xi = ring[i][0], yi = ring[i][1];
+          const xj = ring[j][0], yj = ring[j][1];
+          const intersect = ((yi>lat) !== (yj>lat)) && (lon < (xj - xi) * (lat - yi) / (yj - yi + 0.0) + xi);
+          if(intersect) inside = !inside;
+        }
+        return inside;
+      }
+      function isPointOnLand(lat, lon){
+        try{
+          const polys = Array.isArray(window.__countryPolygons) ? window.__countryPolygons : [];
+          for(const p of polys){
+            try{
+              const rings = p.rings || [];
+              if(!rings || !rings.length) continue;
+              // first ring is outer
+              if(pointInRing(lon, lat, rings[0])){
+                // ensure not in any hole
+                let inHole = false;
+                for(let h=1; h<rings.length; h++){
+                  if(pointInRing(lon, lat, rings[h])){ inHole = true; break; }
+                }
+                if(!inHole) return true;
+              }
+            }catch(e){}
+          }
+        }catch(e){}
+        return false;
+      }
+
+      let landRunStart = null; let landRunStartTs = null;
+      const staticThresholdM = 50; // preserve jump/static checks for speed/jump detection but drop long_static
+      for(let i=1;i<points.length;i++){
+        const a = points[i-1]; const b = points[i];
+        const at = Number(a.ts||a.timestamp||a.time||0); const bt = Number(b.ts||b.timestamp||b.time||0);
+        const dt = Math.max(1, bt - at);
+        const dist = haversineMeters(a.lat,a.lon,b.lat,b.lon);
+        const speed = dist / dt;
+        if(speed > maxSpeedMS){ flagged.push({i,reason:'high_speed',dist,dt,speed}); landRunStart = null; continue; }
+        if(dist > maxJumpM && dt < maxJumpTimeS){ flagged.push({i,reason:'large_jump',dist,dt,speed}); landRunStart = null; continue; }
+        // check proximity to ports (if loaded)
+        if(Array.isArray(window.__portsData) && window.__portsData.length){
+          let nearest = null; let nd = Infinity; let pname = '';
+          for(const pf of window.__portsData){ try{ const coords = pf.geometry && pf.geometry.coordinates ? pf.geometry.coordinates : null; if(!coords||coords.length<2) continue; const plon = parseFloat(coords[0]); const plat = parseFloat(coords[1]); if(!Number.isFinite(plon)||!Number.isFinite(plat)) continue; const d = haversineMeters(b.lat,b.lon,plat,plon); if(d < nd){ nd = d; nearest = pf; pname = (pf.properties && (pf.properties.name||pf.properties.port||pf.properties.title)) ? String(pf.properties.name||pf.properties.port||pf.properties.title) : ''; } }catch(e){} }
+          if(nearest && nd <= portNearMeters){ flagged.push({i,reason:'near_port',dist:nd,portName:pname,dt,speed}); landRunStart = null; continue; }
+        }
+        // detect contiguous on-land runs using preloaded country polygons
+        const onLand = isPointOnLand(b.lat, b.lon);
+        if(onLand){
+          if(landRunStart === null){ landRunStart = i-1; landRunStartTs = at; }
+        } else {
+          if(landRunStart !== null){
+            const dur = at - (landRunStartTs||at);
+            if(dur >= (opts.contiguousLandSeconds || 1800)){
+              flagged.push({i: i, reason:'on_land', startIdx: landRunStart, endIdx: i, startTs: landRunStartTs, endTs: at, dur});
+            }
+            landRunStart = null; landRunStartTs = null;
+          }
+        }
+      }
+      // finalize any trailing land run
+      if(landRunStart !== null){
+        const last = points[points.length-1];
+        const lastTs = Number(last.ts||last.timestamp||last.time||0);
+        const dur = lastTs - (landRunStartTs||lastTs);
+        if(dur >= (opts.contiguousLandSeconds || 1800)){
+          flagged.push({i: points.length-1, reason:'on_land', startIdx: landRunStart, endIdx: points.length-1, startTs: landRunStartTs, endTs: lastTs, dur});
+        }
+      }
+    }catch(e){ console.debug('detectBadTrackSegments failed', e); }
+    return flagged;
   }
 
   // append a mooring log entry to the legend log
@@ -259,6 +422,25 @@ function updatePlaybackForTime(ts){
       // limit log size
       while(log.children.length > 200) log.removeChild(log.lastChild);
     }catch(e){ console.debug('appendMooringLog failed', e); }
+  }
+  // append anomaly messages to the same log area
+  function appendAnomalyLog(ts, shipName, msg){
+    try{
+      ensureLegend();
+      const log = document.getElementById('mooringLog'); if(!log) return;
+      const entry = document.createElement('div'); entry.className = 'legend-row map-log-entry';
+      entry.style.display = 'flex'; entry.style.flexDirection = 'column'; entry.style.alignItems = 'flex-start';
+      const timeEl = document.createElement('time'); timeEl.textContent = new Date(Number(ts)*1000).toISOString().slice(0,16).replace('T',' ');
+      timeEl.style.fontWeight = '700'; timeEl.style.color = '#ffd4d4';
+      const txt = document.createElement('div');
+      const shipEl = document.createElement('span'); shipEl.textContent = shipName; shipEl.style.fontWeight = '700'; shipEl.style.marginRight = '8px';
+      const atEl = document.createElement('span'); atEl.textContent = '⚠️ ' + msg; atEl.style.color = 'var(--muted)';
+      txt.appendChild(shipEl); txt.appendChild(atEl);
+      entry.appendChild(timeEl); entry.appendChild(txt);
+      log.insertBefore(entry, log.firstChild);
+      try{ console.warn('Anomaly log:', shipName, msg, new Date(Number(ts)*1000).toISOString()); }catch(e){}
+      while(log.children.length > 200) log.removeChild(log.lastChild);
+    }catch(e){ console.debug('appendAnomalyLog failed', e); }
   }
   for(const k in window.__playbackTracks){
     const t = window.__playbackTracks[k]; if(!t || !t.points || t.points.length===0) continue;
@@ -293,6 +475,38 @@ function updatePlaybackForTime(ts){
         done.push([lat, lon]);
         if(t.traveledPolyline) t.traveledPolyline.setLatLngs(done);
       }catch(e){}
+          // show immediate warning on the moving label if current position is on land
+        try{
+          const onLandNow = (typeof isPointOnLand === 'function') ? isPointOnLand(lat, lon) : false;
+          try{ if(onLandNow) console.warn('updatePlaybackForTime: onLandNow', k, ts, lat, lon); }catch(e){}
+          // if we detect on-land for the moving point, persist the anomaly immediately so badge/log are created
+          try{
+            try{ console.warn('willCallMarkPlaybackTrackAnomaly?', String(k), 't._anomalyActive=', !!t._anomalyActive, 'hasFunc=', typeof window.markPlaybackTrackAnomaly); }catch(e){}
+            if(onLandNow && !t._anomalyActive){
+              // attempt to mark via helper first
+              if(typeof window.markPlaybackTrackAnomaly === 'function'){
+                try{ console.warn('calling markPlaybackTrackAnomaly for', String(k)); }catch(e){}
+                try{ window.markPlaybackTrackAnomaly(t, k, 'on_land', ts, 'Immediate on-land AIS detected during playback'); }catch(e){ console.warn('markPlaybackTrackAnomaly call failed', e); }
+              }
+              // fallback: directly set anomaly state and update UI/log so user sees immediate effect
+              try{
+                console.warn('direct-marking anomaly fallback for', String(k));
+                t._anomalyActive = true;
+                t._anomalyStartTs = Number(ts) || Math.floor(Date.now()/1000);
+                // append log entry only if not already logged
+                try{ if(!t._anomalyLogged){ const shipName = (function(){ try{ const a = allShips.find(s=>String(getShipPlaybackKey(s)) === String(k)); return (a && (a.SHIPNAME||a.name)) ? String(a.SHIPNAME||a.name) : String(k); }catch(e){ return String(k); } })(); appendAnomalyLog(t._anomalyStartTs, shipName, 'Immediate on-land AIS detected (fallback)'); t._anomalyLogged = true; } }catch(e){ console.warn('appendAnomalyLog fallback failed', e); }
+                // decorate main marker(s)
+                for(const mm of markers){ try{ const mk = String(getShipPlaybackKey(mm.item)||''); if(mk===String(k)){ try{ if(mm.item) mm.item._anomalyActive = true; }catch(e){} const el = (mm.marker && mm.marker.getElement)? mm.marker.getElement() : null; if(el){ const wrap = el.querySelector('.ship-marker-wrap'); if(wrap) wrap.classList.add('anomaly'); } try{ if(mm.marker && typeof mm.marker.setIcon === 'function') mm.marker.setIcon(makeLabelIcon(mm.item)); }catch(e){} break; } }catch(e){} }
+              }catch(e){ console.warn('direct anomaly fallback failed', e); }
+            }
+          }catch(e){ console.warn('onLand immediate-mark branch failed', e); }
+          const shipName = (function(){ try{ const a = allShips.find(s=>String(getShipPlaybackKey(s)) === String(k)); return (a && (a.SHIPNAME||a.name)) ? String(a.SHIPNAME||a.name) : String(k); }catch(e){ return String(k); } })();
+          try{ t.marker.unbindTooltip(); }catch(e){}
+          // if this track was previously flagged as anomalous, keep showing the warning even when back on water
+          const persistentWarn = !!t._anomalyActive;
+          if(persistentWarn || onLandNow){ try{ t.marker.bindTooltip(shipName + ' ⚠️', {permanent:true, direction:'right', className:'playback-tooltip playback-warning'}); }catch(e){} }
+          else { try{ t.marker.bindTooltip(shipName, {permanent:true, direction:'right', className:'playback-tooltip'}); }catch(e){} }
+        }catch(e){}
       // mooring detection: if ports loaded, find nearest port within threshold
       try{
         const ports = Array.isArray(window.__portsData) ? window.__portsData : [];
@@ -326,6 +540,25 @@ function updatePlaybackForTime(ts){
       }catch(e){}
       // store last pos
       t._lastPos = [lat, lon]; t._lastTs = ts;
+      // if this track was previously flagged anomalous, ensure the main marker shows the persistent badge and log exists
+      try{
+        if(t._anomalyActive){
+          // decorate main marker and item
+          for(const mm of markers){ try{ const mk = String(getShipPlaybackKey(mm.item)||''); if(mk===String(k)){
+                try{ if(mm.item) mm.item._anomalyActive = true; }catch(e){}
+                const el = (mm.marker && mm.marker.getElement)? mm.marker.getElement() : null; if(el){ const wrap = el.querySelector('.ship-marker-wrap'); if(wrap) wrap.classList.add('anomaly'); }
+                try{ if(mm.marker && typeof mm.marker.setIcon === 'function') mm.marker.setIcon(makeLabelIcon(mm.item)); }catch(e){}
+                break;
+          } }catch(e){} }
+          // ensure a log entry exists once per anomaly
+          if(!t._anomalyLogged){
+            const shipName = (function(){ try{ const a = allShips.find(s=>String(getShipPlaybackKey(s)) === String(k)); return (a && (a.SHIPNAME||a.name)) ? String(a.SHIPNAME||a.name) : String(k); }catch(e){ return String(k); } })();
+            const ts0 = Number(t._anomalyStartTs) || Number(t._nearPortSince) || Number(t._lastTs) || Math.floor(Date.now()/1000);
+            appendAnomalyLog(ts0, shipName, 'AIS malfunction detected (on land)');
+            t._anomalyLogged = true;
+          }
+        }
+      }catch(e){}
     }catch(e){ console.debug('update marker failed', k, e); }
   }
   try{ if(window.__playbackDrawIndicator) window.__playbackDrawIndicator(ts); }catch(e){}
@@ -476,6 +709,18 @@ function openPlaybackModal(){
   modal.appendChild(head);
   const body = document.createElement('div'); body.className = 'modal-body';
   const search = document.createElement('input'); search.type='search'; search.placeholder='Filter ships...'; search.style.width='100%'; search.style.marginBottom='8px'; body.appendChild(search);
+  // show currently selected vessels (from Add-to-playback) as a single-line summary
+  const selLine = document.createElement('div'); selLine.className = 'pb-selected'; selLine.style.marginBottom = '6px'; selLine.style.fontSize = '13px'; selLine.style.color = 'var(--muted)';
+  try{
+  let sel = Array.isArray(window.__playbackSelectedKeys) ? window.__playbackSelectedKeys.map(String) : [];
+    const names = [];
+    if(sel && sel.length){
+      for(const k of sel){ try{ const s = allShips.find(x=>String(getShipPlaybackKey(x))===String(k)); names.push(s ? (s.SHIPNAME||s.name||String(k)) : String(k)); }catch(e){}
+      }
+    }
+    selLine.textContent = names.length ? names.join(', ') : 'No vessels selected';
+  }catch(e){ selLine.textContent = 'No vessels selected'; }
+  body.appendChild(selLine);
   const list = document.createElement('div'); list.style.maxHeight='56vh'; list.style.overflow='auto'; list.style.paddingRight='6px';
   // populate list from allShips
   const rows = [];
@@ -485,6 +730,11 @@ function openPlaybackModal(){
     const label = (it.SHIPNAME || it.name || key).toString();
     const row = document.createElement('label'); row.style.display='flex'; row.style.alignItems='center'; row.style.gap='8px'; row.style.padding='4px 6px';
     const cb = document.createElement('input'); cb.type='checkbox'; cb.dataset.key = String(key);
+      try{
+      // pre-check if this ship is already in the playback selection (in-memory only)
+      let sel = Array.isArray(window.__playbackSelectedKeys) ? window.__playbackSelectedKeys.map(String) : [];
+      if(sel && sel.indexOf(String(key)) !== -1) cb.checked = true;
+    }catch(e){}
     const span = document.createElement('span'); span.textContent = label + (it.FLAG ? ' — ' + it.FLAG : ''); span.style.color='var(--muted)';
     row.appendChild(cb); row.appendChild(span);
     list.appendChild(row); rows.push({row, label: label.toLowerCase()});
@@ -493,7 +743,13 @@ function openPlaybackModal(){
   modal.appendChild(body);
   const actions = document.createElement('div'); actions.className = 'playback-actions';
   const selectAll = document.createElement('button'); selectAll.textContent='Select all'; selectAll.className='pb-btn'; selectAll.addEventListener('click', ()=>{ list.querySelectorAll('input[type=checkbox]').forEach(i=>i.checked=true); });
-  const clear = document.createElement('button'); clear.textContent='Clear'; clear.className='pb-btn'; clear.addEventListener('click', ()=>{ list.querySelectorAll('input[type=checkbox]').forEach(i=>i.checked=false); });
+  const clear = document.createElement('button'); clear.textContent='Clear'; clear.className='pb-btn'; clear.addEventListener('click', ()=>{
+    list.querySelectorAll('input[type=checkbox]').forEach(i=>i.checked=false);
+    // clear in-memory selection and update UI
+    try{ window.__playbackSelectedKeys = []; }catch(e){}
+    try{ selLine.textContent = 'No vessels selected'; }catch(e){}
+    try{ const b = document.getElementById('addToPlaybackBtn'); if(b) b.textContent = 'Add to playback'; }catch(e){}
+  });
   const start = document.createElement('button'); start.textContent='Start playback'; start.className='pb-btn'; start.addEventListener('click', ()=>{
     const keys = Array.from(list.querySelectorAll('input[type=checkbox]:checked')).map(i=>i.dataset.key).filter(Boolean);
     if(keys.length===0){ alert('Select at least one vessel'); return; }
@@ -641,9 +897,9 @@ function setPortsVisible(show){
           if(!q || name.indexOf(q) !== -1) window.__portsLayer.addLayer(pm.marker);
         });
       }
-      if(!map.hasLayer(window.__portsLayer)) map.addLayer(window.__portsLayer);
+      if(window.__portsLayer && !map.hasLayer(window.__portsLayer)) map.addLayer(window.__portsLayer);
     } else {
-      if(map.hasLayer(window.__portsLayer)) map.removeLayer(window.__portsLayer);
+      if(window.__portsLayer && map.hasLayer(window.__portsLayer)) map.removeLayer(window.__portsLayer);
     }
   }catch(e){ console.debug('setPortsVisible error', e); }
 }
@@ -938,19 +1194,33 @@ function showDetails(data){
     try{
       const addBtn = document.getElementById('addToPlaybackBtn');
       if(addBtn){
-        addBtn.dataset.shipid = shipid;
-        addBtn.dataset.imo = imo;
-        addBtn.onclick = async function(){
-          const key = (data.SHIP_ID || data.shipid || data.IMO || data.imo || data.MMSI || data.mmsi || null);
-          if(!key){ alert('This vessel has no usable ID for playback'); return; }
+          addBtn.dataset.shipid = shipid;
+          addBtn.dataset.imo = imo;
+          // set initial text based on current selection
           try{
-            const existing = Array.isArray(window.__playbackSelectedKeys) ? window.__playbackSelectedKeys : [];
-            const merged = Array.from(new Set([...existing.map(String), String(key)]));
-            // enter playback mode with merged selection
-            enterPlaybackMode(merged);
-            showPlaybackBar();
-          }catch(e){ console.debug('Add to playback failed', e); alert('Failed to add vessel to playback'); }
-        };
+            const sel = Array.isArray(window.__playbackSelectedKeys) ? window.__playbackSelectedKeys.map(String) : [];
+            const keyStr = String(data.SHIP_ID || data.shipid || data.IMO || data.imo || data.MMSI || data.mmsi || '');
+            if(sel.indexOf(keyStr) !== -1) addBtn.textContent = 'Remove from playback'; else addBtn.textContent = 'Add to playback';
+          }catch(e){}
+          addBtn.onclick = async function(){
+            const key = (data.SHIP_ID || data.shipid || data.IMO || data.imo || data.MMSI || data.mmsi || null);
+            if(!key){ alert('This vessel has no usable ID for playback'); return; }
+            try{
+              if(!Array.isArray(window.__playbackSelectedKeys)) window.__playbackSelectedKeys = [];
+              const existing = window.__playbackSelectedKeys.map(String);
+              const keyStr = String(key);
+              if(existing.indexOf(keyStr) !== -1){
+                // remove
+                window.__playbackSelectedKeys = existing.filter(x=>x!==keyStr);
+                this.textContent = 'Add to playback';
+              } else {
+                // add
+                window.__playbackSelectedKeys = Array.from(new Set([...existing, keyStr]));
+                this.textContent = 'Remove from playback';
+              }
+              // do not persist selection to localStorage by design
+            }catch(e){ console.debug('Add to playback failed', e); alert('Failed to toggle vessel for playback'); }
+          };
       }
     }catch(e){ console.debug('wiring addToPlaybackBtn failed', e); }
 
@@ -1178,7 +1448,17 @@ async function showTrackForShip(shipid, imo){
 
 // Inject a legend explaining weight buckets
 function ensureLegend(){
-  if(document.getElementById('map-legend')) return;
+  if(document.getElementById('map-legend')){
+    // If legend exists but the mooring log wasn't present (older runs), recreate it so logs can be appended
+    try{
+      if(!document.getElementById('mooringLog')){
+        const legend = document.getElementById('map-legend');
+        const log = document.createElement('div'); log.id = 'mooringLog'; log.className = 'map-log';
+        legend.appendChild(log);
+      }
+    }catch(e){}
+    return;
+  }
   const legend = document.createElement('div'); legend.id = 'map-legend'; legend.className = 'map-legend';
   legend.innerHTML = `
     <div class="legend-row"><label class="ports-filter-label"><input type="checkbox" id="filterPorts" checked /> Show ports</label></div>
@@ -1706,6 +1986,62 @@ fetch('ports.json').then(r=>r.json()).then(data=>{
     }catch(e){console.debug('port render failed', e);}    
   });
 }).catch(e=>{ console.debug('Failed to load ports.json', e); });
+
+// load country polygons for on-land detection (GeoJSON)
+fetch('countries.geojson').then(r=>r.json()).then(data=>{
+  try{
+    window.__countriesGeo = data;
+    window.__countryPolygons = [];
+    if(data && Array.isArray(data.features)){
+      for(const f of data.features){
+        try{
+          const geom = f.geometry; if(!geom) continue;
+          if(geom.type === 'Polygon'){
+            // polygon: array of rings
+            window.__countryPolygons.push({rings: geom.coordinates, props: f.properties||{}});
+          } else if(geom.type === 'MultiPolygon'){
+            // multipolygon: array of polygons (each is array of rings)
+            for(const poly of geom.coordinates) window.__countryPolygons.push({rings: poly, props: f.properties||{}});
+          }
+        }catch(e){}
+      }
+    }
+    try{ console.warn('countries.geojson: loaded', Array.isArray(window.__countryPolygons) ? window.__countryPolygons.length : 0, 'polygons'); }catch(e){}
+  }catch(e){ console.debug('Failed to process countries.geojson', e); }
+}).catch(e=>{ console.debug('Failed to load countries.geojson', e); });
+
+// global helper: point-in-polygon using ray-casting against preloaded country polygons
+function isPointOnLand(lat, lon){
+  try{
+    const polys = Array.isArray(window.__countryPolygons) ? window.__countryPolygons : [];
+    function pointInRing(x, y, ring){
+      let inside = false;
+      for(let i=0,j=ring.length-1;i<ring.length;j=i++){
+        const xi = ring[i][0], yi = ring[i][1];
+        const xj = ring[j][0], yj = ring[j][1];
+        const intersect = ((yi>y) !== (yj>y)) && (x < (xj - xi) * (y - yi) / (yj - yi + 0.0) + xi);
+        if(intersect) inside = !inside;
+      }
+      return inside;
+    }
+    for(const p of polys){
+      try{
+        const rings = p.rings || [];
+        if(!rings || !rings.length) continue;
+        // rings are arrays of [lon,lat]
+        if(pointInRing(lon, lat, rings[0])){
+          // not inside any hole
+          let inHole = false;
+          for(let h=1; h<rings.length; h++){
+            if(pointInRing(lon, lat, rings[h])){ inHole = true; break; }
+          }
+          if(!inHole) return true;
+        }
+      }catch(e){}
+    }
+  }catch(e){}
+  return false;
+}
 
 // include ports in search results
 function filterPorts(q){

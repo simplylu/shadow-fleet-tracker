@@ -306,6 +306,7 @@ def parse_args():
     p.add_argument('--tor-control-host', type=str, default='127.0.0.1')
     p.add_argument('--tor-control-port', type=int, default=9051)
     p.add_argument('--delay', type=float, default=0.5)
+    p.add_argument('--skip-existing', action='store_true', help='Skip scraping entries already present in the output file')
     return p.parse_args()
 
 
@@ -351,11 +352,50 @@ def main():
         sys.exit(2)
 
     items = list(mapping.items())
+    # if requested, build a set of existing shipids from the output file to skip
+    existing_ids = set()
+    if args.skip_existing:
+        raw_existing = load_existing(args.output)
+        if raw_existing:
+            try:
+                if isinstance(raw_existing, list):
+                    for it in raw_existing:
+                        try:
+                            if isinstance(it, dict) and it.get('shipid') is not None:
+                                existing_ids.add(str(it.get('shipid')))
+                        except Exception:
+                            continue
+                elif isinstance(raw_existing, dict):
+                    # try common list containers first
+                    for key in ('result', 'ships', 'data', 'items'):
+                        if key in raw_existing and isinstance(raw_existing[key], list):
+                            for it in raw_existing[key]:
+                                try:
+                                    if isinstance(it, dict) and it.get('shipid') is not None:
+                                        existing_ids.add(str(it.get('shipid')))
+                                except Exception:
+                                    continue
+                            break
+                    else:
+                        # dict mapping style: values may be entries
+                        for v in raw_existing.values():
+                            try:
+                                if isinstance(v, dict) and v.get('shipid') is not None:
+                                    existing_ids.add(str(v.get('shipid')))
+                            except Exception:
+                                continue
+            except Exception:
+                existing_ids = set()
     for imo_str, shipid_str in tqdm(items):
         try:
             shipid = int(shipid_str)
         except Exception:
             shipid = shipid_str
+        # skip if present
+        if args.skip_existing and str(shipid) in existing_ids:
+            # quick feedback
+            print('Skipping existing', shipid)
+            continue
         # Attempt up to 3 tries, rotating Tor on blocks/errors if control pass provided
         tries = 3
         for attempt in range(1, tries+1):

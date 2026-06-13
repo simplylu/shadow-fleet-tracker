@@ -103,6 +103,11 @@ body{background:linear-gradient(180deg,#071124 0%, #071524 100%);color:#e6eef6}
 /* playback moving-dot label */
 .playback-tooltip.leaflet-tooltip{background:rgba(0,0,0,0.7);border-radius:6px;padding:4px 8px;color:#fff;font-weight:700;font-size:12px}
 .playback-tooltip.leaflet-tooltip:before{border-top-color:rgba(0,0,0,0.7)}
+/* warning style for playback tooltip when position is on land */
+.playback-tooltip.playback-warning.leaflet-tooltip{background:rgba(255,59,48,0.95);color:#fff}
+.playback-tooltip.playback-warning.leaflet-tooltip:before{border-top-color:rgba(255,59,48,0.95)}
+/* selected vessels summary in playback modal */
+.pb-selected{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pb-speed{display:flex;align-items:center;gap:8px}
 
 /* Playback layout fixes: ensure timeline has flexible space and speed controls reserve width */
@@ -141,6 +146,11 @@ body{background:linear-gradient(180deg,#071124 0%, #071524 100%);color:#e6eef6}
   100%{transform:scale(2.0);opacity:0}
 }
 .ship-marker-wrap.inactive .inactive-ring .dot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:rgba(255,140,0,0.98);box-shadow:0 0 12px rgba(255,140,0,0.45)}
+
+/* anomaly badge for AIS issues */
+/* anomaly badge removed — persistent red badge disabled */
+
+.playback-anomaly{color:#ff3b30;stroke:#ff3b30}
 
 /* Submarine cable line glow */
 .cable-line{
