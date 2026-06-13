@@ -24,6 +24,522 @@ function setDarkMode(on){
     else { if(map.hasLayer(darkLayer)) map.removeLayer(darkLayer); if(!map.hasLayer(lightLayer)) map.addLayer(lightLayer); }
   }catch(e){ console.debug('setDarkMode error', e); }
 }
+
+// ---------------------- Playback subsystem ----------------------
+// Simple playback: loads /tracks/<key>.json (array of {timestamp,lat,lon}),
+// renders polylines + moving markers and provides a timeline UI.
+
+window.__playbackTracks = {};
+window.__playbackLayer = L.layerGroup().addTo(map);
+window.__playbackState = { currentTime:null, globalMin:null, globalMax:null, playing:false, speed:10, preferredUnit:1800, rafId:null };
+
+function parsePointTimestamp(s){
+  if(s === undefined || s === null) return null;
+  if(typeof s === 'number'){
+    if(s > 1e12) return Math.floor(s/1000);
+    return Math.floor(s);
+  }
+  let t = String(s).trim();
+  if(/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}$/.test(t)) t = t.replace(/\s+/, 'T');
+  const n = parseFloat(t);
+  if(!Number.isNaN(n) && /^\d+(?:\.\d+)?$/.test(t)){
+    if(n > 1e12) return Math.floor(n/1000);
+    return Math.floor(n);
+  }
+  const d = Date.parse(t);
+  if(!Number.isNaN(d)) return Math.floor(d/1000);
+  return null;
+}
+
+async function loadTracksForKeys(keys){
+  if(!Array.isArray(keys)) keys = [];
+  window.__playbackTracks = {};
+  let gmin = Infinity, gmax = -Infinity;
+  const loaded = [];
+  for(const k of keys){
+    try{
+      const url = `tracks/${encodeURIComponent(String(k))}.json`;
+      const r = await fetch(url);
+      if(!r.ok) continue;
+      const pts = await r.json();
+      if(!Array.isArray(pts) || pts.length===0) continue;
+      const points = pts.map(p=>{
+        const ts = parsePointTimestamp(p.timestamp || p.time || p.t || p.ts || p[0]);
+        return {ts: ts, lat: parseFloat(p.lat||p.latitude), lon: parseFloat(p.lon||p.lng||p.longitude)};
+      }).filter(p=>p && Number.isFinite(p.ts) && Number.isFinite(p.lat) && Number.isFinite(p.lon));
+      if(points.length===0) continue;
+      points.sort((a,b)=>a.ts-b.ts);
+      const min = points[0].ts, max = points[points.length-1].ts;
+      if(min < gmin) gmin = min; if(max > gmax) gmax = max;
+      window.__playbackTracks[String(k)] = {points, min, max, polyline:null, marker:null};
+      loaded.push(String(k));
+    }catch(e){ console.debug('loadTracksForKeys failed for', k, e); }
+  }
+  if(loaded.length===0){ window.__playbackState.globalMin = null; window.__playbackState.globalMax = null; return; }
+  window.__playbackState.globalMin = gmin; window.__playbackState.globalMax = gmax;
+  // initialize current time to global start so timeline and markers show immediately
+  window.__playbackState.currentTime = gmin;
+  renderPlaybackPolylines();
+  setupPlaybackTimeline();
+  // update marker positions and timeline indicator to the initial time
+  try{ updatePlaybackForTime(window.__playbackState.currentTime); }catch(e){ console.debug('initial updatePlaybackForTime failed', e); }
+}
+
+function renderPlaybackPolylines(){
+  try{ window.__playbackLayer.clearLayers(); }catch(e){}
+  // color palette for distinguishing ships
+  const palette = ['#ff6b6b','#6bafff','#ffd36b','#7be36b','#d86bff','#6bffd9','#ff8c6b','#6b9bff'];
+  let idx = 0;
+  for(const k in window.__playbackTracks){
+    const t = window.__playbackTracks[k];
+    const latlngs = t.points.map(p=>[p.lat,p.lon]);
+    try{
+      const color = palette[idx % palette.length]; idx += 1;
+      // base (untraveled) polyline: dimmer
+      t.basePolyline = L.polyline(latlngs, {color: color, weight:3, opacity:0.45, dashArray: null});
+      // traveled polyline: will be updated during playback to show the path already covered
+      t.traveledPolyline = L.polyline([], {color: color, weight:4, opacity:1.0});
+      t.marker = L.circleMarker(latlngs[0], {radius:6, fillColor:color, color:color, weight:1, fillOpacity:0.95});
+      window.__playbackLayer.addLayer(t.basePolyline);
+      window.__playbackLayer.addLayer(t.traveledPolyline);
+      window.__playbackLayer.addLayer(t.marker);
+      // try to color the original map icon for the same ship key so users can match track->ship
+      try{
+        const shipKey = String(k);
+        for(const mm of markers){
+          try{
+            const mk = String(getShipPlaybackKey(mm.item)||'');
+            if(mk === shipKey){
+              try{ mm.marker.setIcon(makeLabelIcon(mm.item, color)); }catch(e){}
+              break;
+            }
+          }catch(e){}
+        }
+      }catch(e){ console.debug('coloring main marker failed', e); }
+      // add a permanent tooltip/label to the playback marker so the moving dot is clearly labeled
+      try{
+        const shipName = (function(){ try{ const a = allShips.find(s=>String(getShipPlaybackKey(s)) === String(k)); return (a && (a.SHIPNAME||a.name)) ? String(a.SHIPNAME||a.name) : String(k); }catch(e){ return String(k); } })();
+        t.marker.bindTooltip(shipName, {permanent:true, direction:'right', className:'playback-tooltip'});
+      }catch(e){}
+    }catch(e){ console.debug('renderPlaybackPolylines failed for', k, e); }
+  }
+}
+
+function setupPlaybackTimeline(){
+  // build UI if missing
+  if(!window.__playbackUI) showPlaybackBar();
+  const info = window.__playbackState;
+  const gmin = info.globalMin, gmax = info.globalMax;
+  const canvas = document.getElementById('pb-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const parentW = (canvas.parentElement||canvas).clientWidth || 300;
+  const dpr = Math.max(1, devicePixelRatio||1);
+  const w = Math.max(200, Math.floor(parentW * dpr));
+  const h = Math.max(28, Math.floor(36 * dpr));
+  canvas.width = w; canvas.height = h; canvas.style.width = (parentW+'px'); canvas.style.height = (h/dpr)+'px';
+  const pxPerSec = (w) / Math.max(1, (gmax - gmin));
+  const unit = info.preferredUnit || 1800;
+  // draw background subtle gradient
+  ctx.clearRect(0,0,w,h);
+  const grad = ctx.createLinearGradient(0,0,0,h);
+  grad.addColorStop(0,'rgba(255,255,255,0.02)'); grad.addColorStop(1,'rgba(0,0,0,0.03)');
+  ctx.fillStyle = grad; ctx.fillRect(0,0,w,h);
+  // draw faint alternating bands with low opacity, but if there are many units, draw thinner lines instead
+  const totalUnits = Math.max(1, Math.ceil((gmax - gmin) / unit));
+  if(totalUnits <= 120){
+    for(let t = Math.floor(gmin/unit)*unit; t<=gmax; t+=unit){
+      const bandWidth = Math.max(2, Math.round(unit * pxPerSec));
+      const x = Math.round((t - gmin) * pxPerSec);
+      ctx.fillStyle = ((Math.floor((t - gmin)/unit) % 2) === 0) ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.01)';
+      ctx.fillRect(x, Math.round(h*0.06), Math.max(1, bandWidth), Math.round(h*0.88));
+    }
+  } else {
+    // many units: draw subtle vertical hairlines spaced to avoid solid white blocks
+    const maxLines = 80;
+    const step = Math.max(1, Math.floor(totalUnits / maxLines));
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = Math.max(1, Math.min(2, Math.floor(dpr)));
+    for(let i=0;i<totalUnits;i+=step){
+      const t = Math.floor(gmin/unit)*unit + i*unit;
+      const x = Math.round((t - gmin) * pxPerSec) + 0.5;
+      ctx.beginPath(); ctx.moveTo(x, Math.round(h*0.12)); ctx.lineTo(x, Math.round(h*0.88)); ctx.stroke();
+    }
+  }
+  // subtle bands only — no ticks or labels to avoid visual clutter
+  // draw initial indicator (playhead)
+  function drawIndicator(ts){
+    // redraw background bands and ticks then overlay playhead
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle = grad; ctx.fillRect(0,0,w,h);
+    if(totalUnits <= 120){
+      for(let t = Math.floor(gmin/unit)*unit; t<=gmax; t+=unit){
+        const bandWidth = Math.max(2, Math.round(unit * pxPerSec));
+        const x = Math.round((t - gmin) * pxPerSec);
+        ctx.fillStyle = ((Math.floor((t - gmin)/unit) % 2) === 0) ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.01)';
+        ctx.fillRect(x, Math.round(h*0.06), Math.max(1, bandWidth), Math.round(h*0.88));
+      }
+    } else {
+      const maxLines = 80;
+      const step = Math.max(1, Math.floor(totalUnits / maxLines));
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = Math.max(1, Math.min(2, Math.floor(dpr)));
+      for(let i=0;i<totalUnits;i+=step){
+        const t = Math.floor(gmin/unit)*unit + i*unit;
+        const x = Math.round((t - gmin) * pxPerSec) + 0.5;
+        ctx.beginPath(); ctx.moveTo(x, Math.round(h*0.12)); ctx.lineTo(x, Math.round(h*0.88)); ctx.stroke();
+      }
+    }
+    const curX = Math.round((ts - gmin) * pxPerSec);
+    // playhead: vertical line + small circle handle
+    ctx.fillStyle = 'rgba(255,120,0,0.95)'; ctx.fillRect(curX-1, 0, 2, h);
+    ctx.beginPath(); ctx.arc(curX, Math.round(h*0.5), Math.round(h*0.18), 0, Math.PI*2); ctx.fill();
+  }
+  window.__playbackDrawIndicator = drawIndicator;
+  if(window.__playbackState.currentTime) drawIndicator(window.__playbackState.currentTime);
+  // add seeking
+  let dragging = false;
+  function seekFromClientX(clientX){
+    const rect = canvas.getBoundingClientRect(); const x = clientX - rect.left; const frac = Math.max(0, Math.min(1, x / rect.width));
+    const raw = Math.floor(gmin + frac * (gmax - gmin));
+    const unit = window.__playbackState.preferredUnit || 1800; const ts = Math.round(raw / unit) * unit;
+    window.__playbackState.currentTime = ts; updatePlaybackForTime(ts);
+  }
+  canvas.onmousedown = (ev)=>{ ev.preventDefault(); dragging = true; seekFromClientX(ev.clientX); };
+  window.addEventListener('mousemove', ev=>{ if(!dragging) return; seekFromClientX(ev.clientX); });
+  window.addEventListener('mouseup', ev=>{ if(!dragging) return; dragging=false; seekFromClientX(ev.clientX); });
+}
+
+// keyboard: spacebar toggles play/pause while playback UI is visible
+function attachPlaybackKeyboard(){
+  try{
+    if(window.__playbackKeyHandler) return;
+    window.__playbackKeyHandler = function(e){
+      if(e.key !== ' ' && e.code !== 'Space') return;
+      const active = document.activeElement; if(active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable)) return;
+      if(!window.__playbackUI) return;
+      e.preventDefault(); try{ const btn = document.getElementById('pb-play'); if(btn) btn.click(); }catch(err){}
+    };
+    document.addEventListener('keydown', window.__playbackKeyHandler);
+  }catch(e){ console.debug('attachPlaybackKeyboard failed', e); }
+}
+
+function detachPlaybackKeyboard(){ try{ if(window.__playbackKeyHandler){ document.removeEventListener('keydown', window.__playbackKeyHandler); window.__playbackKeyHandler = null; } }catch(e){}
+}
+
+function updatePlaybackForTime(ts){
+  if(ts === null || ts === undefined) return;
+  const state = window.__playbackState; if(!state.globalMin) return;
+  const uiTime = document.getElementById('pb-time'); if(uiTime) uiTime.textContent = new Date(ts*1000).toISOString().slice(0,16).replace('T',' ');
+  // helper: compute distance in meters between two lat/lon
+  function haversineMeters(lat1, lon1, lat2, lon2){
+    const toRad = v => v*Math.PI/180;
+    const R = 6371000;
+    const dLat = toRad(lat2-lat1); const dLon = toRad(lon2-lon1);
+    const a = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)*Math.sin(dLon/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    return R * c;
+  }
+
+  // append a mooring log entry to the legend log
+  function appendMooringLog(ts, shipName, portName){
+    try{
+      ensureLegend();
+      const log = document.getElementById('mooringLog'); if(!log) return;
+      // create an entry styled similarly to legend rows
+      const entry = document.createElement('div'); entry.className = 'legend-row map-log-entry';
+      entry.style.display = 'flex'; entry.style.flexDirection = 'column'; entry.style.alignItems = 'flex-start';
+      const timeEl = document.createElement('time'); timeEl.textContent = new Date(ts*1000).toISOString().slice(0,16).replace('T',' ');
+      timeEl.style.fontWeight = '700'; timeEl.style.color = '#e6eef6';
+      const txt = document.createElement('div');
+      const shipEl = document.createElement('span'); shipEl.textContent = shipName; shipEl.style.fontWeight = '700'; shipEl.style.marginRight = '8px';
+      const atEl = document.createElement('span'); atEl.textContent = `moored at ${portName}`; atEl.style.color = 'var(--muted)';
+      txt.appendChild(shipEl); txt.appendChild(atEl);
+      entry.appendChild(timeEl);
+      entry.appendChild(txt);
+      log.insertBefore(entry, log.firstChild);
+      // limit log size
+      while(log.children.length > 200) log.removeChild(log.lastChild);
+    }catch(e){ console.debug('appendMooringLog failed', e); }
+  }
+  for(const k in window.__playbackTracks){
+    const t = window.__playbackTracks[k]; if(!t || !t.points || t.points.length===0) continue;
+    if(ts < t.min){
+      // before this track starts: show marker at its first point (dimmed)
+      try{ const first = t.points[0]; t.marker.setLatLng([first.lat, first.lon]); t.marker.setStyle({opacity:0.85, fillOpacity:0.6}); }catch(e){}
+      // clear traveled polyline
+      try{ if(t.traveledPolyline) t.traveledPolyline.setLatLngs([]); }catch(e){}
+      continue;
+    }
+    if(ts >= t.max){
+      const last = t.points[t.points.length-1];
+      try{ t.marker.setStyle({opacity:1,fillOpacity:0.95}); t.marker.setLatLng([last.lat,last.lon]); }catch(e){}
+      // set traveled polyline to full track
+      try{ const all = t.points.map(p=>[p.lat,p.lon]); if(t.traveledPolyline) t.traveledPolyline.setLatLngs(all); }catch(e){}
+      continue;
+    }
+    // binary search
+    let lo=0, hi=t.points.length-1;
+    while(lo<hi){ const mid = Math.floor((lo+hi)/2); if(t.points[mid].ts<=ts) lo=mid+1; else hi=mid; }
+    const idx = Math.max(1, lo); const a = t.points[idx-1], b = t.points[idx];
+    const frac = (ts - a.ts) / (b.ts - a.ts || 1);
+    const lat = a.lat + (b.lat - a.lat) * frac; const lon = a.lon + (b.lon - a.lon) * frac;
+    try{
+      if(!t.marker) continue;
+      t.marker.setStyle({opacity:1,fillOpacity:0.95}); t.marker.setLatLng([lat,lon]);
+      // build traveled latlngs up to current interpolated position
+      try{
+        const done = [];
+        for(let i=0;i<idx;i++){ done.push([t.points[i].lat, t.points[i].lon]); }
+        // add interpolated current position
+        done.push([lat, lon]);
+        if(t.traveledPolyline) t.traveledPolyline.setLatLngs(done);
+      }catch(e){}
+      // mooring detection: if ports loaded, find nearest port within threshold
+      try{
+        const ports = Array.isArray(window.__portsData) ? window.__portsData : [];
+        if(ports && ports.length){
+          let nearest = null; let nearestDist = Infinity; let pname = '';
+          for(const pf of ports){
+            try{
+              const coords = pf.geometry && pf.geometry.coordinates ? pf.geometry.coordinates : null; if(!coords||coords.length<2) continue;
+              const plon = parseFloat(coords[0]); const plat = parseFloat(coords[1]); if(!Number.isFinite(plon)||!Number.isFinite(plat)) continue;
+              const d = haversineMeters(lat, lon, plat, plon);
+              if(d < nearestDist){ nearestDist = d; nearest = pf; pname = (pf.properties && (pf.properties.name||pf.properties.port||pf.properties.title)) ? String(pf.properties.name||pf.properties.port||pf.properties.title) : '' }
+            }catch(e){}
+          }
+          // Use 10km proximity and require staying within that radius for 4 hours (14400s)
+          const PROX_METERS = 10000; const PROX_SECONDS = 4 * 60 * 60;
+          if(nearest && nearestDist <= PROX_METERS){
+            // entering or staying within proximity
+            if(!t._nearPortSince) t._nearPortSince = ts;
+            // if stayed within proximity long enough and not yet logged, create mooring log
+            if(t._nearPortSince && (ts - t._nearPortSince) >= PROX_SECONDS && !t._mooredLogged){
+              const shipName = (function(){ try{ const a = allShips.find(s=>String(getShipPlaybackKey(s)) === String(k)); return (a && (a.SHIPNAME||a.name)) ? String(a.SHIPNAME||a.name) : String(k); }catch(e){ return String(k); } })();
+              appendMooringLog(t._nearPortSince, shipName, pname || 'port');
+              t._mooredLogged = true;
+            }
+          } else {
+            // left proximity: reset timers and flags
+            t._nearPortSince = null;
+            t._mooredLogged = false;
+          }
+        }
+      }catch(e){}
+      // store last pos
+      t._lastPos = [lat, lon]; t._lastTs = ts;
+    }catch(e){ console.debug('update marker failed', k, e); }
+  }
+  try{ if(window.__playbackDrawIndicator) window.__playbackDrawIndicator(ts); }catch(e){}
+  try{ updateInactiveMarkers(); }catch(e){}
+}
+
+function startPlaybackLoop(){
+  if(window.__playbackState.rafId) return;
+  let last = performance.now(); let acc = 0;
+  function loop(now){
+    const dt = (now - last)/1000; last = now;
+    if(window.__playbackState.playing){
+      const speed = window.__playbackState.speed || 1; const unit = window.__playbackState.preferredUnit || 1800;
+      const stepDelay = 0.5 / Math.max(0.0001, speed);
+      if(window.__playbackState.currentTime === null || window.__playbackState.currentTime === undefined) window.__playbackState.currentTime = window.__playbackState.globalMin || 0;
+      acc += dt;
+      if(acc >= stepDelay){ const steps = Math.floor(acc/stepDelay); acc -= steps*stepDelay; window.__playbackState.currentTime = Math.min(window.__playbackState.globalMax||Infinity, (window.__playbackState.currentTime||0) + steps * unit); updatePlaybackForTime(window.__playbackState.currentTime); if(window.__playbackState.currentTime >= window.__playbackState.globalMax) window.__playbackState.playing = false; }
+    }
+    window.__playbackState.rafId = requestAnimationFrame(loop);
+  }
+  window.__playbackState.rafId = requestAnimationFrame(loop);
+}
+
+function stopPlaybackLoop(){ if(window.__playbackState.rafId){ cancelAnimationFrame(window.__playbackState.rafId); window.__playbackState.rafId = null; } }
+
+function showPlaybackBar(){
+  if(window.__playbackUI) { window.__playbackUI.style.display='flex'; return; }
+  const bar = document.createElement('div'); bar.className = 'playback-bar';
+  bar.innerHTML = `
+    <div class="playback-controls">
+      <button class="pb-btn" style="font-weight: 900;" id="pb-begin"><<</button>
+      <button class="pb-btn" style="font-weight: 900;" id="pb-rewind"><</button>
+      <button class="pb-btn" id="pb-play">▶</button>
+      <button class="pb-btn" id="pb-stop">■</button>
+      <button class="pb-btn" style="font-weight: 900;" id="pb-forward">></button>
+      <button class="pb-btn" style="font-weight: 900;" id="pb-end">>></button>
+    </div>
+    <div class="pb-time" id="pb-time">—</div>
+    <div class="pb-timeline"><canvas id="pb-canvas" class="pb-canvas"></canvas></div>
+    <div class="pb-speed" id="pb-speed"><label style="margin-right:8px;color:var(--muted)">Speed:</label><span id="pb-speed-label">10×</span><input id="pb-speed-range" type="range" min="1" max="50" step="1" value="10" style="margin-left:8px;width:120px" /><button class="pb-btn" id="pb-exit" title="Exit playback" style="margin-left:8px">✖</button></div>
+  `;
+  document.body.appendChild(bar); window.__playbackUI = bar;
+  document.getElementById('pb-play').addEventListener('click', async ()=>{
+    window.__playbackState.playing = !window.__playbackState.playing;
+    document.getElementById('pb-play').textContent = window.__playbackState.playing ? '❚❚' : '▶';
+    if(window.__playbackState.playing) startPlaybackLoop(); else stopPlaybackLoop();
+  });
+  document.getElementById('pb-stop').addEventListener('click', ()=>{ window.__playbackState.playing = false; stopPlaybackLoop(); window.__playbackState.currentTime = window.__playbackState.globalMin; updatePlaybackForTime(window.__playbackState.currentTime); });
+  const speedRange = bar.querySelector('#pb-speed-range'); const speedLabel = bar.querySelector('#pb-speed-label');
+  if(speedRange){ speedRange.addEventListener('input', ()=>{ const sp = Math.max(1, Math.min(50, Number(speedRange.value)||1)); window.__playbackState.speed = sp; speedLabel.textContent = sp + '×'; }); const initSp = Number(speedRange.value)||1; window.__playbackState.speed = initSp; speedLabel.textContent = initSp + '×'; }
+  document.getElementById('pb-exit').addEventListener('click', ()=>{ hidePlaybackBar(); try{ window.__playbackLayer.clearLayers(); window.__playbackTracks = {}; }catch(e){} stopPlaybackLoop(); window.__playbackState.playing=false; try{ restoreShipsAfterPlayback(); }catch(e){} });
+}
+
+function hidePlaybackBar(){ if(window.__playbackUI){ try{ window.__playbackUI.style.display='none'; }catch(e){} } }
+
+// restore ship markers when exiting playback mode
+function restoreShipsAfterPlayback(){
+  try{
+    window.__playbackModeActive = false;
+    // repopulate markers according to current filters/search
+    const q = (typeof searchEl !== 'undefined' && searchEl) ? searchEl.value.trim().toLowerCase() : '';
+    filterShips(q, false);
+  }catch(e){ console.debug('restoreShipsAfterPlayback failed', e); }
+}
+
+// get last timestamp for a ship item (seconds)
+function getItemLastTimestamp(item){
+  if(!item) return null;
+  const candidates = [item.TIMESTAMP, item.timestamp, item.time, item.updated_at, item.updatedAt, item.Time, item.last_seen, item.lastSeen];
+  for(const c of candidates){
+    const ts = parsePointTimestamp(c);
+    if(ts) return ts;
+  }
+  return null;
+}
+
+// Update inactive markers based on legend control and slider
+function updateInactiveMarkers(){
+  try{
+    const chk = document.getElementById('filterInactive');
+    const slider = document.getElementById('inactiveDays');
+    if(!chk || !slider) return;
+    const active = !!chk.checked;
+    const days = Math.max(1, Math.min(30, Number(slider.value)||7));
+    const now = (window.__playbackState && window.__playbackState.currentTime) ? window.__playbackState.currentTime : Math.floor(Date.now()/1000);
+    const threshold = now - days * 24 * 3600;
+    markers.forEach(m=>{
+      try{
+        const item = m.item;
+        // skip certain ship types (Law Enforcement or Military Ops)
+        const st = (item && (item.SHIPTYPE || item.ShipType || item.shiptype || item.TYPE || item.type || item.CLASS)) ? String(item.SHIPTYPE || item.ShipType || item.shiptype || item.TYPE || item.type || item.CLASS) : '';
+        if(st && /law enforcement|military ops|military/i.test(st)){
+          // ensure ring not shown
+          try{ const el = (m.marker && m.marker.getElement) ? m.marker.getElement() : null; if(el){ const wrap = el.querySelector('.ship-marker-wrap'); if(wrap) wrap.classList.remove('inactive'); } }catch(e){}
+          return;
+        }
+        const last = getItemLastTimestamp(item);
+        const el = (m.marker && m.marker.getElement) ? m.marker.getElement() : null;
+        if(!el) return;
+        const wrap = el.querySelector('.ship-marker-wrap');
+        if(!wrap) return;
+        if(active && last !== null && last <= threshold){
+          wrap.classList.add('inactive');
+        } else {
+          wrap.classList.remove('inactive');
+        }
+      }catch(e){}
+    });
+  }catch(e){ console.debug('updateInactiveMarkers failed', e); }
+}
+
+function enterPlaybackMode(keys){
+  if(!Array.isArray(keys)) keys = [];
+  window.__playbackSelectedKeys = keys.map(String);
+  // hide non-selected ships in the main marker layer
+  try{
+    window.__playbackModeActive = true;
+    const sel = new Set(window.__playbackSelectedKeys.map(String));
+    markers.forEach(m=>{
+      try{
+        const key = String(getShipPlaybackKey(m.item)||'');
+        if(!sel.has(key)){
+          try{ markerGroup.removeLayer(m.marker); }catch(e){}
+        } else {
+          try{ markerGroup.addLayer(m.marker); }catch(e){}
+        }
+      }catch(e){}
+    });
+  }catch(e){}
+  loadTracksForKeys(window.__playbackSelectedKeys);
+}
+
+window.enterPlaybackMode = enterPlaybackMode;
+
+// Helper: determine best key to identify a ship for tracks
+function getShipPlaybackKey(item){
+  if(!item) return null;
+  return item.SHIP_ID || item.shipid || item.IMO || item.imo || item.MMSI || item.mmsi || null;
+}
+
+// Playback selection modal
+function openPlaybackModal(){
+  const overlay = document.createElement('div'); overlay.className = 'playback-modal-overlay';
+  const modal = document.createElement('div'); modal.className = 'playback-modal';
+  const head = document.createElement('div'); head.className = 'modal-head';
+  const title = document.createElement('h3'); title.textContent = 'Select vessels for playback'; head.appendChild(title);
+  const close = document.createElement('button'); close.className = 'close'; close.textContent = '✕'; close.addEventListener('click', ()=>{ document.body.removeChild(overlay); document.body.removeChild(modal); }); head.appendChild(close);
+  modal.appendChild(head);
+  const body = document.createElement('div'); body.className = 'modal-body';
+  const search = document.createElement('input'); search.type='search'; search.placeholder='Filter ships...'; search.style.width='100%'; search.style.marginBottom='8px'; body.appendChild(search);
+  const list = document.createElement('div'); list.style.maxHeight='56vh'; list.style.overflow='auto'; list.style.paddingRight='6px';
+  // populate list from allShips
+  const rows = [];
+  allShips.forEach(it=>{
+    const key = getShipPlaybackKey(it);
+    if(!key) return;
+    const label = (it.SHIPNAME || it.name || key).toString();
+    const row = document.createElement('label'); row.style.display='flex'; row.style.alignItems='center'; row.style.gap='8px'; row.style.padding='4px 6px';
+    const cb = document.createElement('input'); cb.type='checkbox'; cb.dataset.key = String(key);
+    const span = document.createElement('span'); span.textContent = label + (it.FLAG ? ' — ' + it.FLAG : ''); span.style.color='var(--muted)';
+    row.appendChild(cb); row.appendChild(span);
+    list.appendChild(row); rows.push({row, label: label.toLowerCase()});
+  });
+  body.appendChild(list);
+  modal.appendChild(body);
+  const actions = document.createElement('div'); actions.className = 'playback-actions';
+  const selectAll = document.createElement('button'); selectAll.textContent='Select all'; selectAll.className='pb-btn'; selectAll.addEventListener('click', ()=>{ list.querySelectorAll('input[type=checkbox]').forEach(i=>i.checked=true); });
+  const clear = document.createElement('button'); clear.textContent='Clear'; clear.className='pb-btn'; clear.addEventListener('click', ()=>{ list.querySelectorAll('input[type=checkbox]').forEach(i=>i.checked=false); });
+  const start = document.createElement('button'); start.textContent='Start playback'; start.className='pb-btn'; start.addEventListener('click', ()=>{
+    const keys = Array.from(list.querySelectorAll('input[type=checkbox]:checked')).map(i=>i.dataset.key).filter(Boolean);
+    if(keys.length===0){ alert('Select at least one vessel'); return; }
+    enterPlaybackMode(keys);
+    showPlaybackBar();
+    document.body.removeChild(overlay); document.body.removeChild(modal);
+  });
+  actions.appendChild(selectAll); actions.appendChild(clear); actions.appendChild(start);
+  modal.appendChild(actions);
+  document.body.appendChild(overlay); document.body.appendChild(modal);
+  // simple filtering
+  search.addEventListener('input', ()=>{
+    const q = search.value.trim().toLowerCase();
+    rows.forEach(r=>{ r.row.style.display = (!q || r.label.indexOf(q)!==-1) ? 'flex' : 'none'; });
+  });
+}
+
+// expose modal and playback UI helpers globally
+try{ window.openPlaybackModal = openPlaybackModal; }catch(e){}
+try{ window.showPlaybackBar = showPlaybackBar; window.hidePlaybackBar = hidePlaybackBar; }catch(e){}
+
+// Ensure topbar playback button is wired even if DOM wasn't ready earlier
+function wirePlaybackTopButtonOnce(){
+  try{
+    const topControls = document.querySelector('.topbar .controls');
+    if(!topControls) return false;
+    if(document.getElementById('playbackTopBtn')) return true;
+    const pbTop = document.createElement('button');
+    pbTop.id = 'playbackTopBtn'; pbTop.textContent = 'Playback'; pbTop.title = 'Open playback selection';
+    try{
+      // Prefer inserting before the RAW data button so Playback sits with other buttons
+      const rawBtnEl = document.getElementById('rawBtn');
+      if(rawBtnEl && rawBtnEl.parentNode === topControls){ topControls.insertBefore(pbTop, rawBtnEl); }
+      else if(statsBtn && statsBtn.parentNode === topControls){ topControls.insertBefore(pbTop, statsBtn.nextSibling); }
+      else { topControls.appendChild(pbTop); }
+    }catch(e){ topControls.appendChild(pbTop); }
+    pbTop.addEventListener('click', ()=>{ try{ openPlaybackModal(); }catch(e){ console.debug('openPlaybackModal failed', e); } });
+    return true;
+  }catch(e){ return false; }
+}
+if(!wirePlaybackTopButtonOnce()){
+  window.addEventListener('DOMContentLoaded', ()=>{ wirePlaybackTopButtonOnce(); });
+  setTimeout(()=>{ wirePlaybackTopButtonOnce(); }, 1500);
+}
+
+// end playback subsystem
 window.setDarkMode = setDarkMode;
 
 const sidebar = document.getElementById('sidebar');
@@ -215,6 +731,23 @@ statsBtn.addEventListener('click', ()=>{
   openStatsModal('flag');
 });
 
+// add Playback button to the topbar next to Flag Stats
+try{
+  const topControls = document.querySelector('.topbar .controls');
+  if(topControls){
+    let pbTop = document.getElementById('playbackTopBtn');
+    if(!pbTop){
+      pbTop = document.createElement('button');
+      pbTop.id = 'playbackTopBtn';
+      pbTop.textContent = 'Playback';
+      pbTop.title = 'Open playback selection';
+      // insert before statsBtn if present, else append
+      try{ if(statsBtn && statsBtn.parentNode === topControls) topControls.insertBefore(pbTop, statsBtn.nextSibling); else topControls.appendChild(pbTop); }catch(e){ topControls.appendChild(pbTop); }
+      pbTop.addEventListener('click', ()=>{ try{ openPlaybackModal(); }catch(e){ console.debug('openPlaybackModal failed', e); } });
+    }
+  }
+}catch(e){ console.debug('adding topbar playback button failed', e); }
+
 const rawBtn = document.getElementById('rawBtn');
 if(rawBtn){ rawBtn.addEventListener('click', ()=> window.open('ships.json','_blank')); }
 
@@ -316,7 +849,8 @@ function showDetails(data){
   const linkSpecs = [];
   linkSpecs.push({href:`https://www.marinetraffic.com/en/ais/details/ships/shipid:${shipid}#overview`, title:'Marinetraffic', domain:'marinetraffic.com', icon:favicons.marinetraffic});
   linkSpecs.push({href:`https://www.vesselfinder.com/vessels/details/${imo}`, title:'Vesselfinder', domain:'vesselfinder.com', icon:favicons.vesselfinder});
-  linkSpecs.push({href:`https://war-sanctions.gur.gov.ua/en/transport/shadow-fleet?f%5Bsearch%5D=${encodeURIComponent(imo)}&f%5Bc%5D=&f%5Bt%5D=&f%5Bn%5D=&f%5Bgroup_id%5D=&f-ca=&f-cs=&f%5Bcs2%5D=&f%5Bma%5D=`, title:'War Sanctions', domain:'war-sanctions.gur.gov.ua', icon:favicons.war});
+  // use the search endpoint which accepts IMO via `q` parameter
+  linkSpecs.push({href:`https://war-sanctions.gur.gov.ua/en/search/index?q=${encodeURIComponent(imo)}`, title:'War Sanctions', domain:'war-sanctions.gur.gov.ua', icon:favicons.war});
 
   // Ecosia search for vessel name
   if(vesselName){
@@ -388,6 +922,37 @@ function showDetails(data){
         alert('Failed to load track for this ship.');
       }
     };
+
+    // add "Add to playback" button (placed next to track button)
+    let addPbBtn = document.getElementById('addToPlaybackBtn');
+    if(!addPbBtn){
+      addPbBtn = document.createElement('button');
+      addPbBtn.id = 'addToPlaybackBtn';
+      addPbBtn.className = 'track-toggle';
+      addPbBtn.type = 'button';
+      addPbBtn.textContent = 'Add to playback';
+      if(trackBtn && trackBtn.parentNode) trackBtn.parentNode.insertBefore(addPbBtn, trackBtn.nextSibling);
+      else if(linksEl && linksEl.parentNode) linksEl.parentNode.insertBefore(addPbBtn, linksEl);
+    }
+    // wire Add to playback button
+    try{
+      const addBtn = document.getElementById('addToPlaybackBtn');
+      if(addBtn){
+        addBtn.dataset.shipid = shipid;
+        addBtn.dataset.imo = imo;
+        addBtn.onclick = async function(){
+          const key = (data.SHIP_ID || data.shipid || data.IMO || data.imo || data.MMSI || data.mmsi || null);
+          if(!key){ alert('This vessel has no usable ID for playback'); return; }
+          try{
+            const existing = Array.isArray(window.__playbackSelectedKeys) ? window.__playbackSelectedKeys : [];
+            const merged = Array.from(new Set([...existing.map(String), String(key)]));
+            // enter playback mode with merged selection
+            enterPlaybackMode(merged);
+            showPlaybackBar();
+          }catch(e){ console.debug('Add to playback failed', e); alert('Failed to add vessel to playback'); }
+        };
+      }
+    }catch(e){ console.debug('wiring addToPlaybackBtn failed', e); }
 
     sidebar.classList.add('open');
 }
@@ -526,13 +1091,21 @@ function makeLabelIcon(item, colorOverride){
   // label HTML
   const labelHtml = label ? `<div class="ship-label-text">${escapeHtml(label)}</div>` : '';
 
-  const html = `<div class="ship-marker-wrap">${svg}${labelHtml}</div>`;
   // compute icon sizing and anchor so the SVG center (nose) aligns with the lat/lon
   const iconWidth = 140; // width reserved for optional label
   const iconHeight = Math.max(winfo.size, 36);
   // anchor at the nose X coordinate so the tip aligns with the geographic point
   const anchorX = noseX;
   const anchorY = Math.round(winfo.size / 2);
+  // compute inactive ring placement so it's centered on the anchor point
+  const ringSize = Math.max(36, Math.round(winfo.size * 1.6));
+  const ringLeft = Math.round(anchorX - (ringSize/2));
+  const ringTop = Math.round(anchorY - (ringSize/2));
+  const ringStyle = `left:${ringLeft}px;top:${ringTop}px;width:${ringSize}px;height:${ringSize}px;transform:translate(-50%,-50%);`;
+  // include inactive ring element (hidden by default) so we can toggle it dynamically
+  const html = `<div class="ship-marker-wrap">` +
+               `<div class="inactive-ring" aria-hidden="true" style="${ringStyle}"><div class="pulse"></div><div class="dot"></div></div>` +
+               `${svg}${labelHtml}</div>`;
   const popupAnchorY = -Math.round(winfo.size / 2) - 4;
   return L.divIcon({
     className: 'ship-marker',
@@ -622,7 +1195,41 @@ function ensureLegend(){
     <div class="legend-row"><span class="swatch" style="background:#ef4444"></span><span class="lbl">Large — &gt; 180 m</span></div>
     <hr />
   `;
+  // insert legend into DOM
   document.body.appendChild(legend);
+  // inactive ship controls: toggle + slider (1-30 days) — insert before the <hr> so they sit with other toggles
+  try{
+    const inactiveRow = document.createElement('div'); inactiveRow.className = 'legend-row';
+    inactiveRow.innerHTML = `<label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="filterInactive" /> Show inactive ships</label>`;
+    const inactiveSliderRow = document.createElement('div'); inactiveSliderRow.className = 'legend-row';
+    inactiveSliderRow.innerHTML = `<label style="display:flex;align-items:center;gap:8px;width:100%"><span style="color:var(--muted);font-size:12px">Inactivity:</span><input id="inactiveDays" type="range" min="1" max="30" value="7" style="flex:1;margin-left:8px" /><span id="inactiveDaysVal" style="min-width:36px;text-align:right;color:var(--muted)">7d</span></label>`;
+    // prefer to place the inactive controls right after the "Show seized only" row
+    const seizedLabel = legend.querySelector('.seized-filter-label');
+    if(seizedLabel && seizedLabel.parentElement){
+      const seizedRow = seizedLabel.parentElement;
+      if(seizedRow && seizedRow.parentElement){
+        seizedRow.parentElement.insertBefore(inactiveRow, seizedRow.nextSibling);
+        seizedRow.parentElement.insertBefore(inactiveSliderRow, inactiveRow.nextSibling);
+      } else {
+        legend.appendChild(inactiveRow); legend.appendChild(inactiveSliderRow);
+      }
+    } else {
+      const hr = legend.querySelector('hr');
+      if(hr){ legend.insertBefore(inactiveRow, hr); legend.insertBefore(inactiveSliderRow, hr); }
+      else { legend.appendChild(inactiveRow); legend.appendChild(inactiveSliderRow); }
+    }
+    // mooring log container (ships moored near ports will be listed here)
+    const log = document.createElement('div'); log.id = 'mooringLog'; log.className = 'map-log';
+    legend.appendChild(log);
+
+    // wire inactive controls immediately so elements exist
+    const chk = document.getElementById('filterInactive');
+    const slider = document.getElementById('inactiveDays');
+    const val = document.getElementById('inactiveDaysVal');
+    function updateVal(){ if(val && slider) val.textContent = `${slider.value}d`; }
+    if(slider){ slider.addEventListener('input', ()=>{ updateVal(); try{ updateInactiveMarkers(); }catch(e){} }); updateVal(); }
+    if(chk){ chk.addEventListener('change', ()=>{ try{ updateInactiveMarkers(); }catch(e){} }); }
+  }catch(e){ console.debug('failed to add inactive controls', e); }
   const filterSeizedEl = document.getElementById('filterSeized');
   if(filterSeizedEl){
     filterSeizedEl.addEventListener('change', ()=>{
@@ -692,6 +1299,8 @@ function ensureLegend(){
       setPortsVisible(show);
     });
   }
+
+  // wiring for inactive controls moved to ensureLegend to guarantee elements exist
 
 // Cables layer handling (performance-optimized)
 window.__cablesData = null;
@@ -864,6 +1473,58 @@ try{
   const filterSeizedEl = document.getElementById('filterSeized'); if(filterSeizedEl) filterSeizedEl.checked = !!window.__seizedOnly;
 }catch(e){ console.debug('initial legend state set failed', e); }
 
+// Persist UI state (legend controls + map view) to localStorage
+function saveUIState(){
+  try{
+    const state = {};
+    const ids = ['filterShips','filterPorts','filterMilitary','filterLaw','filterSeized','filterCables','filterPipelines','toggleDarkMode','filterInactive'];
+    ids.forEach(id=>{ const el = document.getElementById(id); if(!el) return; if(el.type === 'checkbox') state[id] = !!el.checked; else state[id] = el.value; });
+    const slider = document.getElementById('inactiveDays'); if(slider) state.inactiveDays = Number(slider.value)||7;
+    if(window && window.map && typeof map.getCenter === 'function'){
+      const c = map.getCenter(); state.mapCenter = [c.lat, c.lng]; state.mapZoom = map.getZoom();
+    }
+    localStorage.setItem('shadowfleet_ui', JSON.stringify(state));
+  }catch(e){ console.debug('saveUIState failed', e); }
+}
+
+function loadUIState(){
+  try{
+    const raw = localStorage.getItem('shadowfleet_ui'); if(!raw) return;
+    const state = JSON.parse(raw);
+    if(!state) return;
+    // apply legend toggles
+    try{ if(typeof state.filterShips === 'boolean'){ const el = document.getElementById('filterShips'); if(el) el.checked = state.filterShips; setShipsVisible(!!state.filterShips); } }catch(e){}
+    try{ if(typeof state.filterPorts === 'boolean'){ const el = document.getElementById('filterPorts'); if(el) el.checked = state.filterPorts; setPortsVisible(!!state.filterPorts); } }catch(e){}
+    try{ if(typeof state.filterMilitary === 'boolean'){ const el = document.getElementById('filterMilitary'); if(el) el.checked = state.filterMilitary; setMilitaryVisible(!!state.filterMilitary); } }catch(e){}
+    try{ if(typeof state.filterLaw === 'boolean'){ const el = document.getElementById('filterLaw'); if(el) el.checked = state.filterLaw; setLawVisible(!!state.filterLaw); } }catch(e){}
+    try{ if(typeof state.filterSeized === 'boolean'){ const el = document.getElementById('filterSeized'); if(el) el.checked = state.filterSeized; window.__seizedOnly = !!state.filterSeized; const q = (typeof searchEl !== 'undefined' && searchEl)? searchEl.value.trim().toLowerCase():''; filterShips(q, false); } }catch(e){}
+    try{ if(typeof state.filterCables === 'boolean'){ const el = document.getElementById('filterCables'); if(el) el.checked = state.filterCables; if(state.filterCables) toggleCablesLayer(true); else toggleCablesLayer(false); } }catch(e){}
+    try{ if(typeof state.filterPipelines === 'boolean'){ const el = document.getElementById('filterPipelines'); if(el) el.checked = state.filterPipelines; if(state.filterPipelines) togglePipelinesLayer(true); else togglePipelinesLayer(false); } }catch(e){}
+    try{ if(typeof state.toggleDarkMode === 'boolean'){ const el = document.getElementById('toggleDarkMode'); if(el) el.checked = state.toggleDarkMode; setDarkMode(!!state.toggleDarkMode); } }catch(e){}
+    try{ if(typeof state.filterInactive === 'boolean'){ const el = document.getElementById('filterInactive'); if(el) el.checked = state.filterInactive; } }catch(e){}
+    try{ if(typeof state.inactiveDays !== 'undefined'){ const s = document.getElementById('inactiveDays'); const v = Number(state.inactiveDays)||7; if(s) s.value = v; const val = document.getElementById('inactiveDaysVal'); if(val) val.textContent = `${v}d`; } }catch(e){}
+    // map view
+    if(state.mapCenter && Array.isArray(state.mapCenter) && state.mapCenter.length===2 && typeof state.mapZoom === 'number'){
+      try{ map.setView([Number(state.mapCenter[0]), Number(state.mapCenter[1])], Number(state.mapZoom)); }catch(e){}
+    }
+    // ensure inactive markers reflect loaded state
+    try{ updateInactiveMarkers(); }catch(e){}
+  }catch(e){ console.debug('loadUIState failed', e); }
+}
+
+// wire controls to persist on change
+try{
+  ['filterShips','filterPorts','filterMilitary','filterLaw','filterSeized','filterCables','filterPipelines','toggleDarkMode','filterInactive'].forEach(id=>{
+    const el = document.getElementById(id); if(!el) return; el.addEventListener('change', ()=>{ try{ saveUIState(); }catch(e){} });
+  });
+  const sliderEl = document.getElementById('inactiveDays'); if(sliderEl) sliderEl.addEventListener('input', ()=>{ try{ saveUIState(); }catch(e){} });
+  // persist map on move/zoom
+  if(window && window.map){ map.on('moveend', ()=>{ try{ saveUIState(); }catch(e){} }); map.on('zoomend', ()=>{ try{ saveUIState(); }catch(e){} }); }
+}catch(e){ console.debug('persist wiring failed', e); }
+
+// load saved state now
+try{ loadUIState(); }catch(e){ console.debug('initial loadUIState failed', e); }
+
 function escapeHtml(s){
   return String(s).replace(/[&<>"']/g, function(c){
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
@@ -958,6 +1619,8 @@ fetch('ships.json').then(r=>r.json()).then(data=>{
       markerGroup.addLayer(marker);
     }
   });
+  // initial inactive marker update after markers created
+  try{ updateInactiveMarkers(); }catch(e){}
   // keep the initial map center/zoom as configured above
   // (do not auto-fit bounds on load, which would override the default view)
 }).catch(e=>{
@@ -969,31 +1632,61 @@ fetch('ships.json').then(r=>r.json()).then(data=>{
 window.__portsLayer = L.layerGroup();
 if(window.__portsVisible) window.__portsLayer.addTo(map);
 function showPortDetails(feature){
-  const props = feature.properties || {};
-  const coords = feature.geometry && feature.geometry.coordinates ? feature.geometry.coordinates : null;
+  // normalize properties for both GeoJSON feature and flat-port objects
+  const props = (feature && feature.properties && typeof feature.properties === 'object') ? feature.properties : (feature && typeof feature === 'object' ? feature : {});
+  const coords = (feature && feature.geometry && feature.geometry.coordinates) ? feature.geometry.coordinates : (feature && (feature.coordinates || feature.coords) ? (feature.coordinates || feature.coords) : null);
   const lon = coords ? parseFloat(coords[0]) : null;
   const lat = coords ? parseFloat(coords[1]) : null;
-  const name = props.name || props.id || 'Port';
+  const name = props.name || props.port || props.title || props.id || 'Port';
   shipNameEl.textContent = name;
+  // build metadata: include requested fields
   let meta = `<div><strong>Type:</strong> Port</div>`;
+  if(props.city) meta += `<div><strong>City:</strong> ${escapeHtml(props.city)}</div>`;
+  if(props.country) meta += `<div><strong>Country:</strong> ${escapeHtml(props.country)}</div>`;
+  if(props.alias && props.alias.length) meta += `<div><strong>Alias:</strong> ${escapeHtml(String(props.alias))}</div>`;
+  if(props.regions && props.regions.length) meta += `<div><strong>Regions:</strong> ${escapeHtml(String(props.regions))}</div>`;
+  if(props.province) meta += `<div><strong>Province:</strong> ${escapeHtml(props.province)}</div>`;
+  if(props.timezone) meta += `<div><strong>Timezone:</strong> ${escapeHtml(props.timezone)}</div>`;
+  if(props.locs) meta += `<div><strong>Locs:</strong> ${escapeHtml(String(props.locs))}</div>`;
   if(Number.isFinite(lat) && Number.isFinite(lon)) meta += `<div><strong>Coordinates:</strong> ${lat.toFixed(5)}, ${lon.toFixed(5)}</div>`;
   shipMetaEl.innerHTML = meta;
-  // clear other sections for now
+  // show attack/notes area and clear image/links
   shipImageEl.innerHTML = '';
   linksEl.innerHTML = '';
-  const shipNotesEl = document.getElementById('shipNotes'); if(shipNotesEl) shipNotesEl.innerHTML = '';
+  const shipNotesEl = document.getElementById('shipNotes');
+  if(shipNotesEl){
+    const details = props.attack_details || props.notes || '';
+    if(String(details).trim()) shipNotesEl.innerHTML = `<div class="port-attack-details">${escapeHtml(String(details))}</div>`;
+    else shipNotesEl.innerHTML = '<div class="notes-empty">—</div>';
+  }
   // Remove any ship-specific controls (track button) when showing a port
-  try{
-    removeTrackLayer();
-  }catch(e){}
-  try{
-    const tbtn = document.getElementById('trackToggleBtn'); if(tbtn && tbtn.parentNode) tbtn.parentNode.removeChild(tbtn);
-  }catch(e){}
+  try{ removeTrackLayer(); }catch(e){}
+  try{ const tbtn = document.getElementById('trackToggleBtn'); if(tbtn && tbtn.parentNode) tbtn.parentNode.removeChild(tbtn); }catch(e){}
   sidebar.classList.add('open');
 }
 
 fetch('ports.json').then(r=>r.json()).then(data=>{
-  const list = data && data.features ? data.features : [];
+  // Normalize supported formats: GeoJSON FeatureCollection, flat array, or object map
+  let list = [];
+  if(data && Array.isArray(data)){
+    list = data.map(item=>{
+      const coords = item.coordinates || item.coords || null;
+      const props = Object.assign({}, item);
+      if(coords){ delete props.coordinates; delete props.coords; }
+      return {geometry:{coordinates: coords}, properties: props};
+    }).filter(f=>f.geometry && f.geometry.coordinates && f.geometry.coordinates.length>=2);
+  } else if(data && data.features && Array.isArray(data.features)){
+    list = data.features;
+  } else if(data && typeof data === 'object'){
+    // object map: { key: { name, coordinates:[lon,lat], ... }, ... }
+    list = Object.keys(data).map(k=>{
+      const item = data[k] || {};
+      const coords = item.coordinates || item.coords || null;
+      const props = Object.assign({}, item);
+      props._key = k;
+      return {geometry:{coordinates: coords}, properties: props};
+    }).filter(f=>f.geometry && f.geometry.coordinates && f.geometry.coordinates.length>=2);
+  }
   window.__portsData = list;
   window.__portsMarkers = [];
   list.forEach(f=>{
@@ -1002,17 +1695,15 @@ fetch('ports.json').then(r=>r.json()).then(data=>{
       if(!coords || coords.length < 2) return;
       const lon = parseFloat(coords[0]); const lat = parseFloat(coords[1]);
       if(!Number.isFinite(lat) || !Number.isFinite(lon)) return;
-      const pname = (f.properties && f.properties.name) ? String(f.properties.name) : '';
-      // Use a divIcon with an img so we can reliably set alt/title and control styling
+      const pname = (f.properties && (f.properties.name || f.properties.port || f.properties.title)) ? String(f.properties.name || f.properties.port || f.properties.title) : '';
       const iconHtml = `<img src="assets/anchor.svg" width="28" height="28" alt="${escapeHtml(pname)}" class="port-icon-img" />`;
       const portIcon = L.divIcon({html: iconHtml, className: 'port-marker', iconSize:[28,28], iconAnchor:[14,14]});
       const m = L.marker([lat,lon], {icon: portIcon, title: pname});
-      m.on('click', ()=> showPortDetails(f));
+      m.on('click', ()=> showPortDetails(f.properties && Object.keys(f.properties).length ? f : f));
       try{ m.bindTooltip(pname, {permanent:false, direction:'top', opacity:0.95}); }catch(e){}
       window.__portsMarkers.push({marker:m, feature:f});
-      // add to layer if ports are visible
       if(window.__portsVisible) window.__portsLayer.addLayer(m);
-    }catch(e){console.debug('port render failed', e);}
+    }catch(e){console.debug('port render failed', e);}    
   });
 }).catch(e=>{ console.debug('Failed to load ports.json', e); });
 

@@ -75,12 +75,72 @@ body{background:linear-gradient(180deg,#071124 0%, #071524 100%);color:#e6eef6}
 .stats-modal canvas{background:transparent;flex:1}
 .overlay{position:fixed;inset:0;background:rgba(2,6,23,0.5);z-index:900}
 
+/* Playback modal and bar */
+.playback-modal-overlay{position:fixed;inset:0;background:rgba(2,6,23,0.55);z-index:2000}
+.playback-modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:820px;max-width:94vw;background:linear-gradient(180deg, rgba(15,23,32,0.98), rgba(6,10,15,0.98));z-index:2001;padding:18px;border-radius:12px;box-shadow:0 20px 60px rgba(2,6,23,0.7);box-sizing:border-box;display:flex;flex-direction:column;height:520px;min-height:420px}
+.playback-modal .close{position:absolute;right:14px;top:10px;background:none;border:0;color:var(--muted);font-size:18px;cursor:pointer}
+.playback-modal .modal-body{flex:1 1 auto;overflow:auto;padding-top:8px;padding-right:8px}
+.playback-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.pb-btn{background:var(--accent);border:0;color:#04272a;padding:8px 10px;border-radius:8px;font-weight:700;cursor:pointer}
+
+.playback-modal input[type=search]{padding:8px 10px;border-radius:8px;border:0;background:rgba(255,255,255,0.04);color:#e6eef6;outline:none;width:100%;box-sizing:border-box}
+.playback-modal .modal-body .ship-list{margin-top:8px}
+.playback-modal .modal-body label{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:var(--muted);cursor:pointer}
+.playback-modal .modal-body label:hover{background:rgba(255,255,255,0.02)}
+.playback-modal .modal-body label + label{margin-top:6px}
+.playback-modal .modal-body label input[type=checkbox]{width:18px;height:18px}
+.playback-modal .modal-body label span{flex:1;color:var(--muted);font-weight:600}
+
+.playback-bar{position:fixed;left:12px;right:12px;bottom:12px;z-index:1500;background:linear-gradient(180deg, rgba(8,12,16,0.9), rgba(6,10,12,0.95));padding:10px;border-radius:10px;display:flex;align-items:center;gap:12px;box-shadow:0 10px 40px rgba(0,0,0,0.6)}
+.playback-bar .playback-controls{display:flex;gap:6px;align-items:center}
+.playback-bar .playback-controls .pb-btn{background:none;color:#ffffff;border:0;padding:6px 8px;border-radius:6px;font-weight:700;box-shadow:none}
+.playback-bar .playback-controls .pb-btn:hover{background:rgba(255,255,255,0.03)}
+.playback-bar .pb-speed .pb-btn{background:none;color:#ffffff;border:0;padding:6px 8px;border-radius:6px;font-weight:700;box-shadow:none}
+.playback-bar .pb-speed .pb-btn:hover{background:rgba(255,255,255,0.03)}
+.pb-time{min-width:160px;color:var(--muted);font-weight:700}
+.pb-timeline{flex:1 1 auto;min-width:0}
+.pb-canvas{width:100%;height:36px;display:block}
+/* playback moving-dot label */
+.playback-tooltip.leaflet-tooltip{background:rgba(0,0,0,0.7);border-radius:6px;padding:4px 8px;color:#fff;font-weight:700;font-size:12px}
+.playback-tooltip.leaflet-tooltip:before{border-top-color:rgba(0,0,0,0.7)}
+.pb-speed{display:flex;align-items:center;gap:8px}
+
+/* Playback layout fixes: ensure timeline has flexible space and speed controls reserve width */
+.playback-bar{display:flex;align-items:center;gap:12px}
+.playback-bar .pb-time{flex:0 0 160px;margin-right:8px}
+.playback-bar .pb-timeline{flex:1 1 auto;min-width:320px;margin:0 8px}
+.playback-bar .pb-speed{flex:0 0 340px;display:flex;align-items:center;gap:8px;justify-content:flex-end}
+
+@media (max-width:700px){
+  .playback-bar .pb-speed{flex:0 0 180px}
+  .playback-bar .pb-time{flex:0 0 120px}
+  .playback-bar .pb-timeline{min-width:120px}
+}
+
 /* Map legend */
-.map-legend{position:fixed;right:12px;top:84px;z-index:1100;background:rgba(0,0,0,0.6);padding:10px;border-radius:8px;color:#fff;font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+.map-legend{position:fixed;right:12px;top:84px;z-index:1100;background:rgba(0,0,0,0.6);padding:10px;border-radius:8px;color:#fff;font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,0.5);box-sizing:border-box;max-height:calc(100vh - 120px);overflow:auto}
 .map-legend .legend-title{font-weight:700;margin-bottom:6px}
 .map-legend .legend-row{display:flex;align-items:center;gap:8px;margin:4px 0}
 .map-legend .swatch{width:14px;height:14px;border-radius:3px;display:inline-block}
 .map-legend .lbl{font-size:12px;color:#fff}
+
+/* Mooring log shown under the legend */
+.map-log{margin-top:8px;max-height:220px;overflow-y:auto;overflow-x:hidden;border-top:1px solid rgba(255,255,255,0.03);padding-top:8px}
+.map-log .map-log-entry{font-size:12px;color:var(--muted);padding:6px 4px;border-radius:6px}
+.map-log .map-log-entry time{display:block;color:#e6eef6;font-weight:700}
+
+/* inactive pulsating ring around inactive ships */
+.ship-marker-wrap{position:relative}
+.ship-marker-wrap .inactive-ring{position:absolute;left:0;top:0;transform:none;width:48px;height:48px;border-radius:50%;pointer-events:none;display:none}
+.ship-marker-wrap.inactive .inactive-ring{display:block;}
+.ship-marker-wrap .inactive-ring .pulse{position:absolute;inset:0;border-radius:50%;box-shadow:0 0 12px rgba(255,140,0,0.35);border:3px solid rgba(255,140,0,0.95);}
+.ship-marker-wrap.inactive .inactive-ring .pulse{animation: pulseRing 2.2s ease-out infinite}
+@keyframes pulseRing{
+  0%{transform:scale(0.6);opacity:0.9}
+  70%{transform:scale(1.6);opacity:0.12}
+  100%{transform:scale(2.0);opacity:0}
+}
+.ship-marker-wrap.inactive .inactive-ring .dot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:rgba(255,140,0,0.98);box-shadow:0 0 12px rgba(255,140,0,0.45)}
 
 /* Submarine cable line glow */
 .cable-line{
