@@ -40552,7 +40552,8 @@
     "W_LEFT": "1",
     "shipid": 7678772,
     "imo": 130280,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7678772#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7678772#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "9270455",
@@ -41901,7 +41902,8 @@
     "W_LEFT": "1",
     "shipid": 9118444,
     "imo": 150443,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9118444#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9118444#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "6431915",
@@ -41912,7 +41914,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "15.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -41925,7 +41927,8 @@
     "W_LEFT": "2",
     "shipid": 6431915,
     "imo": 211306580,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6431915#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6431915#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211306580-9808069516040364345e799de0939d32/1?v1"
   },
   {
     "SHIP_ID": "129339",
@@ -41936,7 +41939,7 @@
     "SPEED": "0.00",
     "HEADING": "56",
     "COURSE": "326",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "21.0",
     "WIDTH": "5.0",
     "FLAG": "DE",
@@ -41949,7 +41952,8 @@
     "W_LEFT": "2",
     "shipid": 129339,
     "imo": 211179240,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:129339#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:129339#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211179240-03bd4f3fde39d274f5f5659c879dc7d7/1?v1"
   },
   {
     "SHIP_ID": "4234396",
@@ -41960,7 +41964,7 @@
     "SPEED": "0.00",
     "HEADING": "295",
     "COURSE": "272",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "13.0",
     "WIDTH": "5.0",
     "FLAG": "DE",
@@ -41973,7 +41977,8 @@
     "W_LEFT": "2",
     "shipid": 4234396,
     "imo": 211223210,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4234396#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4234396#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211223210-4797621b3de2e8cd87ee3a72cee60608/1?v1"
   },
   {
     "SHIP_ID": "129356",
@@ -41984,7 +41989,7 @@
     "SPEED": "14.80",
     "HEADING": "348",
     "COURSE": "347",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "21.0",
     "WIDTH": "6.0",
     "FLAG": "DE",
@@ -41997,7 +42002,8 @@
     "W_LEFT": "2",
     "shipid": 129356,
     "imo": 4549743,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:129356#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:129356#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/4549743-211179560-ba04668f3f070755c97a625e6e3c9875/1?v1"
   },
   {
     "SHIP_ID": "9140143",
@@ -42008,7 +42014,7 @@
     "SPEED": "3.00",
     "HEADING": "314",
     "COURSE": "233",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "0.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -42021,7 +42027,8 @@
     "W_LEFT": "1",
     "shipid": 9140143,
     "imo": 211320990,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9140143#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9140143#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211320990-0e99a12593d192743677b32b894d8f78/1?v1"
   },
   {
     "SHIP_ID": "6913042",
@@ -42032,7 +42039,7 @@
     "SPEED": "0.00",
     "HEADING": "20",
     "COURSE": "285",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "13.0",
     "WIDTH": "5.0",
     "FLAG": "DE",
@@ -42045,7 +42052,8 @@
     "W_LEFT": "3",
     "shipid": 6913042,
     "imo": 211223250,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6913042#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6913042#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211223250-c01ce598bcdc648488928c781bee96c2/1?v1"
   },
   {
     "SHIP_ID": "129340",
@@ -42056,7 +42064,7 @@
     "SPEED": "0.00",
     "HEADING": "265",
     "COURSE": "272",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "21.0",
     "WIDTH": "6.0",
     "FLAG": "DE",
@@ -42069,7 +42077,8 @@
     "W_LEFT": "3",
     "shipid": 129340,
     "imo": 4549767,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:129340#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:129340#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/4549767-211179260-635741a08604ddd110fcba5b09800d52/1?v1"
   },
   {
     "SHIP_ID": "3368633",
@@ -42080,7 +42089,7 @@
     "SPEED": "5.10",
     "HEADING": "226",
     "COURSE": "228",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "13.0",
     "WIDTH": "5.0",
     "FLAG": "DE",
@@ -42093,7 +42102,8 @@
     "W_LEFT": "4",
     "shipid": 3368633,
     "imo": 211222830,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3368633#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3368633#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211222830-745a709fcff8a257523021daeac45da0/1?v1"
   },
   {
     "SHIP_ID": "129752",
@@ -42104,7 +42114,7 @@
     "SPEED": "0.20",
     "HEADING": "250",
     "COURSE": "344",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "24.0",
     "WIDTH": "6.0",
     "FLAG": "DE",
@@ -42117,7 +42127,8 @@
     "W_LEFT": "3",
     "shipid": 129752,
     "imo": 211186950,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:129752#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:129752#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211186950-31dc8204afb10d09707c850ffe8e1ad0/1?v1"
   },
   {
     "SHIP_ID": "132832",
@@ -42128,7 +42139,7 @@
     "SPEED": "0.00",
     "HEADING": "338",
     "COURSE": "330",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "40.470001",
     "WIDTH": "9.0",
     "FLAG": "DE",
@@ -42141,7 +42152,8 @@
     "W_LEFT": "3",
     "shipid": 132832,
     "imo": 211309720,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:132832#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:132832#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211309720-c082fde03bd5aab66aae31d5874beb22/1?v1"
   },
   {
     "SHIP_ID": "4236339",
@@ -42152,7 +42164,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": "230",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "12.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -42165,7 +42177,8 @@
     "W_LEFT": "2",
     "shipid": 4236339,
     "imo": 211724480,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4236339#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4236339#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211724480-72981834642b6c1a643f4a236e1ed3a3/1?v1"
   },
   {
     "SHIP_ID": "141123",
@@ -42176,7 +42189,7 @@
     "SPEED": "2.90",
     "HEADING": null,
     "COURSE": "36",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -42189,7 +42202,8 @@
     "W_LEFT": "1",
     "shipid": 141123,
     "imo": 211559180,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141123#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141123#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211559180-bf63a8705bd39702fda714cb18fb6fd0/1?v1"
   },
   {
     "SHIP_ID": "129103",
@@ -42200,7 +42214,7 @@
     "SPEED": "0.00",
     "HEADING": "250",
     "COURSE": "116",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "16.0",
     "WIDTH": "5.0",
     "FLAG": "DE",
@@ -42213,7 +42227,8 @@
     "W_LEFT": "3",
     "shipid": 129103,
     "imo": 211172020,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:129103#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:129103#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211172020-6a4c6ba755f84e2d828f28ead1ec4ad7/1?v1"
   },
   {
     "SHIP_ID": "8981305",
@@ -42224,7 +42239,7 @@
     "SPEED": "0.00",
     "HEADING": "243",
     "COURSE": "298",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "8.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -42237,7 +42252,8 @@
     "W_LEFT": "1",
     "shipid": 8981305,
     "imo": 211840050,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8981305#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8981305#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211840050-dfadb5a0a44d3aaa388c5761c55a90c6/1?v1"
   },
   {
     "SHIP_ID": "10317689",
@@ -42248,7 +42264,7 @@
     "SPEED": "0.10",
     "HEADING": null,
     "COURSE": "274",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -42261,7 +42277,8 @@
     "W_LEFT": "1",
     "shipid": 10317689,
     "imo": 211207200,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10317689#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10317689#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211207200-d6947ff5545e40b62d096cc8e45c7e1d/1?v1"
   },
   {
     "SHIP_ID": "3414462",
@@ -42272,7 +42289,7 @@
     "SPEED": "0.00",
     "HEADING": "0",
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "13.0",
     "WIDTH": "5.0",
     "FLAG": "DE",
@@ -42285,7 +42302,8 @@
     "W_LEFT": "2",
     "shipid": 3414462,
     "imo": 211223260,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3414462#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3414462#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211223260-6fa36db749bd3a0da4191b6ff99d8b50/1?v1"
   },
   {
     "SHIP_ID": "9017689",
@@ -42296,7 +42314,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "30.0",
     "WIDTH": "8.0",
     "FLAG": "DE",
@@ -42309,7 +42327,8 @@
     "W_LEFT": "4",
     "shipid": 9017689,
     "imo": 211332370,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9017689#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9017689#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211332370-a7821c85f03473dbc775c8c5b538c9de/1?v1"
   },
   {
     "SHIP_ID": "141637",
@@ -42320,7 +42339,7 @@
     "SPEED": "0.10",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "8.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -42333,7 +42352,8 @@
     "W_LEFT": "1",
     "shipid": 141637,
     "imo": 211580900,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141637#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141637#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211580900-76dacacff29f462bc9c299fe0c41a10d/1?v1"
   },
   {
     "SHIP_ID": "140857",
@@ -42344,7 +42364,7 @@
     "SPEED": "0.00",
     "HEADING": "135",
     "COURSE": "313",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "13.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -42357,7 +42377,8 @@
     "W_LEFT": "2",
     "shipid": 140857,
     "imo": 211553850,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:140857#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:140857#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211553850-a676aa6b8d5d49cb1059d1092d2ae18c/1?v1"
   },
   {
     "SHIP_ID": "129392",
@@ -42368,7 +42389,7 @@
     "SPEED": "0.00",
     "HEADING": "13",
     "COURSE": "309",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "21.0",
     "WIDTH": "6.0",
     "FLAG": "DE",
@@ -42381,7 +42402,8 @@
     "W_LEFT": "3",
     "shipid": 129392,
     "imo": 211180420,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:129392#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:129392#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211180420-cee1f885318024a9efe73e73106eec7d/1?v1"
   },
   {
     "SHIP_ID": "4157450",
@@ -42392,7 +42414,7 @@
     "SPEED": "0.00",
     "HEADING": "255",
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "23.0",
     "WIDTH": "7.0",
     "FLAG": "DE",
@@ -42405,7 +42427,8 @@
     "W_LEFT": "3",
     "shipid": 4157450,
     "imo": 211731030,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4157450#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4157450#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211731030-9d1ad55eea22cd4e475302993160de42/1?v1"
   },
   {
     "SHIP_ID": "142530",
@@ -42416,7 +42439,7 @@
     "SPEED": "0.50",
     "HEADING": null,
     "COURSE": "234",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -42429,7 +42452,8 @@
     "W_LEFT": "1",
     "shipid": 142530,
     "imo": 211619200,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142530#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142530#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211619200-a0806e20a101b3c6dff3626be95dc6ea/1?v1"
   },
   {
     "SHIP_ID": "9267104",
@@ -42440,7 +42464,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "8.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -42453,7 +42477,8 @@
     "W_LEFT": "2",
     "shipid": 9267104,
     "imo": 218027770,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9267104#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9267104#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-218027770-20ec353dd116c148df150de71289cfb8/1?v1"
   },
   {
     "SHIP_ID": "142921",
@@ -42464,7 +42489,7 @@
     "SPEED": "15.10",
     "HEADING": null,
     "COURSE": "149",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "6.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -42477,7 +42502,8 @@
     "W_LEFT": "1",
     "shipid": 142921,
     "imo": 211634090,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142921#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142921#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "10526718",
@@ -42488,7 +42514,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": "0",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "12.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -42501,7 +42527,8 @@
     "W_LEFT": "2",
     "shipid": 10526718,
     "imo": 211137890,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10526718#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10526718#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "7303662",
@@ -42512,7 +42539,7 @@
     "SPEED": "0.10",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "6.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -42525,7 +42552,8 @@
     "W_LEFT": "1",
     "shipid": 7303662,
     "imo": 211628140,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7303662#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7303662#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "8866628",
@@ -42536,7 +42564,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "8.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -42549,7 +42577,8 @@
     "W_LEFT": "2",
     "shipid": 8866628,
     "imo": 218041460,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8866628#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8866628#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "7717119",
@@ -42560,7 +42589,7 @@
     "SPEED": "10.50",
     "HEADING": null,
     "COURSE": "178",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "4.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -42573,7 +42602,8 @@
     "W_LEFT": "1",
     "shipid": 7717119,
     "imo": 211876160,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7717119#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7717119#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "8795444",
@@ -42584,7 +42614,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "9.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -42597,7 +42627,8 @@
     "W_LEFT": "1",
     "shipid": 8795444,
     "imo": 218040490,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8795444#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8795444#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "10599721",
@@ -42608,7 +42639,7 @@
     "SPEED": "7.00",
     "HEADING": "173",
     "COURSE": "183",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -42621,7 +42652,8 @@
     "W_LEFT": "1",
     "shipid": 10599721,
     "imo": 211740880,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10599721#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10599721#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "5892446",
@@ -42632,7 +42664,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": "352",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "9.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -42645,7 +42677,8 @@
     "W_LEFT": "1",
     "shipid": 5892446,
     "imo": 211809020,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5892446#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5892446#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "4994968",
@@ -42656,7 +42689,7 @@
     "SPEED": "1.70",
     "HEADING": null,
     "COURSE": "332",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -42669,7 +42702,8 @@
     "W_LEFT": "1",
     "shipid": 4994968,
     "imo": 211772410,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4994968#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4994968#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "141129",
@@ -42680,7 +42714,7 @@
     "SPEED": "1.30",
     "HEADING": null,
     "COURSE": "118",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -42693,7 +42727,8 @@
     "W_LEFT": "1",
     "shipid": 141129,
     "imo": 211559280,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141129#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141129#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "9266948",
@@ -42704,7 +42739,7 @@
     "SPEED": "0.10",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "8.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -42717,7 +42752,8 @@
     "W_LEFT": "2",
     "shipid": 9266948,
     "imo": 218027780,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9266948#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9266948#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "6403832",
@@ -42728,7 +42764,7 @@
     "SPEED": "0.00",
     "HEADING": "0",
     "COURSE": "0",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "9.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -42741,7 +42777,8 @@
     "W_LEFT": "1",
     "shipid": 6403832,
     "imo": 211355170,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6403832#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6403832#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211355170-7e12eb30ad88fbf521bb87f3e25a8917/1?v1"
   },
   {
     "SHIP_ID": "131061",
@@ -42752,7 +42789,7 @@
     "SPEED": "0.00",
     "HEADING": "183",
     "COURSE": "279",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "23.33",
     "WIDTH": "9.0",
     "FLAG": "DE",
@@ -42765,7 +42802,8 @@
     "W_LEFT": "4",
     "shipid": 131061,
     "imo": 211224680,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:131061#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:131061#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211224680-8fb1fc74f7e987af8d7884a17b3b02f2/1?v1"
   },
   {
     "SHIP_ID": "6226225",
@@ -42776,7 +42814,7 @@
     "SPEED": "0.00",
     "HEADING": "145",
     "COURSE": "41",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "13.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -42789,7 +42827,8 @@
     "W_LEFT": "3",
     "shipid": 6226225,
     "imo": 211290390,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6226225#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6226225#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211290390-35ebdc5a5cb1af59ff1ce1cfc8b32dd3/1?v1"
   },
   {
     "SHIP_ID": "8508205",
@@ -42800,7 +42839,7 @@
     "SPEED": "0.10",
     "HEADING": "234",
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "15.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -42813,7 +42852,8 @@
     "W_LEFT": "2",
     "shipid": 8508205,
     "imo": 218027530,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8508205#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8508205#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-218027530-b6595c08810616dfff7fe1803bf18aa3/1?v1"
   },
   {
     "SHIP_ID": "133086",
@@ -42824,7 +42864,7 @@
     "SPEED": "0.10",
     "HEADING": "25",
     "COURSE": "78",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "30.0",
     "WIDTH": "7.0",
     "FLAG": "DE",
@@ -42837,7 +42877,8 @@
     "W_LEFT": "4",
     "shipid": 133086,
     "imo": 211322590,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:133086#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:133086#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211322590-b3a79a5574272efdf81e768695af27f2/1?v1"
   },
   {
     "SHIP_ID": "9576826",
@@ -42848,7 +42889,7 @@
     "SPEED": "0.00",
     "HEADING": "171",
     "COURSE": "292",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "29.0",
     "WIDTH": "8.0",
     "FLAG": "DE",
@@ -42861,7 +42902,8 @@
     "W_LEFT": "4",
     "shipid": 9576826,
     "imo": 211217670,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9576826#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9576826#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211217670-2c51c5b1a0ab929f16f468529add2c1b/1?v1"
   },
   {
     "SHIP_ID": "134996",
@@ -42872,7 +42914,7 @@
     "SPEED": "4.80",
     "HEADING": null,
     "COURSE": "343",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "10.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -42885,7 +42927,8 @@
     "W_LEFT": "2",
     "shipid": 134996,
     "imo": 211442710,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:134996#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:134996#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211442710-38bc3e7561b80c2c44489346e53e58bf/1?v1"
   },
   {
     "SHIP_ID": "4992751",
@@ -42896,7 +42939,7 @@
     "SPEED": "0.00",
     "HEADING": "286",
     "COURSE": "302",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "14.5",
     "WIDTH": "3.9000001",
     "FLAG": "DE",
@@ -42909,7 +42952,8 @@
     "W_LEFT": "2",
     "shipid": 4992751,
     "imo": 211596180,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4992751#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4992751#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211596180-2496bef37c183c5916856ba0416bd706/1?v1"
   },
   {
     "SHIP_ID": "6403792",
@@ -42920,7 +42964,7 @@
     "SPEED": "0.50",
     "HEADING": "0",
     "COURSE": "133",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "9.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -42933,7 +42977,8 @@
     "W_LEFT": "2",
     "shipid": 6403792,
     "imo": 211355250,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6403792#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6403792#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211355250-06220ac8203f39936c20841cb5770416/1?v1"
   },
   {
     "SHIP_ID": "6318687",
@@ -42944,7 +42989,7 @@
     "SPEED": "26.00",
     "HEADING": null,
     "COURSE": "303",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "14.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -42957,7 +43002,8 @@
     "W_LEFT": "0",
     "shipid": 6318687,
     "imo": 211306610,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6318687#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6318687#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211306610-f9da15b3e130c2591e9f6cff269daf0c/1?v1"
   },
   {
     "SHIP_ID": "9853991",
@@ -42968,7 +43014,7 @@
     "SPEED": "0.00",
     "HEADING": "0",
     "COURSE": "0",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -42981,7 +43027,8 @@
     "W_LEFT": "1",
     "shipid": 9853991,
     "imo": 211177570,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9853991#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9853991#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211177570-3be7a29ca6f2ed87573de7f840ccc210/1?v1"
   },
   {
     "SHIP_ID": "4765791",
@@ -42992,7 +43039,7 @@
     "SPEED": "0.40",
     "HEADING": "278",
     "COURSE": "143",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43005,7 +43052,8 @@
     "W_LEFT": "1",
     "shipid": 4765791,
     "imo": 211681500,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4765791#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4765791#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211681500-6a010f62ff4c0b3c73ab8d0af1860a45/1?v1"
   },
   {
     "SHIP_ID": "7991340",
@@ -43016,7 +43064,7 @@
     "SPEED": "0.10",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "13.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -43029,7 +43077,8 @@
     "W_LEFT": "0",
     "shipid": 7991340,
     "imo": 211881540,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7991340#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7991340#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211881540-f347576ae7787190e2eb679eec76a893/1?v1"
   },
   {
     "SHIP_ID": "4806482",
@@ -43040,7 +43089,7 @@
     "SPEED": "3.90",
     "HEADING": null,
     "COURSE": "35",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43053,7 +43102,8 @@
     "W_LEFT": "1",
     "shipid": 4806482,
     "imo": 211282862,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4806482#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4806482#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211282862-37879aff20aa405f4c26f7da1dd8c477/1?v1"
   },
   {
     "SHIP_ID": "3074271",
@@ -43064,7 +43114,7 @@
     "SPEED": "7.00",
     "HEADING": null,
     "COURSE": "82",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "0.0",
     "WIDTH": "0.0",
     "FLAG": "DE",
@@ -43077,7 +43127,8 @@
     "W_LEFT": "0",
     "shipid": 3074271,
     "imo": 211642310,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3074271#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3074271#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211642310-aaf333499779226b6b7212b15e41bd43/1?v1"
   },
   {
     "SHIP_ID": "9333529",
@@ -43088,7 +43139,7 @@
     "SPEED": "0.10",
     "HEADING": "0",
     "COURSE": "279",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "15.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -43101,7 +43152,8 @@
     "W_LEFT": "2",
     "shipid": 9333529,
     "imo": 211111080,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9333529#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9333529#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211111080-e7a3d2c5a5165e0c8558680737c026fb/1?v1"
   },
   {
     "SHIP_ID": "141128",
@@ -43112,7 +43164,7 @@
     "SPEED": "8.80",
     "HEADING": null,
     "COURSE": "41",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "6.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43125,7 +43177,8 @@
     "W_LEFT": "1",
     "shipid": 141128,
     "imo": 211559270,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141128#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141128#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211559270-8fda7f0476c8aaac405e44702805b55d/1?v1"
   },
   {
     "SHIP_ID": "7578977",
@@ -43136,7 +43189,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "13.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -43149,7 +43202,8 @@
     "W_LEFT": "2",
     "shipid": 7578977,
     "imo": 211886910,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7578977#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7578977#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211886910-2fe57e0d33b0f1920c54ecb5fe917c78/1?v1"
   },
   {
     "SHIP_ID": "129105",
@@ -43160,7 +43214,7 @@
     "SPEED": "0.00",
     "HEADING": "288",
     "COURSE": "24",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "16.0",
     "WIDTH": "5.0",
     "FLAG": "DE",
@@ -43173,7 +43227,8 @@
     "W_LEFT": "3",
     "shipid": 129105,
     "imo": 211172030,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:129105#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:129105#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211172030-f65603ec71f1ffc33e132995a5edd804/1?v1"
   },
   {
     "SHIP_ID": "5804035",
@@ -43184,7 +43239,7 @@
     "SPEED": "0.20",
     "HEADING": null,
     "COURSE": "84",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43197,7 +43252,8 @@
     "W_LEFT": "1",
     "shipid": 5804035,
     "imo": 211807310,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5804035#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5804035#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "4806591",
@@ -43208,7 +43264,7 @@
     "SPEED": "19.70",
     "HEADING": null,
     "COURSE": "94",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43221,7 +43277,8 @@
     "W_LEFT": "1",
     "shipid": 4806591,
     "imo": 211282863,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4806591#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4806591#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "10049637",
@@ -43232,7 +43289,7 @@
     "SPEED": "0.10",
     "HEADING": null,
     "COURSE": "22",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "0.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43245,7 +43302,8 @@
     "W_LEFT": "1",
     "shipid": 10049637,
     "imo": 211440940,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10049637#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10049637#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "142920",
@@ -43256,7 +43314,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "6.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -43269,7 +43327,8 @@
     "W_LEFT": "1",
     "shipid": 142920,
     "imo": 211634080,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142920#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142920#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "7375932",
@@ -43280,7 +43339,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": "0",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "8.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -43293,7 +43352,8 @@
     "W_LEFT": "2",
     "shipid": 7375932,
     "imo": 211668310,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7375932#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7375932#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "9558833",
@@ -43304,7 +43364,7 @@
     "SPEED": "26.20",
     "HEADING": "181",
     "COURSE": "189",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43317,7 +43377,8 @@
     "W_LEFT": "1",
     "shipid": 9558833,
     "imo": 211181080,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9558833#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9558833#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "135494",
@@ -43328,7 +43389,7 @@
     "SPEED": "7.50",
     "HEADING": null,
     "COURSE": "113",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "8.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -43341,7 +43402,8 @@
     "W_LEFT": "2",
     "shipid": 135494,
     "imo": 211613960,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:135494#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:135494#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "5177592",
@@ -43352,7 +43414,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "21.0",
     "WIDTH": "6.0",
     "FLAG": "DE",
@@ -43365,7 +43427,8 @@
     "W_LEFT": "5",
     "shipid": 5177592,
     "imo": 211781850,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5177592#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5177592#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211781850-29c3ff2498deca386c86ff5021e73100/1?v1"
   },
   {
     "SHIP_ID": "142490",
@@ -43376,7 +43439,7 @@
     "SPEED": "0.00",
     "HEADING": "280",
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "12.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -43389,7 +43452,8 @@
     "W_LEFT": "1",
     "shipid": 142490,
     "imo": 211617060,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142490#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142490#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211617060-ca8adb4a6d9e371a893c47782689e896/1?v1"
   },
   {
     "SHIP_ID": "7775254",
@@ -43400,7 +43464,7 @@
     "SPEED": "0.10",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "6.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43413,7 +43477,8 @@
     "W_LEFT": "1",
     "shipid": 7775254,
     "imo": 211593730,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7775254#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7775254#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211593730-d19f4a45e52362617bf55f829fd3ac1d/1?v1"
   },
   {
     "SHIP_ID": "7780641",
@@ -43424,7 +43489,7 @@
     "SPEED": "0.00",
     "HEADING": "0",
     "COURSE": "252",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "6.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43437,7 +43502,8 @@
     "W_LEFT": "1",
     "shipid": 7780641,
     "imo": 211593580,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7780641#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7780641#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211593580-bd1ffe0bcebf7c666bfe08baec6797e7/1?v1"
   },
   {
     "SHIP_ID": "127542",
@@ -43448,7 +43514,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "10.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -43461,7 +43527,8 @@
     "W_LEFT": "2",
     "shipid": 127542,
     "imo": 211118300,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:127542#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:127542#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211118300-f0b3ac624279dda7257d8cca75f288b5/1?v1"
   },
   {
     "SHIP_ID": "3050485",
@@ -43472,7 +43539,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": "0",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "13.0",
     "WIDTH": "5.0",
     "FLAG": "DE",
@@ -43485,7 +43552,8 @@
     "W_LEFT": "3",
     "shipid": 3050485,
     "imo": 211223240,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3050485#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3050485#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211223240-f5a8a0a38337fbca64f1dc8e567faf3f/1?v1"
   },
   {
     "SHIP_ID": "4868285",
@@ -43496,7 +43564,7 @@
     "SPEED": "0.00",
     "HEADING": "104",
     "COURSE": "104",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "5.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43509,7 +43577,8 @@
     "W_LEFT": "1",
     "shipid": 4868285,
     "imo": 211748100,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4868285#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4868285#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211748100-20605ed187c9ffda5135d8724f4220a7/1?v1"
   },
   {
     "SHIP_ID": "131806",
@@ -43520,7 +43589,7 @@
     "SPEED": "0.00",
     "HEADING": "184",
     "COURSE": "251",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "25.0",
     "WIDTH": "6.0",
     "FLAG": "DE",
@@ -43533,7 +43602,8 @@
     "W_LEFT": "3",
     "shipid": 131806,
     "imo": 211249410,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:131806#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:131806#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211249410-cf10bd87cd5dbd8cdcabd1a18b726bad/1?v1"
   },
   {
     "SHIP_ID": "5865137",
@@ -43544,7 +43614,7 @@
     "SPEED": "0.00",
     "HEADING": "147",
     "COURSE": "145",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "24.0",
     "WIDTH": "6.0",
     "FLAG": "DE",
@@ -43557,7 +43627,8 @@
     "W_LEFT": "3",
     "shipid": 5865137,
     "imo": 9833400,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5865137#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5865137#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/9833400-211236020-1d8a011895df689f9399ddb5ec534d48/1?v1"
   },
   {
     "SHIP_ID": "127774",
@@ -43568,7 +43639,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "20.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -43581,7 +43652,8 @@
     "W_LEFT": "1",
     "shipid": 127774,
     "imo": 211134320,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:127774#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:127774#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211134320-fc5daf000e4c7fa2d7c0797709101b85/1?v1"
   },
   {
     "SHIP_ID": "5905750",
@@ -43592,7 +43664,7 @@
     "SPEED": "1.30",
     "HEADING": null,
     "COURSE": "81",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "511.0",
     "WIDTH": "63.0",
     "FLAG": "DE",
@@ -43605,7 +43677,8 @@
     "W_LEFT": "0",
     "shipid": 5905750,
     "imo": 211809030,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5905750#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5905750#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "10374786",
@@ -43616,7 +43689,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "0.0",
     "WIDTH": "0.0",
     "FLAG": "DE",
@@ -43629,7 +43702,8 @@
     "W_LEFT": "0",
     "shipid": 10374786,
     "imo": 211508601,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10374786#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10374786#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "10568546",
@@ -43640,7 +43714,7 @@
     "SPEED": "11.60",
     "HEADING": "200",
     "COURSE": "198",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "0.0",
     "WIDTH": "0.0",
     "FLAG": "DE",
@@ -43653,7 +43727,8 @@
     "W_LEFT": "0",
     "shipid": 10568546,
     "imo": 211233180,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10568546#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10568546#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "4832343",
@@ -43664,7 +43739,7 @@
     "SPEED": "5.80",
     "HEADING": null,
     "COURSE": "155",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43677,7 +43752,8 @@
     "W_LEFT": "1",
     "shipid": 4832343,
     "imo": 211282864,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4832343#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4832343#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "5530601",
@@ -43688,7 +43764,7 @@
     "SPEED": "4.00",
     "HEADING": null,
     "COURSE": "261",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "6.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43701,7 +43777,8 @@
     "W_LEFT": "1",
     "shipid": 5530601,
     "imo": 211784430,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5530601#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5530601#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "6280547",
@@ -43712,7 +43789,7 @@
     "SPEED": "0.10",
     "HEADING": "83",
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43725,7 +43802,8 @@
     "W_LEFT": "1",
     "shipid": 6280547,
     "imo": 211337840,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6280547#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6280547#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "10472129",
@@ -43736,7 +43814,7 @@
     "SPEED": "0.10",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43749,7 +43827,8 @@
     "W_LEFT": "1",
     "shipid": 10472129,
     "imo": 211206670,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10472129#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10472129#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "6780805",
@@ -43760,7 +43839,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "0.0",
     "WIDTH": "0.0",
     "FLAG": "DE",
@@ -43773,7 +43852,8 @@
     "W_LEFT": "0",
     "shipid": 6780805,
     "imo": 211664580,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6780805#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6780805#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "10583439",
@@ -43784,7 +43864,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "0.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43797,7 +43877,8 @@
     "W_LEFT": "1",
     "shipid": 10583439,
     "imo": 211440930,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10583439#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10583439#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "7127017",
@@ -43808,7 +43889,7 @@
     "SPEED": "0.00",
     "HEADING": "260",
     "COURSE": "103",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "12.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -43821,7 +43902,8 @@
     "W_LEFT": "0",
     "shipid": 7127017,
     "imo": 211790780,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7127017#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7127017#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "7399229",
@@ -43832,7 +43914,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "5.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43845,7 +43927,8 @@
     "W_LEFT": "1",
     "shipid": 7399229,
     "imo": 211877340,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7399229#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7399229#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "5056920",
@@ -43856,7 +43939,7 @@
     "SPEED": "0.00",
     "HEADING": "0",
     "COURSE": "0",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "0.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -43869,7 +43952,8 @@
     "W_LEFT": "0",
     "shipid": 5056920,
     "imo": 211754610,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5056920#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5056920#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211754610-350595c7cbaa4f7452c43d974554b408/1?v1"
   },
   {
     "SHIP_ID": "8991562",
@@ -43880,7 +43964,7 @@
     "SPEED": "0.00",
     "HEADING": "0",
     "COURSE": "0",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "9.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -43893,7 +43977,8 @@
     "W_LEFT": "2",
     "shipid": 8991562,
     "imo": 211355270,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8991562#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8991562#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211355270-4a8de57d1294d224d656551a3c6cd576/1?v1"
   },
   {
     "SHIP_ID": "9019594",
@@ -43904,7 +43989,7 @@
     "SPEED": "0.10",
     "HEADING": "16",
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "15.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -43917,7 +44002,8 @@
     "W_LEFT": "2",
     "shipid": 9019594,
     "imo": 218024950,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9019594#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9019594#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-218024950-517141dbbb1150d6eb20a69a93676be5/1?v1"
   },
   {
     "SHIP_ID": "6932812",
@@ -43928,7 +44014,7 @@
     "SPEED": "0.00",
     "HEADING": "315",
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "8.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -43941,7 +44027,8 @@
     "W_LEFT": "1",
     "shipid": 6932812,
     "imo": 211840040,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6932812#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6932812#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211840040-dd4171a6baba6003f77267be41cb8679/1?v1"
   },
   {
     "SHIP_ID": "136882",
@@ -43952,7 +44039,7 @@
     "SPEED": "0.10",
     "HEADING": "212",
     "COURSE": "356",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "20.0",
     "WIDTH": "5.0",
     "FLAG": "DE",
@@ -43965,7 +44052,8 @@
     "W_LEFT": "3",
     "shipid": 136882,
     "imo": 211493040,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:136882#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:136882#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211493040-c398287e472ec262cffa719a9af8dabe/1?v1"
   },
   {
     "SHIP_ID": "6964728",
@@ -43976,7 +44064,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": "290",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "9.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -43989,7 +44077,8 @@
     "W_LEFT": "2",
     "shipid": 6964728,
     "imo": 211840030,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6964728#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6964728#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211840030-e4990943480b8bbbd30e5404e2b7c713/1?v1"
   },
   {
     "SHIP_ID": "141800",
@@ -44000,7 +44089,7 @@
     "SPEED": "0.10",
     "HEADING": "200",
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "12.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -44013,7 +44102,8 @@
     "W_LEFT": "1",
     "shipid": 141800,
     "imo": 211588580,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141800#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141800#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211588580-837073e5a5756631d35f86eb668f541e/1?v1"
   },
   {
     "SHIP_ID": "4807243",
@@ -44024,7 +44114,7 @@
     "SPEED": "0.10",
     "HEADING": null,
     "COURSE": "155",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -44037,7 +44127,8 @@
     "W_LEFT": "1",
     "shipid": 4807243,
     "imo": 211282861,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4807243#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4807243#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211282861-a9cb51850c16a45974a9d3fb662a4d48/1?v1"
   },
   {
     "SHIP_ID": "4702022",
@@ -44048,7 +44139,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": "352",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "6.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -44061,7 +44152,8 @@
     "W_LEFT": "2",
     "shipid": 4702022,
     "imo": 211748120,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4702022#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4702022#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211748120-755643b8c1fee38f7e6d816ad83e2488/1?v1"
   },
   {
     "SHIP_ID": "141124",
@@ -44072,7 +44164,7 @@
     "SPEED": "0.00",
     "HEADING": "0",
     "COURSE": "0",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -44085,7 +44177,8 @@
     "W_LEFT": "0",
     "shipid": 141124,
     "imo": 211559190,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141124#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141124#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "10523712",
@@ -44096,7 +44189,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "25.0",
     "WIDTH": "8.0",
     "FLAG": "DE",
@@ -44109,7 +44202,8 @@
     "W_LEFT": "2",
     "shipid": 10523712,
     "imo": 211024842,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10523712#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10523712#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "9640231",
@@ -44120,7 +44214,7 @@
     "SPEED": "0.80",
     "HEADING": null,
     "COURSE": "228",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "8.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -44133,7 +44227,8 @@
     "W_LEFT": "2",
     "shipid": 9640231,
     "imo": 211157570,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9640231#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9640231#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "6268631",
@@ -44144,7 +44239,7 @@
     "SPEED": "4.30",
     "HEADING": null,
     "COURSE": "99",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "0.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -44157,7 +44252,8 @@
     "W_LEFT": "1",
     "shipid": 6268631,
     "imo": 211256140,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6268631#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6268631#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "6292438",
@@ -44168,7 +44264,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "1.0",
     "WIDTH": "0.0",
     "FLAG": "DE",
@@ -44181,7 +44277,8 @@
     "W_LEFT": "0",
     "shipid": 6292438,
     "imo": 211337810,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6292438#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6292438#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "143314",
@@ -44192,7 +44289,7 @@
     "SPEED": "0.00",
     "HEADING": "133",
     "COURSE": "349",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "15.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -44205,7 +44302,8 @@
     "W_LEFT": "0",
     "shipid": 143314,
     "imo": 211656780,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:143314#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:143314#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "141132",
@@ -44216,7 +44314,7 @@
     "SPEED": "0.20",
     "HEADING": null,
     "COURSE": "77",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "6.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -44229,7 +44327,8 @@
     "W_LEFT": "1",
     "shipid": 141132,
     "imo": 211559330,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141132#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141132#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "5474435",
@@ -44240,7 +44339,7 @@
     "SPEED": "16.10",
     "HEADING": null,
     "COURSE": "123",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "8.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -44253,7 +44352,8 @@
     "W_LEFT": "2",
     "shipid": 5474435,
     "imo": 211196540,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5474435#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5474435#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "6293204",
@@ -44264,7 +44364,7 @@
     "SPEED": "4.30",
     "HEADING": null,
     "COURSE": "271",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "9.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -44277,7 +44377,8 @@
     "W_LEFT": "2",
     "shipid": 6293204,
     "imo": 211809080,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6293204#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6293204#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "9887433",
@@ -44288,7 +44389,7 @@
     "SPEED": "22.10",
     "HEADING": null,
     "COURSE": "339",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "8.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -44301,7 +44402,8 @@
     "W_LEFT": "2",
     "shipid": 9887433,
     "imo": 211128360,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9887433#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9887433#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "5799837",
@@ -44312,7 +44414,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "25.0",
     "WIDTH": "8.0",
     "FLAG": "DE",
@@ -44325,7 +44427,8 @@
     "W_LEFT": "3",
     "shipid": 5799837,
     "imo": 211768660,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5799837#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5799837#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "142686",
@@ -44336,7 +44439,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "9.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -44349,7 +44452,8 @@
     "W_LEFT": "2",
     "shipid": 142686,
     "imo": 211625410,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142686#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142686#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "6209025",
@@ -44360,7 +44464,7 @@
     "SPEED": "0.60",
     "HEADING": null,
     "COURSE": "135",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -44373,7 +44477,8 @@
     "W_LEFT": "2",
     "shipid": 6209025,
     "imo": 211299370,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6209025#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6209025#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "6595236",
@@ -44384,7 +44489,7 @@
     "SPEED": "5.30",
     "HEADING": null,
     "COURSE": "93",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "13.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -44397,7 +44502,8 @@
     "W_LEFT": "1",
     "shipid": 6595236,
     "imo": 211425380,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6595236#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6595236#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "6061947",
@@ -44408,7 +44514,7 @@
     "SPEED": "0.10",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "9.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -44421,7 +44527,8 @@
     "W_LEFT": "1",
     "shipid": 6061947,
     "imo": 211809050,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6061947#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6061947#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211809050-e69b1693023c978cf24413b470210ec1/1?v1"
   },
   {
     "SHIP_ID": "6579951",
@@ -44432,7 +44539,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": "20",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "9.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -44445,7 +44552,8 @@
     "W_LEFT": "2",
     "shipid": 6579951,
     "imo": 211809090,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6579951#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6579951#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211809090-359ea5b60c4661cee109f7fb1b5aa4b3/1?v1"
   },
   {
     "SHIP_ID": "130340",
@@ -44456,7 +44564,7 @@
     "SPEED": "0.00",
     "HEADING": "178",
     "COURSE": "54",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "20.0",
     "WIDTH": "5.0",
     "FLAG": "DE",
@@ -44469,7 +44577,8 @@
     "W_LEFT": "2",
     "shipid": 130340,
     "imo": 211207640,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:130340#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:130340#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211207640-311ae9b6b5bc91ecfae670b761dba138/1?v1"
   },
   {
     "SHIP_ID": "142929",
@@ -44480,7 +44589,7 @@
     "SPEED": "0.00",
     "HEADING": "0",
     "COURSE": "5",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "35.0",
     "WIDTH": "8.0",
     "FLAG": "DE",
@@ -44493,7 +44602,8 @@
     "W_LEFT": "4",
     "shipid": 142929,
     "imo": 211634540,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142929#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142929#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211634540-472f23853904008d6ed2b90d4f6fa3ac/1?v1"
   },
   {
     "SHIP_ID": "142685",
@@ -44504,7 +44614,7 @@
     "SPEED": "0.10",
     "HEADING": null,
     "COURSE": "262",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "9.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -44517,7 +44627,8 @@
     "W_LEFT": "2",
     "shipid": 142685,
     "imo": 211625400,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142685#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142685#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211625400-802e136e08bea706d43ec9a0b088c9f1/1?v1"
   },
   {
     "SHIP_ID": "130341",
@@ -44528,7 +44639,7 @@
     "SPEED": "0.00",
     "HEADING": "119",
     "COURSE": "36",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "20.0",
     "WIDTH": "5.0",
     "FLAG": "DE",
@@ -44541,7 +44652,8 @@
     "W_LEFT": "2",
     "shipid": 130341,
     "imo": 211207650,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:130341#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:130341#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211207650-b60765ab728eb1fc62198f3b699c63d9/1?v1"
   },
   {
     "SHIP_ID": "5822585",
@@ -44552,7 +44664,7 @@
     "SPEED": "0.00",
     "HEADING": "230",
     "COURSE": "324",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "24.0",
     "WIDTH": "6.0",
     "FLAG": "DE",
@@ -44565,7 +44677,8 @@
     "W_LEFT": "3",
     "shipid": 5822585,
     "imo": 9833395,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5822585#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5822585#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/9833395-211221570-23970e0c6e5bc3a23280266a5175b83e/1?v1"
   },
   {
     "SHIP_ID": "143248",
@@ -44576,7 +44689,7 @@
     "SPEED": "0.00",
     "HEADING": "0",
     "COURSE": "0",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "40.0",
     "WIDTH": "10.0",
     "FLAG": "DE",
@@ -44589,7 +44702,8 @@
     "W_LEFT": "5",
     "shipid": 143248,
     "imo": 211651920,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:143248#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:143248#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211651920-07e34b5249ac79b01269a3bea92001c4/1?v1"
   },
   {
     "SHIP_ID": "130253",
@@ -44600,7 +44714,7 @@
     "SPEED": "0.00",
     "HEADING": "16",
     "COURSE": "0",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "29.58",
     "WIDTH": "6.1999998",
     "FLAG": "DE",
@@ -44613,7 +44727,8 @@
     "W_LEFT": "3",
     "shipid": 130253,
     "imo": 211205180,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:130253#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:130253#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211205180-07eca1513a43c3644cf64db3369df6c7/1?v1"
   },
   {
     "SHIP_ID": "4275677",
@@ -44624,7 +44739,7 @@
     "SPEED": "0.00",
     "HEADING": "295",
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "17.0",
     "WIDTH": "5.0",
     "FLAG": "DE",
@@ -44637,7 +44752,8 @@
     "W_LEFT": "2",
     "shipid": 4275677,
     "imo": 211285520,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4275677#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4275677#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211285520-22158f289045d3040dc5cda82f171a58/1?v1"
   },
   {
     "SHIP_ID": "131931",
@@ -44648,7 +44764,7 @@
     "SPEED": "0.00",
     "HEADING": "229",
     "COURSE": "229",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "17.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -44661,7 +44777,8 @@
     "W_LEFT": "2",
     "shipid": 131931,
     "imo": 211259530,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:131931#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:131931#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211259530-78a2e1a629b16ed0ea654222ffb2e2fe/1?v1"
   },
   {
     "SHIP_ID": "3482159",
@@ -44672,7 +44789,7 @@
     "SPEED": "7.00",
     "HEADING": null,
     "COURSE": "3",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "8.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -44685,7 +44802,8 @@
     "W_LEFT": "3",
     "shipid": 3482159,
     "imo": 211683820,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3482159#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3482159#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211683820-074f8a88a175bc3e59542e38414aff30/1?v1"
   },
   {
     "SHIP_ID": "133540",
@@ -44696,7 +44814,7 @@
     "SPEED": "0.00",
     "HEADING": "168",
     "COURSE": "0",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "26.0",
     "WIDTH": "6.0",
     "FLAG": "DE",
@@ -44709,7 +44827,8 @@
     "W_LEFT": "2",
     "shipid": 133540,
     "imo": 211356520,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:133540#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:133540#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211356520-9ba7a27f93fce65654509cb484f87e4f/1?v1"
   },
   {
     "SHIP_ID": "7418509",
@@ -44720,7 +44839,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "6.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -44733,7 +44852,8 @@
     "W_LEFT": "1",
     "shipid": 7418509,
     "imo": 211593440,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7418509#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7418509#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211593440-278dccee74e95e213b8b92837e5ec9ae/1?v1"
   },
   {
     "SHIP_ID": "134588",
@@ -44744,7 +44864,7 @@
     "SPEED": "0.00",
     "HEADING": "159",
     "COURSE": "156",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "25.0",
     "WIDTH": "8.0",
     "FLAG": "DE",
@@ -44757,7 +44877,8 @@
     "W_LEFT": "2",
     "shipid": 134588,
     "imo": 211433360,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:134588#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:134588#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211433360-5adc0ed58eeea3c10cea8199ae5fe6ac/1?v1"
   },
   {
     "SHIP_ID": "130378",
@@ -44768,7 +44889,7 @@
     "SPEED": "0.00",
     "HEADING": "293",
     "COURSE": "336",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "38.0",
     "WIDTH": "8.0",
     "FLAG": "DE",
@@ -44781,7 +44902,8 @@
     "W_LEFT": "6",
     "shipid": 130378,
     "imo": 211207990,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:130378#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:130378#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211207990-632ca5b68a4e8d667b3152049efa4deb/1?v1"
   },
   {
     "SHIP_ID": "133738",
@@ -44792,7 +44914,7 @@
     "SPEED": "0.00",
     "HEADING": "181",
     "COURSE": "13",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "26.0",
     "WIDTH": "6.0",
     "FLAG": "DE",
@@ -44805,7 +44927,8 @@
     "W_LEFT": "3",
     "shipid": 133738,
     "imo": 211369510,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:133738#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:133738#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211369510-1f199d80a9cf62ac2a2de99be6ab0afb/1?v1"
   },
   {
     "SHIP_ID": "6042236",
@@ -44816,7 +44939,7 @@
     "SPEED": "0.00",
     "HEADING": "276",
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "13.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -44829,7 +44952,8 @@
     "W_LEFT": "1",
     "shipid": 6042236,
     "imo": 211276700,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6042236#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6042236#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211276700-99447aa6358d1787674df31c91b63a2d/1?v1"
   },
   {
     "SHIP_ID": "10044147",
@@ -44840,7 +44964,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "8.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -44853,7 +44977,8 @@
     "W_LEFT": "1",
     "shipid": 10044147,
     "imo": 211177560,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10044147#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10044147#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211177560-a3035800a3120ddc57d1d892c3627970/1?v1"
   },
   {
     "SHIP_ID": "5959397",
@@ -44864,7 +44989,7 @@
     "SPEED": "16.80",
     "HEADING": null,
     "COURSE": "102",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -44877,7 +45002,8 @@
     "W_LEFT": "1",
     "shipid": 5959397,
     "imo": 211809060,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5959397#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5959397#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "3696123",
@@ -44888,7 +45014,7 @@
     "SPEED": "1.30",
     "HEADING": null,
     "COURSE": "123",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -44901,7 +45027,8 @@
     "W_LEFT": "1",
     "shipid": 3696123,
     "imo": 211687880,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3696123#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:3696123#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "8869440",
@@ -44912,7 +45039,7 @@
     "SPEED": "0.60",
     "HEADING": null,
     "COURSE": "208",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "0.0",
     "WIDTH": "0.0",
     "FLAG": "DE",
@@ -44925,7 +45052,8 @@
     "W_LEFT": "2",
     "shipid": 8869440,
     "imo": 211323810,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8869440#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8869440#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "7205352",
@@ -44936,7 +45064,7 @@
     "SPEED": "0.10",
     "HEADING": null,
     "COURSE": "63",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "9.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -44949,7 +45077,8 @@
     "W_LEFT": "2",
     "shipid": 7205352,
     "imo": 211809100,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7205352#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7205352#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "9001266",
@@ -44960,7 +45089,7 @@
     "SPEED": "0.00",
     "HEADING": "69",
     "COURSE": "305",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "26.0",
     "WIDTH": "7.0",
     "FLAG": "DE",
@@ -44973,7 +45102,8 @@
     "W_LEFT": "0",
     "shipid": 9001266,
     "imo": 211430400,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9001266#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9001266#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211430400-8f863e33deb015e70ccfedca94db17b1/1?v1"
   },
   {
     "SHIP_ID": "132272",
@@ -44984,7 +45114,7 @@
     "SPEED": "0.00",
     "HEADING": "81",
     "COURSE": "94",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "16.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -44997,7 +45127,8 @@
     "W_LEFT": "2",
     "shipid": 132272,
     "imo": 211275800,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:132272#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:132272#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211275800-f0a956c12e988b8fd1f572e12b747e26/1?v1"
   },
   {
     "SHIP_ID": "4992973",
@@ -45008,7 +45139,7 @@
     "SPEED": "5.60",
     "HEADING": null,
     "COURSE": "295",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "4.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -45021,7 +45152,8 @@
     "W_LEFT": "1",
     "shipid": 4992973,
     "imo": 211754530,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4992973#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:4992973#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211754530-b441a1e9481a150554b9d0092373b3ec/1?v1"
   },
   {
     "SHIP_ID": "8771964",
@@ -45032,7 +45164,7 @@
     "SPEED": "10.50",
     "HEADING": "60",
     "COURSE": "55",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "15.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -45045,7 +45177,8 @@
     "W_LEFT": "2",
     "shipid": 8771964,
     "imo": 218027540,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8771964#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8771964#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-218027540-b950aad4606cb62739165e792da77ce7/1?v1"
   },
   {
     "SHIP_ID": "9606382",
@@ -45056,7 +45189,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": "0",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "14.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -45069,7 +45202,8 @@
     "W_LEFT": "2",
     "shipid": 9606382,
     "imo": 211111140,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9606382#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:9606382#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211111140-fc75dea6e924556ed8e299f8ea431948/1?v1"
   },
   {
     "SHIP_ID": "5938259",
@@ -45080,7 +45214,7 @@
     "SPEED": "0.00",
     "HEADING": "0",
     "COURSE": "0",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "17.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -45093,7 +45227,8 @@
     "W_LEFT": "2",
     "shipid": 5938259,
     "imo": 211537930,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5938259#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5938259#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211537930-51d7e3af885381047961021c5f1dc6eb/1?v1"
   },
   {
     "SHIP_ID": "131035",
@@ -45104,7 +45239,7 @@
     "SPEED": "0.00",
     "HEADING": "289",
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "17.0",
     "WIDTH": "5.0",
     "FLAG": "DE",
@@ -45117,7 +45252,8 @@
     "W_LEFT": "4",
     "shipid": 131035,
     "imo": 8779360,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:131035#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:131035#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/8779360-211224320-fd0d9820a7459bf035bc1ac19d40d758/1?v1"
   },
   {
     "SHIP_ID": "8963788",
@@ -45128,7 +45264,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "20.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -45141,7 +45277,8 @@
     "W_LEFT": "1",
     "shipid": 8963788,
     "imo": 211706620,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8963788#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:8963788#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211706620-294576c6a375dcaeff50ef175af6c4df/1?v1"
   },
   {
     "SHIP_ID": "5937153",
@@ -45152,7 +45289,7 @@
     "SPEED": "0.10",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "9.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -45165,7 +45302,8 @@
     "W_LEFT": "1",
     "shipid": 5937153,
     "imo": 211809040,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5937153#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5937153#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211809040-4b1cd0dbcc2132961046b04ab76bd5f8/1?v1"
   },
   {
     "SHIP_ID": "5418329",
@@ -45176,7 +45314,7 @@
     "SPEED": "3.50",
     "HEADING": null,
     "COURSE": "119",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "16.0",
     "WIDTH": "4.0",
     "FLAG": "DE",
@@ -45189,7 +45327,8 @@
     "W_LEFT": "4",
     "shipid": 5418329,
     "imo": 211790800,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5418329#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5418329#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211790800-6f410a007cf5709c7dc9879cb3530640/1?v1"
   },
   {
     "SHIP_ID": "142748",
@@ -45200,7 +45339,7 @@
     "SPEED": "4.60",
     "HEADING": null,
     "COURSE": "184",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "6.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -45213,7 +45352,8 @@
     "W_LEFT": "1",
     "shipid": 142748,
     "imo": 211627120,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142748#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:142748#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211627120-cb0a00d6dd1063772d5ad060367cade5/1?v1"
   },
   {
     "SHIP_ID": "6989451",
@@ -45224,7 +45364,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "16.0",
     "WIDTH": "6.0",
     "FLAG": "DE",
@@ -45237,7 +45377,8 @@
     "W_LEFT": "0",
     "shipid": 6989451,
     "imo": 211844810,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6989451#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6989451#overview",
+    "image": "https://static.vesselfinder.net/ship-photo/0-211844810-70f779da9554b2efcae2045624b582f3/1?v1"
   },
   {
     "SHIP_ID": "6211603",
@@ -45248,7 +45389,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": "349",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -45261,7 +45402,8 @@
     "W_LEFT": "2",
     "shipid": 6211603,
     "imo": 211299430,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6211603#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6211603#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "6340582",
@@ -45272,7 +45414,7 @@
     "SPEED": "0.10",
     "HEADING": null,
     "COURSE": "0",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "3.0",
     "FLAG": "DE",
@@ -45285,7 +45427,8 @@
     "W_LEFT": "2",
     "shipid": 6340582,
     "imo": 211154020,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6340582#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6340582#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "6632432",
@@ -45296,7 +45439,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "24.0",
     "WIDTH": "9.0",
     "FLAG": "DE",
@@ -45309,7 +45452,8 @@
     "W_LEFT": "2",
     "shipid": 6632432,
     "imo": 211385370,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6632432#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6632432#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "5769891",
@@ -45320,7 +45464,7 @@
     "SPEED": "10.60",
     "HEADING": null,
     "COURSE": "77",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "3.0",
     "WIDTH": "1.0",
     "FLAG": "DE",
@@ -45333,7 +45477,8 @@
     "W_LEFT": "1",
     "shipid": 5769891,
     "imo": 211793770,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5769891#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:5769891#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "10045960",
@@ -45344,7 +45489,7 @@
     "SPEED": "9.30",
     "HEADING": null,
     "COURSE": "175",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "7.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -45357,7 +45502,8 @@
     "W_LEFT": "1",
     "shipid": 10045960,
     "imo": 211177540,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10045960#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:10045960#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "141131",
@@ -45368,7 +45514,7 @@
     "SPEED": "3.50",
     "HEADING": null,
     "COURSE": "357",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "6.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -45381,7 +45527,8 @@
     "W_LEFT": "1",
     "shipid": 141131,
     "imo": 211559320,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141131#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:141131#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "7362883",
@@ -45392,7 +45539,7 @@
     "SPEED": "0.00",
     "HEADING": null,
     "COURSE": null,
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "6.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -45405,7 +45552,8 @@
     "W_LEFT": "1",
     "shipid": 7362883,
     "imo": 211593870,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7362883#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:7362883#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   },
   {
     "SHIP_ID": "6414534",
@@ -45416,7 +45564,7 @@
     "SPEED": "2.70",
     "HEADING": null,
     "COURSE": "264",
-    "SHIPTYPE": "55",
+    "SHIPTYPE": "Law Enforcement",
     "LENGTH": "5.0",
     "WIDTH": "2.0",
     "FLAG": "DE",
@@ -45429,6 +45577,7 @@
     "W_LEFT": "1",
     "shipid": 6414534,
     "imo": 211744890,
-    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6414534#overview"
+    "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:6414534#overview",
+    "image": "https://static.vesselfinder.net/images/cool-ship2@2.png"
   }
 ]

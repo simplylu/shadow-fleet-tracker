@@ -32,6 +32,8 @@ function setDarkMode(on){
 window.__playbackTracks = {};
 window.__playbackLayer = L.layerGroup().addTo(map);
 window.__playbackState = { currentTime:null, globalMin:null, globalMax:null, playing:false, speed:10, preferredUnit:1800, rafId:null };
+// Number of contiguous seconds on land required to flag an anomaly (default: 4 hours)
+window.__contiguousLandSeconds = 4 * 60 * 60; // 14400
 
 function parsePointTimestamp(s){
   if(s === undefined || s === null) return null;
@@ -323,7 +325,7 @@ function updatePlaybackForTime(ts){
     const maxJumpM = (opts.maxJumpKm||30) * 1000;
     const maxJumpTimeS = opts.maxJumpTimeS || 3600;
     const portNearMeters = opts.portNearMeters || 500;
-    const contiguousLandSeconds = opts.contiguousLandSeconds || 1800;
+    const contiguousLandSeconds = opts.contiguousLandSeconds || window.__contiguousLandSeconds || 14400;
     const flagged = [];
     try{
       // helper: point-in-ring (ray-casting)
@@ -382,7 +384,7 @@ function updatePlaybackForTime(ts){
         } else {
           if(landRunStart !== null){
             const dur = at - (landRunStartTs||at);
-            if(dur >= (opts.contiguousLandSeconds || 1800)){
+            if(dur >= (opts.contiguousLandSeconds || window.__contiguousLandSeconds || 14400)){
               flagged.push({i: i, reason:'on_land', startIdx: landRunStart, endIdx: i, startTs: landRunStartTs, endTs: at, dur});
             }
             landRunStart = null; landRunStartTs = null;
@@ -394,7 +396,7 @@ function updatePlaybackForTime(ts){
         const last = points[points.length-1];
         const lastTs = Number(last.ts||last.timestamp||last.time||0);
         const dur = lastTs - (landRunStartTs||lastTs);
-        if(dur >= (opts.contiguousLandSeconds || 1800)){
+        if(dur >= (opts.contiguousLandSeconds || window.__contiguousLandSeconds || 14400)){
           flagged.push({i: points.length-1, reason:'on_land', startIdx: landRunStart, endIdx: points.length-1, startTs: landRunStartTs, endTs: lastTs, dur});
         }
       }
@@ -1369,9 +1371,8 @@ function makeLabelIcon(item, colorOverride){
   const anchorY = Math.round(winfo.size / 2);
   // compute inactive ring placement so it's centered on the anchor point
   const ringSize = Math.max(36, Math.round(winfo.size * 1.6));
-  const ringLeft = Math.round(anchorX - (ringSize/2));
-  const ringTop = Math.round(anchorY - (ringSize/2));
-  const ringStyle = `left:${ringLeft}px;top:${ringTop}px;width:${ringSize}px;height:${ringSize}px;transform:translate(-50%,-50%);`;
+  // Position the inactive ring centered on the icon anchor so it aligns with the geographic point.
+  const ringStyle = `left:${anchorX}px;top:${anchorY}px;width:${ringSize}px;height:${ringSize}px;transform:translate(-50%,-50%);`;
   // include inactive ring element (hidden by default) so we can toggle it dynamically
   const html = `<div class="ship-marker-wrap">` +
                `<div class="inactive-ring" aria-hidden="true" style="${ringStyle}"><div class="pulse"></div><div class="dot"></div></div>` +
