@@ -18300,8 +18300,8 @@
     "imo": 9389100,
     "marinetraffic_url": "https://www.marinetraffic.com/en/ais/details/ships/shipid:214178#overview",
     "image": "https://static.vesselfinder.net/ship-photo/9389100-240972000-65e9f6d26cc7f85fe6a1cb9a96728945/1?v1",
-    "notes": "",
-    "seized": false
+    "notes": "**SMYRTOS**: UK authorities seized the 244m oil tanker on **June 14, 2026** in the **English Channel** off the south coast of England. The vessel, part of Russia's shadow fleet, was boarded in a six-hour joint operation by the Royal Navy, Royal Marines, Royal Air Force, and the National Crime Agency. It was sailing under a false Cameroonian flag and had departed from the Russian Baltic port of Ust-Luga on June 5, bound for Port Said, Egypt, carrying an estimated 600,000–700,000 barrels of Russian oil. The tanker was already sanctioned by the EU, Switzerland, the UK, and Canada. An Indian national was arrested on suspicion of sanctions offences, while 24 Indian and Georgian crew members remain aboard for investigation. The vessel is now anchored off the Dorset coast under UK supervision.\n\n*Sources: [The Aviationist](https://theaviationist.com/2026/06/14/uk-seizes-russian-shadow-fleet-tanker/), [Al Jazeera](https://www.aljazeera.com/news/2026/6/14/uk-boards-and-seizes-russian-shadow-fleet-tanker-in-english-channel), [BBC News](https://www.bbc.co.uk/news/articles/clyek039l2vo), [Kyiv Post](https://www.kyivpost.com/post/78228)*",
+    "seized": true
   },
   {
     "SHIP_ID": "2688",
